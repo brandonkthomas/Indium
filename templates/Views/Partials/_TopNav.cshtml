@@ -1,0 +1,33 @@
+<header class="wa-topbar" aria-label="Indium navigation">
+    <div class="wa-topbar__inner">
+        <div class="wa-topbar__left">
+            <button type="button" class="wa-iconbtn wa-topbar__burger" data-wa-sidebar-toggle aria-label="Open menu">
+                <span aria-hidden="true">
+                    <img src="~/apps/indium/assets/svg/burger-menu.svg" asp-append-version="true" alt="" />
+                </span>
+            </button>
+
+            <button type="button" class="wa-iconbtn wa-topbar__back" data-wa-nav="home" aria-label="Back to home">
+                <span aria-hidden="true">
+                    <img src="~/apps/indium/assets/svg/arrow-left.svg" asp-append-version="true" alt="" />
+                </span>
+            </button>
+
+            <div class="wa-topbar__titleblock">
+                <div class="wa-topbar__title" aria-label="Current section">
+                    <span data-wa-topbar-title>Indium</span>
+                </div>
+                <p class="wa-lede wa-breadcrumbs" data-wa-breadcrumbs></p>
+            </div>
+        </div>
+
+        <div class="wa-topbar__actions">
+            <a class="wa-btn wa-btn--icon wa-topbar__play" href="#" data-wa-nav="home" aria-label="Go to home view">
+                <span class="wa-topbar__play-icon" aria-hidden="true">
+                    <img src="~/apps/indium/assets/svg/home-filled.svg" asp-append-version="true" alt="" />
+                </span>
+                <span class="wa-topbar__play-label">Home</span>
+            </a>
+        </div>
+    </div>
+</header>

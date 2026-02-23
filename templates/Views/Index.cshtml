@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Indium";
+}
+
+<section class="wa-app" data-wa-app>
+    @await Html.PartialAsync("~/templates/Views/Partials/_TopNav.cshtml")
+
+    <div class="glass-surface wa-shell" role="application" aria-label="Indium">
+        <div class="glass-surface__content wa-shell__content">
+            <div class="wa-layout" data-wa-layout>
+                @await Html.PartialAsync("~/templates/Views/Partials/_Sidebar.cshtml")
+
+                <div class="wa-content">
+                    <main class="wa-main" aria-label="Indium content">
+                        <div class="wa-view-host" data-wa-view-host></div>
+
+                        <template id="wa-tpl-home">
+                            @await Html.PartialAsync("~/templates/Views/Partials/_ViewHome.cshtml")
+                        </template>
+                        <template id="wa-tpl-search">
+                            @await Html.PartialAsync("~/templates/Views/Partials/_ViewSearch.cshtml")
+                        </template>
+                    </main>
+                </div>
+            </div>
+
+            <div class="wa-sidebar-overlay" data-wa-sidebar-overlay aria-hidden="true"></div>
+        </div>
+    </div>
+</section>
+
+@section Styles {
+    <link rel="stylesheet" href="~/apps/indium/dist/indium.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script type="module">
+        import { bootIndium } from '/apps/indium/dist/indium.js';
+
+        const boot = bootIndium();
+        const versionEl = boot.appRoot?.querySelector('[data-wa-version]');
+        if (versionEl) {
+            versionEl.textContent = `v${boot.config.version}`;
+        }
+    </script>
+}

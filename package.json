@@ -1,0 +1,17 @@
+{
+  "name": "@indium/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -f build/indium.js build/indium.css",
+    "build:js": "esbuild ts/indium.ts --bundle --format=esm --target=es2020 --outfile=build/indium.js --define:__INDIUM_APP_VERSION__=\\\"dev\\\"",
+    "build:css": "esbuild css/indium.css --bundle --outfile=build/indium.css",
+    "build": "npm run clean && npm run build:js && npm run build:css",
+    "check": "tsc --project tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.3",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RazorLangVersion>Latest</RazorLangVersion>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <StaticWebAssetBasePath>apps/indium</StaticWebAssetBasePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <Target Name="SyncIndiumStaticAssets" BeforeTargets="Build">
+    <RemoveDir Directories="wwwroot/assets" />
+    <RemoveDir Directories="wwwroot/css" />
+    <RemoveDir Directories="wwwroot/dist" />
+    <RemoveDir Directories="wwwroot/templates" />
+    <MakeDir Directories="wwwroot/assets;wwwroot/css;wwwroot/dist;wwwroot/templates" />
+
+    <ItemGroup>
+      <_IndiumAssets Include="assets/**/*" />
+      <_IndiumCss Include="css/**/*" />
+      <_IndiumBuild Include="build/**/*" />
+      <_IndiumTemplates Include="templates/**/*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(_IndiumAssets)"
+          DestinationFiles="@(_IndiumAssets->'wwwroot/assets/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="@(_IndiumCss)"
+          DestinationFiles="@(_IndiumCss->'wwwroot/css/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="@(_IndiumBuild)"
+          DestinationFiles="@(_IndiumBuild->'wwwroot/dist/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="@(_IndiumTemplates)"
+          DestinationFiles="@(_IndiumTemplates->'wwwroot/templates/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>
