@@ -37,6 +37,8 @@ var defaults = {
   apiBasePath: "/api/webamp",
   assetBasePath: "/apps/indium",
   appRootSelector: "[data-wa-app]",
+  brandLogoSrc: "",
+  brandLogoAlt: "Brand logo",
   version: "dev".trim().length ? "dev".trim() : "dev",
   exposeLegacyWindowDialogs: false
 };
@@ -60,12 +62,15 @@ function joinPath(base, path) {
   return b === "/" ? `/${p}` : `${b}/${p}`;
 }
 function applyNormalization(next) {
+  const normalizedBrandLogoAlt = (next.brandLogoAlt || defaults.brandLogoAlt).trim();
   return {
     ...next,
     routeRoot: normalizeRoot(next.routeRoot),
     apiBasePath: normalizeRoot(next.apiBasePath),
     assetBasePath: normalizeRoot(next.assetBasePath),
     appRootSelector: next.appRootSelector || defaults.appRootSelector,
+    brandLogoSrc: (next.brandLogoSrc || "").trim(),
+    brandLogoAlt: normalizedBrandLogoAlt || defaults.brandLogoAlt,
     version: next.version || defaults.version,
     exposeLegacyWindowDialogs: !!next.exposeLegacyWindowDialogs
   };
@@ -1346,6 +1351,58 @@ function setGradNoiseCanvasFrameCap(fps) {
 }
 
 // ts/indium.ts
+var observedPlayerbarRoots = /* @__PURE__ */ new WeakSet();
+function applyBranding(appRoot, config2) {
+  const logoSrc = (config2.brandLogoSrc || "").trim();
+  const logoAlt = (config2.brandLogoAlt || "Brand logo").trim();
+  const marks = appRoot.querySelectorAll("[data-wa-brand-mark]");
+  const logos = appRoot.querySelectorAll("[data-wa-brand-logo]");
+  marks.forEach((mark) => {
+    if (logoSrc) mark.removeAttribute("hidden");
+    else mark.setAttribute("hidden", "true");
+  });
+  logos.forEach((logo) => {
+    if (logoSrc) {
+      logo.src = logoSrc;
+      logo.alt = logoAlt;
+      logo.removeAttribute("hidden");
+    } else {
+      logo.removeAttribute("src");
+      logo.alt = "";
+      logo.setAttribute("hidden", "true");
+    }
+  });
+}
+function computePlayerbarOffsetPx(appRoot) {
+  const playerbar = appRoot.querySelector(".wa-playerbar") || document.querySelector(".wa-playerbar");
+  if (!playerbar) return 0;
+  const style = getComputedStyle(playerbar);
+  if (style.display === "none" || style.visibility === "hidden") return 0;
+  const rect = playerbar.getBoundingClientRect();
+  if (rect.height <= 0) return 0;
+  return Math.max(0, Math.ceil(window.innerHeight - rect.top));
+}
+function syncPlayerbarOffset(appRoot) {
+  const offset = computePlayerbarOffsetPx(appRoot);
+  appRoot.style.setProperty("--wa-playerbar-offset", `${offset}px`);
+}
+function ensurePlayerbarOffsetObserver(appRoot) {
+  syncPlayerbarOffset(appRoot);
+  if (observedPlayerbarRoots.has(appRoot)) return;
+  observedPlayerbarRoots.add(appRoot);
+  const onResize = () => syncPlayerbarOffset(appRoot);
+  window.addEventListener("resize", onResize, { passive: true });
+  const observer = new MutationObserver(() => syncPlayerbarOffset(appRoot));
+  const observeRoot = document.body || appRoot;
+  observer.observe(observeRoot, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class", "style", "hidden"]
+  });
+  requestAnimationFrame(() => syncPlayerbarOffset(appRoot));
+  setTimeout(() => syncPlayerbarOffset(appRoot), 250);
+}
 function bootIndium(options = {}) {
   const { sidebar, ...configOptions } = options;
   const config2 = initIndiumConfig(configOptions);
@@ -1358,6 +1415,10 @@ function bootIndium(options = {}) {
     };
   }
   const appRoot = document.querySelector(config2.appRootSelector);
+  if (appRoot) {
+    applyBranding(appRoot, config2);
+    ensurePlayerbarOffsetObserver(appRoot);
+  }
   const sidebarController = appRoot && sidebar !== false ? createSidebarController({ appRoot, ...sidebar || {} }) : null;
   return {
     config: config2,

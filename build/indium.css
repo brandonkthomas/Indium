@@ -488,6 +488,7 @@ a {
   --wa-radius-lg: 16px;
   --wa-radius-md: 14px;
   --wa-playerbar-height: 48px;
+  --wa-playerbar-offset: calc( var(--wa-playerbar-height) + env(safe-area-inset-bottom, 0px) );
   --wa-content-pad-top: 1.25rem;
 }
 .hidden {
@@ -687,7 +688,7 @@ body[data-initial-state=ready] .loading-overlay {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   gap: 0.9rem;
-  min-height: calc(100vh - var(--wa-playerbar-height) - env(safe-area-inset-bottom, 0px));
+  min-height: calc(100vh - var(--wa-playerbar-offset));
 }
 .wa-content {
   min-width: 0;
@@ -919,7 +920,7 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-main {
   padding: 0.2rem 0.1rem 0.75rem 0.1rem;
-  padding-bottom: calc(var(--wa-playerbar-height) + env(safe-area-inset-bottom, 0px) + 1rem);
+  padding-bottom: calc(var(--wa-playerbar-offset) + 1rem);
 }
 @media (min-width: 821px) {
   :root {
@@ -935,7 +936,7 @@ body[data-initial-state=ready] .loading-overlay {
     height: 100%;
   }
   .wa-layout {
-    height: calc(100% - var(--wa-playerbar-height) - env(safe-area-inset-bottom, 0px));
+    height: calc(100% - var(--wa-playerbar-offset));
     min-height: 0;
   }
   .wa-content {
