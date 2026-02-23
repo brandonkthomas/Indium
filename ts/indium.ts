@@ -1,6 +1,9 @@
 import {
+    apiPath,
+    assetPath,
     getIndiumConfig,
     initIndiumConfig,
+    routePath,
     setIndiumConfig,
     type IndiumConfig
 } from './config';
@@ -160,12 +163,15 @@ export function bootIndium(options: BootIndiumOptions = {}): BootIndiumResult {
 }
 
 export {
+    apiPath,
     attachInfiniteScroll,
+    assetPath,
     createGlassSurface,
     createGradNoiseCanvas,
     createNavbarController,
     createSidebarController,
     getIndiumConfig,
+    routePath,
     setGradNoiseCanvasFrameCap,
     setIndiumConfig,
     setIndiumLogger,

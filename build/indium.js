@@ -86,6 +86,12 @@ function setIndiumConfig(partial) {
   }
   return config;
 }
+function routePath(path) {
+  return joinPath(config.routeRoot, path);
+}
+function apiPath(path) {
+  return joinPath(config.apiBasePath, path);
+}
 function assetPath(path) {
   return joinPath(config.assetBasePath, path);
 }
@@ -1715,6 +1721,8 @@ function bootIndium(options = {}) {
   };
 }
 export {
+  apiPath,
+  assetPath,
   attachInfiniteScroll,
   bootIndium,
   createGlassSurface,
@@ -1722,6 +1730,7 @@ export {
   createNavbarController,
   createSidebarController,
   getIndiumConfig,
+  routePath,
   setGradNoiseCanvasFrameCap,
   setIndiumConfig,
   setIndiumLogger,
