@@ -1,0 +1,153 @@
+/*
+    sidebar.css
+    Optional standalone sidebar + overlay styling
+*/
+
+.wa-sidebar {
+    border-radius: var(--wa-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.28);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    position: relative;
+    height: auto;
+}
+
+.wa-sidebar__inner {
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    min-height: 100%;
+    height: 100%;
+}
+
+.wa-sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+}
+
+.wa-sidebar__close {
+    display: none;
+}
+
+.wa-sidenav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.wa-sidenav__link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.wa-sidenav__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    filter: invert(1);
+    opacity: 0.86;
+}
+
+.wa-sidenav__label {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.wa-sidenav__link:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.wa-sidenav__link[data-wa-active="true"] {
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.96);
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+.wa-sidenav__link[data-wa-active="true"] .wa-sidenav__icon {
+    opacity: 0.98;
+}
+
+.wa-sidebar__footer {
+    margin-top: auto;
+    padding-top: 0.4rem;
+}
+
+.wa-sidebar__version {
+    margin-top: 0.55rem;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.wa-sidebar__status {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.wa-sidebar-overlay {
+    display: none;
+}
+
+@media (max-width: 820px) {
+    .wa-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(84vw, 320px);
+        z-index: 10001;
+        border-radius: 0;
+        transform: translateX(-102%);
+        transition: transform 0.18s ease;
+        background: rgba(0, 0, 0, 0.78);
+        height: auto;
+        max-height: none;
+    }
+
+    .wa-sidebar__close {
+        display: inline-flex;
+    }
+
+    .wa-sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: rgba(0, 0, 0, 0.55);
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.18s ease;
+    }
+
+    [data-wa-sidebar-open="true"] .wa-sidebar {
+        transform: translateX(0);
+    }
+
+    [data-wa-sidebar-open="true"] .wa-sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    @supports (
+        (backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))
+    ) {
+        .wa-sidebar {
+            backdrop-filter: blur(20px) saturate(1.2) brightness(0.82);
+            -webkit-backdrop-filter: blur(20px) saturate(1.2) brightness(0.82);
+        }
+    }
+}

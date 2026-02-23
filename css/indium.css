@@ -8,6 +8,8 @@
 @import url('./components/dialogs.css');
 @import url('./components/gradNoiseCanvas.css');
 @import url('./components/toggleSwitch.css');
+@import url('./components/infiniteScroll.css');
+@import url('./components/navbar.css');
 
 @import url('./indium.base.css');
 @import url('./indium.shell-layout.css');

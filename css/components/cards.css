@@ -1,0 +1,173 @@
+/*
+    cards.css
+    Reusable card/list/button/grid primitives
+*/
+
+.wa-btn {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    padding: 0.55rem 0.9rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.wa-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.wa-btn--primary {
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.wa-btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline-offset: 2px;
+}
+
+.wa-btn--icon {
+    padding: 0.2rem 0.55rem;
+    line-height: 1;
+    font-size: 0.85rem;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.wa-btn--icon > * {
+    display: inline-flex;
+    align-items: center;
+}
+
+.wa-btn--icon img {
+    width: 1em;
+    height: 1em;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: invert(1);
+}
+
+.wa-grid {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0.65rem 0;
+}
+
+.wa-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wa-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wa-grid--quick {
+    margin: 0.65rem 0 1rem 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.wa-card {
+    border-radius: var(--wa-radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 0.95rem 1rem;
+    margin: 0.65rem 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.wa-card:has(.wa-list) {
+    padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.wa-card:has(.wa-list + .wa-infinite-sentinel .wa-throbber) {
+    padding: 0.5rem 1rem 2rem 1rem;
+}
+
+.wa-grid .wa-card {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.wa-card--glass {
+    background: transparent;
+}
+
+.wa-card--link {
+    display: block;
+    transition:
+        transform 0.12s ease,
+        border-color 0.12s ease;
+}
+
+.wa-card--link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.wa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.55rem;
+}
+
+.wa-listitem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    text-align: left;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: transparent;
+    padding: 0.7rem 0.85rem;
+    cursor: pointer;
+}
+
+.wa-listitem:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.wa-listitem__title {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.wa-listitem__meta {
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.9rem;
+}
+
+.wa-listitem__pill {
+    flex: 0 0 auto;
+    margin-left: auto;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .wa-listitem {
+        transition:
+            transform 0.12s ease,
+            border-color 0.12s ease;
+    }
+
+    .wa-listitem:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.22);
+    }
+}

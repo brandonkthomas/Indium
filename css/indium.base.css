@@ -215,22 +215,6 @@ body[data-initial-state="ready"] .loading-overlay {
     opacity: 0;
 }
 
-/* ============================================================================== */
-/* Infinite scroll sentinel
-/* ============================================================================== */
-.wa-infinite-sentinel {
-    height: 1px;
-    width: 100%;
-    display: block;
-}
-
-.wa-throbber {
-    width: 22px;
-    height: 22px;
-    filter: invert(1);
-    opacity: 0.9;
-}
-
 @keyframes wa-spin {
     from {
         transform: translate(-50%, -50%) rotate(0deg);

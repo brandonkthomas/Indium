@@ -32,6 +32,14 @@ import {
     createGradNoiseCanvas,
     setGradNoiseCanvasFrameCap
 } from './components/gradNoiseCanvas';
+import {
+    createNavbarController,
+    type NavbarController,
+    type NavbarControllerOptions,
+    type NavbarItem,
+    type NavbarNavigateContext,
+    type NavbarSelectors
+} from './components/navbar/navbar';
 
 export interface BootIndiumOptions extends Partial<IndiumConfig> {
     sidebar?: false | Omit<CreateSidebarControllerOptions, 'appRoot'>;
@@ -155,6 +163,7 @@ export {
     attachInfiniteScroll,
     createGlassSurface,
     createGradNoiseCanvas,
+    createNavbarController,
     createSidebarController,
     getIndiumConfig,
     setGradNoiseCanvasFrameCap,
@@ -174,6 +183,11 @@ export type {
     IndiumConfig,
     IndiumLogger,
     InfiniteScrollController,
+    NavbarController,
+    NavbarControllerOptions,
+    NavbarItem,
+    NavbarNavigateContext,
+    NavbarSelectors,
     PromptOptions,
     SidebarController
 };

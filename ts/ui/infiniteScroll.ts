@@ -114,6 +114,8 @@ export function attachInfiniteScroll(opts: {
     isLoading: () => boolean;
     /** Optional UI hook to show a loading row */
     renderSentinel?: (el: HTMLElement, state: { hasMore: boolean; isLoading: boolean }) => void;
+    /** Optional custom throbber URL; if omitted uses Indium assetPath default */
+    throbberSrc?: string;
     root?: Element | null;
     rootMargin?: string;
 }): InfiniteScrollController {
@@ -148,7 +150,8 @@ export function attachInfiniteScroll(opts: {
             sentinel.style.padding = '0.75rem 0 0.25rem';
             sentinel.style.minHeight = 'auto';
             // Use Indium asset-base-resolved throbber SVG.
-            sentinel.innerHTML = `<img class="wa-throbber" src="${assetPath('assets/svg/throbber-ring-indef.svg')}" alt="" />`;
+            const throbberSrc = opts.throbberSrc?.trim() || assetPath('assets/svg/throbber-ring-indef.svg');
+            sentinel.innerHTML = `<img class="wa-throbber" src="${throbberSrc}" alt="" />`;
         } else {
             // Keep sentinel visible but minimal so IntersectionObserver can still detect it
             sentinel.style.display = 'block';

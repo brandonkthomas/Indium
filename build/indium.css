@@ -417,6 +417,269 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
 }
 
+/* css/components/infiniteScroll.css */
+.wa-infinite-sentinel {
+  height: 1px;
+  width: 100%;
+  display: block;
+}
+.wa-throbber {
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+  opacity: 0.9;
+}
+
+/* css/components/navbar.css */
+.wa-navbar,
+.url-display {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    "SF Mono",
+    monospace;
+  font-size: 14px;
+  user-select: none;
+}
+.wa-navbar__surface,
+.url-display-glass {
+  width: auto !important;
+  min-width: 200px;
+  max-width: calc(100vw - 2rem);
+}
+.wa-navbar__content,
+.url-display-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+}
+.wa-navbar__main,
+.url-display-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+.wa-navbar__brand,
+.url-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  white-space: nowrap;
+  text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+  padding: 0.25rem 0.5rem 0.25rem 0;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+@media (min-width: 769px) {
+  .wa-navbar__brand,
+  .url-text {
+    cursor: pointer;
+  }
+  .wa-navbar__brand:hover,
+  .url-text:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+.wa-navbar__links,
+.url-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.wa-navbar__links--mobile,
+.url-nav-links.mobile {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding-top: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0);
+  margin-top: 0;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.2s ease,
+    max-height 0.2s ease,
+    padding-top 0.2s ease,
+    margin-top 0.2s ease,
+    border-color 0.2s ease;
+}
+.wa-navbar__links--desktop,
+.url-nav-links.desktop {
+  display: none;
+}
+.wa-navbar__link,
+.url-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+}
+.wa-navbar__link:hover,
+.url-link:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
+}
+.wa-navbar__link[data-wa-active=true],
+.url-link[data-wa-active=true],
+.wa-navbar__link.is-active,
+.url-link.is-active {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.14);
+}
+.wa-navbar__link img,
+.url-link img {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.wa-navbar__link img,
+.url-link img {
+  filter: brightness(0) invert(1);
+}
+.url-link-external-sup {
+  display: inline-flex;
+  align-items: flex-start;
+}
+.url-link-external-sup img.url-link-external-sup-icon {
+  width: 0.5em;
+  height: 0.5em;
+}
+.url-link-icon-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.wa-navbar__burger,
+.burger-menu {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease, transform 0.2s ease;
+  border-radius: 6px;
+}
+.wa-navbar__burger:hover,
+.burger-menu:hover {
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
+}
+.wa-navbar__burger:active,
+.burger-menu:active {
+  transform: scale(0.95);
+}
+.burger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.3));
+}
+.burger-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+  color: rgb(179, 179, 179);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  position: absolute;
+}
+.burger-line-1 {
+  transform: translateY(-4px);
+}
+.burger-line-2 {
+  transform: translateY(4px);
+}
+.wa-navbar.wa-navbar--open .burger-line-1,
+.url-display.menu-open .burger-line-1 {
+  transform: translateY(0) rotate(45deg);
+}
+.wa-navbar.wa-navbar--open .burger-line-2,
+.url-display.menu-open .burger-line-2 {
+  transform: translateY(0) rotate(-45deg);
+}
+@media (min-width: 769px) {
+  .wa-navbar__links--desktop,
+  .url-nav-links.desktop {
+    display: flex;
+  }
+  .wa-navbar__links--mobile,
+  .url-nav-links.mobile {
+    display: none !important;
+  }
+  .wa-navbar__burger,
+  .burger-menu {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .wa-navbar__surface,
+  .url-display-glass {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .wa-navbar__burger,
+  .burger-menu.mobile {
+    display: flex;
+    pointer-events: none;
+  }
+  .wa-navbar__links--desktop,
+  .url-nav-links.desktop {
+    display: none !important;
+  }
+  .wa-navbar__links--mobile,
+  .url-nav-links.mobile {
+    display: flex;
+  }
+  .wa-navbar__links--mobile .wa-navbar__link,
+  .url-nav-links.mobile .url-link {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  .wa-navbar.wa-navbar--open .wa-navbar__links--mobile,
+  .url-display.menu-open .url-nav-links.mobile {
+    opacity: 1;
+    max-height: 200px;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top-color: rgba(255, 255, 255, 0.15);
+  }
+  .wa-navbar.wa-navbar--open .wa-navbar__surface,
+  .url-display.menu-open .url-display-glass {
+    height: auto !important;
+  }
+  .wa-navbar__link,
+  .url-link {
+    padding: 0.5rem 0;
+  }
+  .url-link img.url-link-external-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
 /* css/indium.base.css */
 *,
 *::before,
@@ -573,17 +836,6 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-entityheader__art--loading .wa-entityheader__img {
   opacity: 0;
-}
-.wa-infinite-sentinel {
-  height: 1px;
-  width: 100%;
-  display: block;
-}
-.wa-throbber {
-  width: 22px;
-  height: 22px;
-  filter: invert(1);
-  opacity: 0.9;
 }
 @keyframes wa-spin {
   from {
