@@ -106,6 +106,9 @@ a {
     --wa-radius-lg: 16px;
     --wa-radius-md: 14px;
     --wa-playerbar-height: 48px; /* was 74px */
+    --wa-playerbar-offset: calc(
+        var(--wa-playerbar-height) + env(safe-area-inset-bottom, 0px)
+    );
     /* Keep this in sync with `.wa-content { padding-top: ... }` per breakpoint. */
     --wa-content-pad-top: 1.25rem;
 }

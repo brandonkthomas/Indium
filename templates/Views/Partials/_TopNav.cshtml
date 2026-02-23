@@ -7,7 +7,20 @@
                 </span>
             </button>
 
-            <button type="button" class="wa-iconbtn wa-topbar__back" data-wa-nav="home" aria-label="Back to home">
+            <div class="wa-topbar__history" aria-label="History navigation">
+                <button type="button" class="wa-btn wa-btn--icon" data-wa-nav-back aria-label="Back">
+                    <span aria-hidden="true">
+                        <img src="~/apps/indium/assets/svg/arrow-left.svg" asp-append-version="true" alt="" />
+                    </span>
+                </button>
+                <button type="button" class="wa-btn wa-btn--icon" data-wa-nav-forward aria-label="Forward">
+                    <span aria-hidden="true">
+                        <img src="~/apps/indium/assets/svg/arrow-right.svg" asp-append-version="true" alt="" />
+                    </span>
+                </button>
+            </div>
+
+            <button type="button" class="wa-iconbtn wa-topbar__back" data-wa-nav-back aria-label="Back">
                 <span aria-hidden="true">
                     <img src="~/apps/indium/assets/svg/arrow-left.svg" asp-append-version="true" alt="" />
                 </span>

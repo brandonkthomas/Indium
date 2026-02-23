@@ -7,8 +7,16 @@
                     <button class="wa-iconbtn wa-topbar__burger" type="button" data-wa-sidebar-toggle aria-label="Open navigation">
                         Menu
                     </button>
+                    <div class="wa-topbar__history" aria-label="History navigation">
+                        <button type="button" class="wa-btn wa-btn--icon" data-wa-nav-back aria-label="Back">Back</button>
+                        <button type="button" class="wa-btn wa-btn--icon" data-wa-nav-forward aria-label="Forward">Forward</button>
+                    </div>
+                    <button class="wa-iconbtn wa-topbar__back" type="button" data-wa-nav-back aria-label="Back">
+                        Back
+                    </button>
                     <div class="wa-topbar__titleblock">
                         <div class="wa-topbar__title">Indium</div>
+                        <p class="wa-lede wa-breadcrumbs" data-wa-breadcrumbs></p>
                     </div>
                 </div>
             </div>
@@ -17,7 +25,12 @@
         <aside class="wa-sidebar" data-wa-sidebar aria-label="Navigation">
             <button class="wa-sidebar__close" type="button" data-wa-sidebar-close aria-label="Close navigation">Close</button>
             <nav class="wa-sidenav" aria-label="Primary navigation">
-                <a class="wa-sidenav__link" href="#" data-wa-nav="home">Home</a>
+                <a class="wa-sidenav__link" href="#" data-wa-nav="home">
+                    <span class="wa-brand__mark" data-wa-brand-mark hidden>
+                        <img data-wa-brand-logo alt="" hidden />
+                    </span>
+                    Home
+                </a>
                 <a class="wa-sidenav__link" href="#" data-wa-nav="library">Library</a>
             </nav>
         </aside>

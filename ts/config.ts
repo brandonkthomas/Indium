@@ -8,6 +8,8 @@ export interface IndiumConfig {
     apiBasePath: string;
     assetBasePath: string;
     appRootSelector: string;
+    brandLogoSrc?: string;
+    brandLogoAlt: string;
     logger?: IndiumLogger;
     version: string;
     exposeLegacyWindowDialogs: boolean;
@@ -18,6 +20,8 @@ const defaults: IndiumConfig = {
     apiBasePath: '/api/webamp',
     assetBasePath: '/apps/indium',
     appRootSelector: '[data-wa-app]',
+    brandLogoSrc: '',
+    brandLogoAlt: 'Brand logo',
     version:
         typeof __INDIUM_APP_VERSION__ === 'string' && __INDIUM_APP_VERSION__.trim().length
             ? __INDIUM_APP_VERSION__.trim()
@@ -48,12 +52,16 @@ function joinPath(base: string, path: string): string {
 }
 
 function applyNormalization(next: IndiumConfig): IndiumConfig {
+    const normalizedBrandLogoAlt = (next.brandLogoAlt || defaults.brandLogoAlt).trim();
+
     return {
         ...next,
         routeRoot: normalizeRoot(next.routeRoot),
         apiBasePath: normalizeRoot(next.apiBasePath),
         assetBasePath: normalizeRoot(next.assetBasePath),
         appRootSelector: next.appRootSelector || defaults.appRootSelector,
+        brandLogoSrc: (next.brandLogoSrc || '').trim(),
+        brandLogoAlt: normalizedBrandLogoAlt || defaults.brandLogoAlt,
         version: next.version || defaults.version,
         exposeLegacyWindowDialogs: !!next.exposeLegacyWindowDialogs
     };

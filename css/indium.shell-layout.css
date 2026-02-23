@@ -102,9 +102,7 @@
     display: grid;
     grid-template-columns: 260px minmax(0, 1fr);
     gap: 0.9rem;
-    min-height: calc(
-        100vh - var(--wa-playerbar-height) - env(safe-area-inset-bottom, 0px)
-    );
+    min-height: calc(100vh - var(--wa-playerbar-offset));
 }
 
 .wa-content {
@@ -399,9 +397,7 @@
 /* Main view host */
 .wa-main {
     padding: 0.2rem 0.1rem 0.75rem 0.1rem;
-    padding-bottom: calc(
-        var(--wa-playerbar-height) + env(safe-area-inset-bottom, 0px) + 1rem
-    );
+    padding-bottom: calc(var(--wa-playerbar-offset) + 1rem);
 }
 
 /* Desktop app-shell behavior: only the content column scrolls. Sidebar stays pinned and stops above player bar. */
@@ -425,9 +421,7 @@
 
     /* Reserve space for the fixed player bar by shrinking the app layout. */
     .wa-layout {
-        height: calc(
-            100% - var(--wa-playerbar-height) - env(safe-area-inset-bottom, 0px)
-        );
+        height: calc(100% - var(--wa-playerbar-offset));
         min-height: 0;
     }
 
