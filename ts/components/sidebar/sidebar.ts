@@ -34,6 +34,8 @@ export class SidebarController {
     private readonly overlay: HTMLElement;
     private readonly openBtn: HTMLElement | null;
     private readonly closeBtn: HTMLElement | null;
+    private readonly unbind: Array<() => void> = [];
+    private destroyed = false;
 
     constructor(opts: SidebarControllerOptions) {
         this.appRoot = opts.appRoot;
@@ -49,6 +51,7 @@ export class SidebarController {
      * Opens the sidebar
      */
     open() {
+        if (this.destroyed) return;
         this.appRoot.dataset.waSidebarOpen = 'true';
     }
 
@@ -56,6 +59,7 @@ export class SidebarController {
      * Closes the sidebar
      */
     close() {
+        if (this.destroyed) return;
         delete this.appRoot.dataset.waSidebarOpen;
     }
 
@@ -63,30 +67,62 @@ export class SidebarController {
      * Toggles open/closed
      */
     toggle() {
+        if (this.destroyed) return;
         const isOpen = this.appRoot.dataset.waSidebarOpen === 'true';
         if (isOpen) this.close();
         else this.open();
     }
 
     /**
+     * Removes event handlers and closes the sidebar.
+     */
+    destroy() {
+        if (this.destroyed) return;
+        this.destroyed = true;
+        delete this.appRoot.dataset.waSidebarOpen;
+
+        while (this.unbind.length) {
+            const dispose = this.unbind.pop();
+            try { dispose?.(); } catch { /* no-op */ }
+        }
+    }
+
+    /**
      * Binds click/escape handlers and auto-close on nav click
      */
     private bind() {
-        this.openBtn?.addEventListener('click', () => this.open());
-        this.closeBtn?.addEventListener('click', () => this.close());
-        this.overlay.addEventListener('click', () => this.close());
-
-        document.addEventListener('keydown', (e) => {
+        const onOpen = () => this.open();
+        const onClose = () => this.close();
+        const onOverlayClick = () => this.close();
+        const onKeyDown = (e: KeyboardEvent) => {
             if (e.key === 'Escape') this.close();
-        });
-
-        // Close after selecting a nav item (mobile slide-over convenience)
-        this.sidebar.addEventListener('click', (e) => {
+        };
+        const onSidebarClick = (e: MouseEvent) => {
             const t = e.target as Element | null;
             if (t?.closest('[data-wa-nav]')) {
                 this.close();
             }
-        });
+        };
+
+        this.openBtn?.addEventListener('click', onOpen);
+        if (this.openBtn) {
+            this.unbind.push(() => this.openBtn?.removeEventListener('click', onOpen));
+        }
+
+        this.closeBtn?.addEventListener('click', onClose);
+        if (this.closeBtn) {
+            this.unbind.push(() => this.closeBtn?.removeEventListener('click', onClose));
+        }
+
+        this.overlay.addEventListener('click', onOverlayClick);
+        this.unbind.push(() => this.overlay.removeEventListener('click', onOverlayClick));
+
+        document.addEventListener('keydown', onKeyDown);
+        this.unbind.push(() => document.removeEventListener('keydown', onKeyDown));
+
+        // Close after selecting a nav item (mobile slide-over convenience)
+        this.sidebar.addEventListener('click', onSidebarClick);
+        this.unbind.push(() => this.sidebar.removeEventListener('click', onSidebarClick));
     }
 }
 
