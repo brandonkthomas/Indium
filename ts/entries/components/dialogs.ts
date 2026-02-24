@@ -1,5 +1,6 @@
 export {
     configureLegacyWindowDialogs,
+    dialogManager,
     showAlert,
     showConfirm,
     showPrompt

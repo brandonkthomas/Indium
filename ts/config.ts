@@ -29,7 +29,32 @@ const defaults: IndiumConfig = {
     exposeLegacyWindowDialogs: false
 };
 
-let config: IndiumConfig = { ...defaults };
+const GLOBAL_CONFIG_KEY = '__indium_config_state_v1__';
+
+interface IndiumConfigState {
+    config: IndiumConfig;
+}
+
+function getConfigState(): IndiumConfigState {
+    const host = globalThis as Record<string, unknown>;
+    const existing = host[GLOBAL_CONFIG_KEY];
+    if (existing && typeof existing === 'object' && 'config' in (existing as Record<string, unknown>)) {
+        return existing as IndiumConfigState;
+    }
+
+    const created: IndiumConfigState = { config: { ...defaults } };
+    host[GLOBAL_CONFIG_KEY] = created;
+    return created;
+}
+
+function readConfig(): IndiumConfig {
+    return getConfigState().config;
+}
+
+function writeConfig(next: IndiumConfig): IndiumConfig {
+    getConfigState().config = next;
+    return next;
+}
 
 function normalizeRoot(path: string): string {
     const raw = (path || '/').trim();
@@ -68,12 +93,12 @@ function applyNormalization(next: IndiumConfig): IndiumConfig {
 }
 
 export function getIndiumConfig(): Readonly<IndiumConfig> {
-    return config;
+    return readConfig();
 }
 
 export function setIndiumConfig(partial?: Partial<IndiumConfig>): Readonly<IndiumConfig> {
-    if (!partial) return config;
-    config = applyNormalization({ ...config, ...partial });
+    if (!partial) return readConfig();
+    const config = writeConfig(applyNormalization({ ...readConfig(), ...partial }));
     if (partial.logger) {
         setIndiumLogger(partial.logger);
     }
@@ -81,31 +106,31 @@ export function setIndiumConfig(partial?: Partial<IndiumConfig>): Readonly<Indiu
 }
 
 export function getRouteRoot(): string {
-    return config.routeRoot;
+    return readConfig().routeRoot;
 }
 
 export function getApiBasePath(): string {
-    return config.apiBasePath;
+    return readConfig().apiBasePath;
 }
 
 export function getAssetBasePath(): string {
-    return config.assetBasePath;
+    return readConfig().assetBasePath;
 }
 
 export function routePath(path: string): string {
-    return joinPath(config.routeRoot, path);
+    return joinPath(readConfig().routeRoot, path);
 }
 
 export function apiPath(path: string): string {
-    return joinPath(config.apiBasePath, path);
+    return joinPath(readConfig().apiBasePath, path);
 }
 
 export function assetPath(path: string): string {
-    return joinPath(config.assetBasePath, path);
+    return joinPath(readConfig().assetBasePath, path);
 }
 
 export function initIndiumConfig(partial?: Partial<IndiumConfig>): Readonly<IndiumConfig> {
-    config = applyNormalization({ ...defaults, ...partial });
+    const config = writeConfig(applyNormalization({ ...defaults, ...partial }));
     if (config.logger) {
         setIndiumLogger(config.logger);
     }

@@ -42,7 +42,24 @@ var defaults = {
   version: "dev".trim().length ? "dev".trim() : "dev",
   exposeLegacyWindowDialogs: false
 };
-var config = { ...defaults };
+var GLOBAL_CONFIG_KEY = "__indium_config_state_v1__";
+function getConfigState() {
+  const host = globalThis;
+  const existing = host[GLOBAL_CONFIG_KEY];
+  if (existing && typeof existing === "object" && "config" in existing) {
+    return existing;
+  }
+  const created = { config: { ...defaults } };
+  host[GLOBAL_CONFIG_KEY] = created;
+  return created;
+}
+function readConfig() {
+  return getConfigState().config;
+}
+function writeConfig(next) {
+  getConfigState().config = next;
+  return next;
+}
 function normalizeRoot(path) {
   const raw = (path || "/").trim();
   if (!raw) return "/";
@@ -76,27 +93,27 @@ function applyNormalization(next) {
   };
 }
 function getIndiumConfig() {
-  return config;
+  return readConfig();
 }
 function setIndiumConfig(partial) {
-  if (!partial) return config;
-  config = applyNormalization({ ...config, ...partial });
+  if (!partial) return readConfig();
+  const config = writeConfig(applyNormalization({ ...readConfig(), ...partial }));
   if (partial.logger) {
     setIndiumLogger(partial.logger);
   }
   return config;
 }
 function routePath(path) {
-  return joinPath(config.routeRoot, path);
+  return joinPath(readConfig().routeRoot, path);
 }
 function apiPath(path) {
-  return joinPath(config.apiBasePath, path);
+  return joinPath(readConfig().apiBasePath, path);
 }
 function assetPath(path) {
-  return joinPath(config.assetBasePath, path);
+  return joinPath(readConfig().assetBasePath, path);
 }
 function initIndiumConfig(partial) {
-  config = applyNormalization({ ...defaults, ...partial });
+  const config = writeConfig(applyNormalization({ ...defaults, ...partial }));
   if (config.logger) {
     setIndiumLogger(config.logger);
   }
@@ -106,6 +123,8 @@ function initIndiumConfig(partial) {
 // ts/components/sidebar/sidebar.ts
 var SidebarController = class {
   constructor(opts) {
+    this.unbind = [];
+    this.destroyed = false;
     this.appRoot = opts.appRoot;
     this.sidebar = opts.sidebar;
     this.overlay = opts.overlay;
@@ -117,38 +136,70 @@ var SidebarController = class {
    * Opens the sidebar
    */
   open() {
+    if (this.destroyed) return;
     this.appRoot.dataset.waSidebarOpen = "true";
   }
   /**
    * Closes the sidebar
    */
   close() {
+    if (this.destroyed) return;
     delete this.appRoot.dataset.waSidebarOpen;
   }
   /**
    * Toggles open/closed
    */
   toggle() {
+    if (this.destroyed) return;
     const isOpen = this.appRoot.dataset.waSidebarOpen === "true";
     if (isOpen) this.close();
     else this.open();
   }
   /**
+   * Removes event handlers and closes the sidebar.
+   */
+  destroy() {
+    if (this.destroyed) return;
+    this.destroyed = true;
+    delete this.appRoot.dataset.waSidebarOpen;
+    while (this.unbind.length) {
+      const dispose = this.unbind.pop();
+      try {
+        dispose?.();
+      } catch {
+      }
+    }
+  }
+  /**
    * Binds click/escape handlers and auto-close on nav click
    */
   bind() {
-    this.openBtn?.addEventListener("click", () => this.open());
-    this.closeBtn?.addEventListener("click", () => this.close());
-    this.overlay.addEventListener("click", () => this.close());
-    document.addEventListener("keydown", (e) => {
+    const onOpen = () => this.open();
+    const onClose = () => this.close();
+    const onOverlayClick = () => this.close();
+    const onKeyDown = (e) => {
       if (e.key === "Escape") this.close();
-    });
-    this.sidebar.addEventListener("click", (e) => {
+    };
+    const onSidebarClick = (e) => {
       const t = e.target;
       if (t?.closest("[data-wa-nav]")) {
         this.close();
       }
-    });
+    };
+    this.openBtn?.addEventListener("click", onOpen);
+    if (this.openBtn) {
+      this.unbind.push(() => this.openBtn?.removeEventListener("click", onOpen));
+    }
+    this.closeBtn?.addEventListener("click", onClose);
+    if (this.closeBtn) {
+      this.unbind.push(() => this.closeBtn?.removeEventListener("click", onClose));
+    }
+    this.overlay.addEventListener("click", onOverlayClick);
+    this.unbind.push(() => this.overlay.removeEventListener("click", onOverlayClick));
+    document.addEventListener("keydown", onKeyDown);
+    this.unbind.push(() => document.removeEventListener("keydown", onKeyDown));
+    this.sidebar.addEventListener("click", onSidebarClick);
+    this.unbind.push(() => this.sidebar.removeEventListener("click", onSidebarClick));
   }
 };
 function querySelector(root, selector) {
@@ -369,6 +420,7 @@ var DialogManager = class {
     this.glassSurface = null;
     this.lastFocusedElement = null;
     this.bodyOverflowBefore = null;
+    this.activeReject = null;
     // Simple mutex to avoid overlapping dialogs; queue could be added later if needed
     this.isOpen = false;
   }
@@ -415,9 +467,12 @@ var DialogManager = class {
   //------------------------------------------------------------------------------------------
   openInternal(options, onResolve, onReject) {
     if (this.isOpen) {
+      const rejectPrevious = this.activeReject;
       this.closeInternal(false);
+      rejectPrevious?.();
     }
     this.isOpen = true;
+    this.activeReject = onReject;
     const kind = options.kind || ("placeholder" in options || "defaultValue" in options ? "prompt" : "alert");
     const variant = options.variant || (kind === "confirm" ? "info" : "default");
     const allowEscapeClose = options.allowEscapeClose !== false;
@@ -613,6 +668,8 @@ var DialogManager = class {
   closeInternal(fromDestroy) {
     if (!this.isOpen) return;
     this.isOpen = false;
+    const rejectActive = this.activeReject;
+    this.activeReject = null;
     const overlay = this.activeOverlay;
     const glass = this.glassSurface;
     this.activeOverlay = null;
@@ -620,6 +677,9 @@ var DialogManager = class {
     if (!overlay) {
       if (glass) {
         glass.destroy();
+      }
+      if (fromDestroy) {
+        rejectActive?.();
       }
       return;
     }
@@ -644,6 +704,9 @@ var DialogManager = class {
       document.body.style.overflow = "";
     }
     this.bodyOverflowBefore = null;
+    if (fromDestroy) {
+      rejectActive?.();
+    }
     this.log("Closed");
   }
   //------------------------------------------------------------------------------------------
@@ -826,7 +889,9 @@ function attachInfiniteScroll(opts) {
   let pendingWhileLoading = false;
   let scrollRaf = null;
   let lastScrollLogMs = 0;
+  let destroyed = false;
   const triggerLoadMore = (reason) => {
+    if (destroyed) return;
     if (!opts.hasMore()) return;
     if (opts.isLoading()) return;
     const hasMoreAtStart = opts.hasMore();
@@ -834,9 +899,14 @@ function attachInfiniteScroll(opts) {
     logEvent("Indium", "scroll:load", { list: listLabel, hasMore: hasMoreAtStart, reason });
     const loadPromise = Promise.resolve(opts.loadMore());
     render();
-    queueMicrotask(() => render());
+    queueMicrotask(() => {
+      if (destroyed) return;
+      render();
+    });
     loadPromise.finally(() => {
+      if (destroyed) return;
       requestAnimationFrame(() => {
+        if (destroyed) return;
         render();
         if (pendingWhileLoading) {
           pendingWhileLoading = false;
@@ -854,6 +924,7 @@ function attachInfiniteScroll(opts) {
     });
   };
   const maybeLoadMoreByScrollPosition = (reason) => {
+    if (destroyed) return;
     if (!opts.hasMore()) return;
     if (opts.isLoading()) return;
     const c = getScrollContainer();
@@ -883,6 +954,7 @@ function attachInfiniteScroll(opts) {
   };
   const io = new IntersectionObserver(
     (entries) => {
+      if (destroyed) return;
       const entry = entries[0];
       if (!entry?.isIntersecting) return;
       if (!opts.hasMore()) return;
@@ -906,8 +978,10 @@ function attachInfiniteScroll(opts) {
   io.observe(sentinel);
   const scrollTarget = root ?? window;
   const onScroll = () => {
+    if (destroyed) return;
     if (scrollRaf !== null) return;
     scrollRaf = requestAnimationFrame(() => {
+      if (destroyed) return;
       scrollRaf = null;
       maybeLoadMoreByScrollPosition("scroll");
     });
@@ -920,6 +994,7 @@ function attachInfiniteScroll(opts) {
   } catch {
   }
   requestAnimationFrame(() => {
+    if (destroyed) return;
     if (autoFillBudget > 0 && !isScrollable()) {
       autoFillBudget--;
       debugLog(debug, listLabel, "autofill:init", { remaining: autoFillBudget });
@@ -929,6 +1004,7 @@ function attachInfiniteScroll(opts) {
   return {
     /** Disconnects observer and removes sentinel */
     destroy() {
+      destroyed = true;
       debugLog(debug, listLabel, "destroy");
       try {
         io.disconnect();
@@ -1646,9 +1722,9 @@ function createNavbarController(options = {}) {
 
 // ts/indium.ts
 var observedPlayerbarRoots = /* @__PURE__ */ new WeakSet();
-function applyBranding(appRoot, config2) {
-  const logoSrc = (config2.brandLogoSrc || "").trim();
-  const logoAlt = (config2.brandLogoAlt || "Brand logo").trim();
+function applyBranding(appRoot, config) {
+  const logoSrc = (config.brandLogoSrc || "").trim();
+  const logoAlt = (config.brandLogoAlt || "Brand logo").trim();
   const marks = appRoot.querySelectorAll("[data-wa-brand-mark]");
   const logos = appRoot.querySelectorAll("[data-wa-brand-logo]");
   marks.forEach((mark) => {
@@ -1699,23 +1775,23 @@ function ensurePlayerbarOffsetObserver(appRoot) {
 }
 function bootIndium(options = {}) {
   const { sidebar, ...configOptions } = options;
-  const config2 = initIndiumConfig(configOptions);
-  configureLegacyWindowDialogs(config2.exposeLegacyWindowDialogs);
+  const config = initIndiumConfig(configOptions);
+  configureLegacyWindowDialogs(config.exposeLegacyWindowDialogs);
   if (typeof document === "undefined") {
     return {
-      config: config2,
+      config,
       appRoot: null,
       sidebarController: null
     };
   }
-  const appRoot = document.querySelector(config2.appRootSelector);
+  const appRoot = document.querySelector(config.appRootSelector);
   if (appRoot) {
-    applyBranding(appRoot, config2);
+    applyBranding(appRoot, config);
     ensurePlayerbarOffsetObserver(appRoot);
   }
   const sidebarController = appRoot && sidebar !== false ? createSidebarController({ appRoot, ...sidebar || {} }) : null;
   return {
-    config: config2,
+    config,
     appRoot,
     sidebarController
   };

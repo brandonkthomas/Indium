@@ -224,6 +224,7 @@ var DialogManager = class {
     this.glassSurface = null;
     this.lastFocusedElement = null;
     this.bodyOverflowBefore = null;
+    this.activeReject = null;
     // Simple mutex to avoid overlapping dialogs; queue could be added later if needed
     this.isOpen = false;
   }
@@ -270,9 +271,12 @@ var DialogManager = class {
   //------------------------------------------------------------------------------------------
   openInternal(options, onResolve, onReject) {
     if (this.isOpen) {
+      const rejectPrevious = this.activeReject;
       this.closeInternal(false);
+      rejectPrevious?.();
     }
     this.isOpen = true;
+    this.activeReject = onReject;
     const kind = options.kind || ("placeholder" in options || "defaultValue" in options ? "prompt" : "alert");
     const variant = options.variant || (kind === "confirm" ? "info" : "default");
     const allowEscapeClose = options.allowEscapeClose !== false;
@@ -468,6 +472,8 @@ var DialogManager = class {
   closeInternal(fromDestroy) {
     if (!this.isOpen) return;
     this.isOpen = false;
+    const rejectActive = this.activeReject;
+    this.activeReject = null;
     const overlay = this.activeOverlay;
     const glass = this.glassSurface;
     this.activeOverlay = null;
@@ -475,6 +481,9 @@ var DialogManager = class {
     if (!overlay) {
       if (glass) {
         glass.destroy();
+      }
+      if (fromDestroy) {
+        rejectActive?.();
       }
       return;
     }
@@ -499,6 +508,9 @@ var DialogManager = class {
       document.body.style.overflow = "";
     }
     this.bodyOverflowBefore = null;
+    if (fromDestroy) {
+      rejectActive?.();
+    }
     this.log("Closed");
   }
   //------------------------------------------------------------------------------------------
@@ -543,6 +555,7 @@ function configureLegacyWindowDialogs(enabled) {
 }
 export {
   configureLegacyWindowDialogs,
+  dialogManager,
   showAlert,
   showConfirm,
   showPrompt

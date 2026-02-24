@@ -23,7 +23,20 @@ var defaults = {
   version: "dev".trim().length ? "dev".trim() : "dev",
   exposeLegacyWindowDialogs: false
 };
-var config = { ...defaults };
+var GLOBAL_CONFIG_KEY = "__indium_config_state_v1__";
+function getConfigState() {
+  const host = globalThis;
+  const existing = host[GLOBAL_CONFIG_KEY];
+  if (existing && typeof existing === "object" && "config" in existing) {
+    return existing;
+  }
+  const created = { config: { ...defaults } };
+  host[GLOBAL_CONFIG_KEY] = created;
+  return created;
+}
+function readConfig() {
+  return getConfigState().config;
+}
 function normalizeRoot(path) {
   const raw = (path || "/").trim();
   if (!raw) return "/";
@@ -43,7 +56,7 @@ function joinPath(base, path) {
   return b === "/" ? `/${p}` : `${b}/${p}`;
 }
 function assetPath(path) {
-  return joinPath(config.assetBasePath, path);
+  return joinPath(readConfig().assetBasePath, path);
 }
 
 // ts/ui/infiniteScroll.ts
@@ -185,7 +198,9 @@ function attachInfiniteScroll(opts) {
   let pendingWhileLoading = false;
   let scrollRaf = null;
   let lastScrollLogMs = 0;
+  let destroyed = false;
   const triggerLoadMore = (reason) => {
+    if (destroyed) return;
     if (!opts.hasMore()) return;
     if (opts.isLoading()) return;
     const hasMoreAtStart = opts.hasMore();
@@ -193,9 +208,14 @@ function attachInfiniteScroll(opts) {
     logEvent("Indium", "scroll:load", { list: listLabel, hasMore: hasMoreAtStart, reason });
     const loadPromise = Promise.resolve(opts.loadMore());
     render();
-    queueMicrotask(() => render());
+    queueMicrotask(() => {
+      if (destroyed) return;
+      render();
+    });
     loadPromise.finally(() => {
+      if (destroyed) return;
       requestAnimationFrame(() => {
+        if (destroyed) return;
         render();
         if (pendingWhileLoading) {
           pendingWhileLoading = false;
@@ -213,6 +233,7 @@ function attachInfiniteScroll(opts) {
     });
   };
   const maybeLoadMoreByScrollPosition = (reason) => {
+    if (destroyed) return;
     if (!opts.hasMore()) return;
     if (opts.isLoading()) return;
     const c = getScrollContainer();
@@ -242,6 +263,7 @@ function attachInfiniteScroll(opts) {
   };
   const io = new IntersectionObserver(
     (entries) => {
+      if (destroyed) return;
       const entry = entries[0];
       if (!entry?.isIntersecting) return;
       if (!opts.hasMore()) return;
@@ -265,8 +287,10 @@ function attachInfiniteScroll(opts) {
   io.observe(sentinel);
   const scrollTarget = root ?? window;
   const onScroll = () => {
+    if (destroyed) return;
     if (scrollRaf !== null) return;
     scrollRaf = requestAnimationFrame(() => {
+      if (destroyed) return;
       scrollRaf = null;
       maybeLoadMoreByScrollPosition("scroll");
     });
@@ -279,6 +303,7 @@ function attachInfiniteScroll(opts) {
   } catch {
   }
   requestAnimationFrame(() => {
+    if (destroyed) return;
     if (autoFillBudget > 0 && !isScrollable()) {
       autoFillBudget--;
       debugLog(debug, listLabel, "autofill:init", { remaining: autoFillBudget });
@@ -288,6 +313,7 @@ function attachInfiniteScroll(opts) {
   return {
     /** Disconnects observer and removes sentinel */
     destroy() {
+      destroyed = true;
       debugLog(debug, listLabel, "destroy");
       try {
         io.disconnect();
