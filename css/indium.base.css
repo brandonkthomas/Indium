@@ -109,7 +109,7 @@ a {
     --wa-playerbar-offset: calc(
         var(--wa-playerbar-height) + env(safe-area-inset-bottom, 0px)
     );
-    /* Keep this in sync with `.wa-content { padding-top: ... }` per breakpoint. */
+    /* Keep this in sync with `.wa-content { margin-top: ... }` per breakpoint. */
     --wa-content-pad-top: 1.25rem;
 }
 

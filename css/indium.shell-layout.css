@@ -403,7 +403,7 @@
 /* Desktop app-shell behavior: only the content column scrolls. Sidebar stays pinned and stops above player bar. */
 @media (min-width: 821px) {
     :root {
-        /* Keep in sync with `.wa-content { padding-top: 4rem; }` on desktop. */
+        /* Keep in sync with `.wa-content { margin-top: 4rem; }` on desktop. */
         --wa-content-pad-top: 4rem;
     }
 
@@ -430,7 +430,7 @@
             100% + 1.15rem
         ); /* spill behind bottom player a tiny bit */
         min-height: 0;
-        padding-top: 4rem; /* 3.5rem for the topbar + 0.5rem for the gap */
+        margin-top: 4rem; /* 3.5rem for the topbar + 0.5rem for the gap */
         overflow-y: auto;
         overscroll-behavior: contain;
     }
