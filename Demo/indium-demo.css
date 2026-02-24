@@ -1,0 +1,56 @@
+.wa-components-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wa-components-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+[data-wa-nav-setting-menu] {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    [data-wa-nav-setting-menu] {
+        display: inline-flex;
+    }
+}
+
+.wa-components-navbar-root {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    z-index: 1;
+    width: 100%;
+    min-height: 56px;
+}
+
+.wa-components-glass-host {
+    min-height: 120px;
+    background: linear-gradient(45deg, black, transparent);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0.55rem;
+    display: grid;
+    place-items: center;
+}
+
+.wa-components-inputs-grid {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.url-link-external-sup {
+    display: inline-flex;
+    align-items: flex-start;
+}
+
+.url-link-external-sup img.url-link-external-sup-icon {
+    width: 0.5em;
+    height: 0.5em;
+}

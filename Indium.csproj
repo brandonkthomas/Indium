@@ -16,13 +16,15 @@
   <Target Name="SyncIndiumStaticAssets" BeforeTargets="Build">
     <RemoveDir Directories="wwwroot/assets" />
     <RemoveDir Directories="wwwroot/css" />
+    <RemoveDir Directories="wwwroot/demo" />
     <RemoveDir Directories="wwwroot/dist" />
     <RemoveDir Directories="wwwroot/templates" />
-    <MakeDir Directories="wwwroot/assets;wwwroot/css;wwwroot/dist;wwwroot/templates" />
+    <MakeDir Directories="wwwroot/assets;wwwroot/css;wwwroot/demo;wwwroot/dist;wwwroot/templates" />
 
     <ItemGroup>
       <_IndiumAssets Include="assets/**/*" />
       <_IndiumCss Include="css/**/*" />
+      <_IndiumDemo Include="Demo/**/*" />
       <_IndiumBuild Include="build/**/*" />
       <_IndiumTemplates Include="templates/**/*" />
     </ItemGroup>
@@ -33,6 +35,10 @@
 
     <Copy SourceFiles="@(_IndiumCss)"
           DestinationFiles="@(_IndiumCss->'wwwroot/css/%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <Copy SourceFiles="@(_IndiumDemo)"
+          DestinationFiles="@(_IndiumDemo->'wwwroot/demo/%(RecursiveDir)%(Filename)%(Extension)')"
           SkipUnchangedFiles="true" />
 
     <Copy SourceFiles="@(_IndiumBuild)"
