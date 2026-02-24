@@ -110,6 +110,7 @@ class DialogManager {
     private glassSurface: GlassSurfaceInstance | null = null;
     private lastFocusedElement: HTMLElement | null = null;
     private bodyOverflowBefore: string | null = null;
+    private activeReject: (() => void) | null = null;
 
     // Simple mutex to avoid overlapping dialogs; queue could be added later if needed
     private isOpen = false;
@@ -165,9 +166,12 @@ class DialogManager {
         onReject: () => void
     ) {
         if (this.isOpen) {
+            const rejectPrevious = this.activeReject;
             this.closeInternal(false);
+            rejectPrevious?.();
         }
         this.isOpen = true;
+        this.activeReject = onReject;
 
         const kind: DialogKind =
             (options.kind as DialogKind) ||
@@ -433,6 +437,8 @@ class DialogManager {
     private closeInternal(fromDestroy: boolean) {
         if (!this.isOpen) return;
         this.isOpen = false;
+        const rejectActive = this.activeReject;
+        this.activeReject = null;
 
         const overlay = this.activeOverlay;
         const glass = this.glassSurface;
@@ -443,6 +449,9 @@ class DialogManager {
         if (!overlay) {
             if (glass) {
                 glass.destroy();
+            }
+            if (fromDestroy) {
+                rejectActive?.();
             }
             return;
         }
@@ -473,6 +482,10 @@ class DialogManager {
             document.body.style.overflow = '';
         }
         this.bodyOverflowBefore = null;
+
+        if (fromDestroy) {
+            rejectActive?.();
+        }
 
         this.log('Closed');
     }
