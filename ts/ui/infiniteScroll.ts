@@ -212,8 +212,10 @@ export function attachInfiniteScroll(opts: {
     let pendingWhileLoading = false;
     let scrollRaf: number | null = null;
     let lastScrollLogMs = 0;
+    let destroyed = false;
 
     const triggerLoadMore = (reason: string) => {
+        if (destroyed) return;
         if (!opts.hasMore()) return;
         if (opts.isLoading()) return;
         const hasMoreAtStart = opts.hasMore();
@@ -222,9 +224,14 @@ export function attachInfiniteScroll(opts: {
 
         const loadPromise = Promise.resolve(opts.loadMore());
         render();
-        queueMicrotask(() => render());
+        queueMicrotask(() => {
+            if (destroyed) return;
+            render();
+        });
         loadPromise.finally(() => {
+            if (destroyed) return;
             requestAnimationFrame(() => {
+                if (destroyed) return;
                 render();
                 // If we observed an intersect while loading (and therefore could not start a request),
                 // try once more after the load settles.
@@ -248,6 +255,7 @@ export function attachInfiniteScroll(opts: {
     };
 
     const maybeLoadMoreByScrollPosition = (reason: string) => {
+        if (destroyed) return;
         if (!opts.hasMore()) return;
         if (opts.isLoading()) return;
         const c = getScrollContainer();
@@ -278,6 +286,7 @@ export function attachInfiniteScroll(opts: {
 
     const io = new IntersectionObserver(
         (entries) => {
+            if (destroyed) return;
             const entry = entries[0];
             if (!entry?.isIntersecting) return;
             if (!opts.hasMore()) return;
@@ -305,8 +314,10 @@ export function attachInfiniteScroll(opts: {
     // Scroll fallback for iOS Safari: if IO doesn't fire consistently, use scroll position.
     const scrollTarget: any = root ?? window;
     const onScroll = () => {
+        if (destroyed) return;
         if (scrollRaf !== null) return;
         scrollRaf = requestAnimationFrame(() => {
+            if (destroyed) return;
             scrollRaf = null;
             maybeLoadMoreByScrollPosition('scroll');
         });
@@ -322,6 +333,7 @@ export function attachInfiniteScroll(opts: {
 
     // Initial check: attempt a single auto-fill chain, but only up to budget and only if not scrollable.
     requestAnimationFrame(() => {
+        if (destroyed) return;
         if (autoFillBudget > 0 && !isScrollable()) {
             autoFillBudget--;
             debugLog(debug, listLabel, 'autofill:init', { remaining: autoFillBudget });
@@ -332,6 +344,7 @@ export function attachInfiniteScroll(opts: {
     return {
         /** Disconnects observer and removes sentinel */
         destroy() {
+            destroyed = true;
             debugLog(debug, listLabel, 'destroy');
             try { io.disconnect(); } catch { /* no-op */ }
             try { scrollTarget.removeEventListener('scroll', onScroll); } catch { /* no-op */ }
