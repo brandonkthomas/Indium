@@ -235,25 +235,89 @@
         navigateTo(state.history[state.historyIndex], { pushHistory: false });
     }
 
+    function initDialogCard(root) {
+        if (!(root instanceof HTMLElement)) return;
+
+        const dialogAlertBtn = root.querySelector('[data-wa-dialog-alert]');
+        const dialogAlertDangerBtn = root.querySelector('[data-wa-dialog-alert-danger]');
+        const dialogConfirmBtn = root.querySelector('[data-wa-dialog-confirm]');
+        const dialogPromptBtn = root.querySelector('[data-wa-dialog-prompt]');
+        const dialogBackdropBtn = root.querySelector('[data-wa-dialog-setting-backdrop]');
+        const dialogResult = root.querySelector('[data-wa-dialog-result]');
+        let dialogBackdropClose = true;
+
+        const setDialogResult = (text) => {
+            if (dialogResult instanceof HTMLElement) {
+                dialogResult.textContent = text;
+            }
+        };
+
+        if (dialogBackdropBtn instanceof HTMLElement) {
+            dialogBackdropBtn.addEventListener('click', () => {
+                dialogBackdropClose = !dialogBackdropClose;
+                dialogBackdropBtn.textContent = `Backdrop Close: ${dialogBackdropClose ? 'On' : 'Off'}`;
+            });
+        }
+
+        if (dialogAlertBtn instanceof HTMLElement) {
+            dialogAlertBtn.addEventListener('click', async () => {
+                await showAlert({
+                    title: 'Dialog Alert',
+                    message: 'showAlert(info) resolved successfully.',
+                    variant: 'info',
+                    allowBackdropClose: dialogBackdropClose
+                });
+                setDialogResult('showAlert(info) resolved: void');
+            });
+        }
+
+        if (dialogAlertDangerBtn instanceof HTMLElement) {
+            dialogAlertDangerBtn.addEventListener('click', async () => {
+                await showAlert({
+                    title: 'Dialog Alert (Danger)',
+                    message: 'showAlert(danger) resolved successfully.',
+                    variant: 'danger',
+                    allowBackdropClose: dialogBackdropClose
+                });
+                setDialogResult('showAlert(danger) resolved: void');
+            });
+        }
+
+        if (dialogConfirmBtn instanceof HTMLElement) {
+            dialogConfirmBtn.addEventListener('click', async () => {
+                const result = await showConfirm({
+                    title: 'Dialog Confirm',
+                    message: 'showConfirm returns true/false.',
+                    allowBackdropClose: dialogBackdropClose
+                });
+                setDialogResult(`showConfirm resolved: ${String(result)}`);
+            });
+        }
+
+        if (dialogPromptBtn instanceof HTMLElement) {
+            dialogPromptBtn.addEventListener('click', async () => {
+                const value = await showPrompt({
+                    title: 'Dialog Prompt',
+                    message: 'showPrompt returns string|null.',
+                    defaultValue: 'indium',
+                    placeholder: 'Enter value',
+                    allowBackdropClose: dialogBackdropClose
+                });
+                setDialogResult(`showPrompt resolved: ${value === null ? 'null' : value}`);
+            });
+        }
+    }
+
     function initHome() {
         const root = viewHost.querySelector('[data-wa-view="home"]');
         const listEl = root?.querySelector('[data-wa-list="recent"]');
-        const alertBtn = root?.querySelector('[data-wa-demo-alert]');
         if (!(listEl instanceof HTMLElement)) return;
 
         state.recentCursor = 0;
         state.recentLoading = false;
         listEl.replaceChildren();
 
-        if (alertBtn instanceof HTMLElement) {
-            alertBtn.addEventListener('click', () => {
-                showAlert({
-                    title: 'Indium Demo',
-                    message: 'Dialog component is loaded from the Indium package.',
-                    variant: 'info'
-                });
-            });
-        }
+        initDialogCard(root);
 
         const pageSize = 20;
         const loadMore = async () => {
@@ -368,11 +432,6 @@
         const glassCreateBtn = root.querySelector('[data-wa-glass-setting-create]');
         const glassDestroyBtn = root.querySelector('[data-wa-glass-setting-destroy]');
 
-        const dialogAlertBtn = root.querySelector('[data-wa-dialog-alert]');
-        const dialogConfirmBtn = root.querySelector('[data-wa-dialog-confirm]');
-        const dialogPromptBtn = root.querySelector('[data-wa-dialog-prompt]');
-        const dialogBackdropBtn = root.querySelector('[data-wa-dialog-setting-backdrop]');
-        const dialogResult = root.querySelector('[data-wa-dialog-result]');
         const inputToggle = root.querySelector('[data-wa-input-toggle]');
         const inputToggleLarge = root.querySelector('[data-wa-input-toggle-large]');
         const inputStatus = root.querySelector('[data-wa-input-status]');
@@ -385,7 +444,6 @@
         let navbarIncludeExternal = true;
 
         let glassInstance = null;
-        let dialogBackdropClose = true;
         let inputsDisabled = false;
 
         function isMobileViewport() {
@@ -550,54 +608,7 @@
             glassDestroyBtn.addEventListener('click', destroyGlass);
         }
 
-        if (dialogBackdropBtn instanceof HTMLElement) {
-            dialogBackdropBtn.addEventListener('click', () => {
-                dialogBackdropClose = !dialogBackdropClose;
-                dialogBackdropBtn.textContent = `Backdrop Close: ${dialogBackdropClose ? 'On' : 'Off'}`;
-            });
-        }
-
-        if (dialogAlertBtn instanceof HTMLElement) {
-            dialogAlertBtn.addEventListener('click', async () => {
-                await showAlert({
-                    title: 'Dialog Alert',
-                    message: 'showAlert resolved successfully.',
-                    variant: 'info',
-                    allowBackdropClose: dialogBackdropClose
-                });
-                if (dialogResult instanceof HTMLElement) {
-                    dialogResult.textContent = 'showAlert resolved: void';
-                }
-            });
-        }
-
-        if (dialogConfirmBtn instanceof HTMLElement) {
-            dialogConfirmBtn.addEventListener('click', async () => {
-                const result = await showConfirm({
-                    title: 'Dialog Confirm',
-                    message: 'showConfirm returns true/false.',
-                    allowBackdropClose: dialogBackdropClose
-                });
-                if (dialogResult instanceof HTMLElement) {
-                    dialogResult.textContent = `showConfirm resolved: ${String(result)}`;
-                }
-            });
-        }
-
-        if (dialogPromptBtn instanceof HTMLElement) {
-            dialogPromptBtn.addEventListener('click', async () => {
-                const value = await showPrompt({
-                    title: 'Dialog Prompt',
-                    message: 'showPrompt returns string|null.',
-                    defaultValue: 'indium',
-                    placeholder: 'Enter value',
-                    allowBackdropClose: dialogBackdropClose
-                });
-                if (dialogResult instanceof HTMLElement) {
-                    dialogResult.textContent = `showPrompt resolved: ${value === null ? 'null' : value}`;
-                }
-            });
-        }
+        initDialogCard(root);
 
         function syncInputsUi() {
             if (inputDisableBtn instanceof HTMLElement) {

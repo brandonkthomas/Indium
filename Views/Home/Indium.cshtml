@@ -131,9 +131,14 @@
                                 <div class="wa-card wa-card--glass">
                                     <h2 class="wa-h2">Dialogs</h2>
                                     <p class="wa-copy">Smoke-test shared dialog component wiring.</p>
-                                    <button type="button" class="wa-btn wa-btn--primary" data-wa-demo-alert>
-                                        Show Alert
-                                    </button>
+                                    <div class="wa-components-actions">
+                                        <button type="button" class="wa-btn wa-btn--primary" data-wa-dialog-alert>Alert</button>
+                                        <button type="button" class="wa-btn" data-wa-dialog-alert-danger>Alert (Danger)</button>
+                                        <button type="button" class="wa-btn" data-wa-dialog-confirm>Confirm</button>
+                                        <button type="button" class="wa-btn" data-wa-dialog-prompt>Prompt</button>
+                                        <button type="button" class="wa-btn" data-wa-dialog-setting-backdrop>Backdrop Close: On</button>
+                                    </div>
+                                    <p class="wa-copy" data-wa-dialog-result>No dialog action yet.</p>
                                 </div>
 
                                 <div class="wa-card wa-card--glass">
@@ -223,6 +228,7 @@
                                     <h2 class="wa-h2">Dialogs</h2>
                                     <div class="wa-components-actions">
                                         <button type="button" class="wa-btn wa-btn--primary" data-wa-dialog-alert>Alert</button>
+                                        <button type="button" class="wa-btn" data-wa-dialog-alert-danger>Alert (Danger)</button>
                                         <button type="button" class="wa-btn" data-wa-dialog-confirm>Confirm</button>
                                         <button type="button" class="wa-btn" data-wa-dialog-prompt>Prompt</button>
                                         <button type="button" class="wa-btn" data-wa-dialog-setting-backdrop>Backdrop Close: On</button>
