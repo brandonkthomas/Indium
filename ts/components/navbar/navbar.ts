@@ -73,7 +73,7 @@ const defaultSelectors: NavbarSelectors = {
     burger: '.wa-navbar__burger, .burger-menu',
     desktopNav: '.wa-navbar__links--desktop, .url-nav-links.desktop',
     mobileNav: '.wa-navbar__links--mobile, .url-nav-links.mobile',
-    navLink: 'a[data-wa-nav-id], a[data-nav-link], a.url-link'
+    navLink: 'a[data-wa-nav-id], a[data-nav-link], a.wa-navbar__link, a.url-link'
 };
 
 const defaultGlassOptions: GlassSurfaceOptions = {
@@ -94,7 +94,7 @@ const defaultGlassOptions: GlassSurfaceOptions = {
     xChannel: 'R',
     yChannel: 'G',
     mixBlendMode: 'difference',
-    className: 'url-display-glass',
+    className: 'wa-navbar__surface url-display-glass',
     style: {
         minHeight: '48px',
         transition: 'height 0.3s ease'
@@ -205,7 +205,8 @@ class NavbarControllerImpl implements NavbarController {
                 iconSrc: icon?.getAttribute('src') || undefined,
                 iconAlt: icon?.getAttribute('alt') || undefined,
                 ariaLabel: link.getAttribute('aria-label') || undefined,
-                external: link.classList.contains('url-link-external')
+                external: link.classList.contains('wa-navbar__link--external')
+                    || link.classList.contains('url-link-external')
             };
             this.itemLookup.set(item.id, item);
         });
@@ -237,7 +238,8 @@ class NavbarControllerImpl implements NavbarController {
                     href: link.getAttribute('href') || '#',
                     iconSrc: link.querySelector('img')?.getAttribute('src') || undefined,
                     ariaLabel: link.getAttribute('aria-label') || undefined,
-                    external: link.classList.contains('url-link-external')
+                    external: link.classList.contains('wa-navbar__link--external')
+                        || link.classList.contains('url-link-external')
                 };
                 const item = existing || fallback;
                 const decision = this.onNavigate?.({
@@ -263,6 +265,7 @@ class NavbarControllerImpl implements NavbarController {
                 target.closest(this.selectors.burger)
                 || target.closest('.glass-surface')
                 || target.closest('.wa-navbar__surface')
+                || target.closest('.wa-navbar__main')
                 || target.closest('.url-display-main')
             );
 
@@ -339,10 +342,18 @@ class NavbarControllerImpl implements NavbarController {
         const link = document.createElement('a');
         link.href = item.href;
         link.className = item.className
-            || `url-link ${item.external ? 'url-link-external' : ''}`.trim();
+            || [
+                'wa-navbar__link',
+                item.external ? 'wa-navbar__link--external' : '',
+                'url-link',
+                item.external ? 'url-link-external' : ''
+            ].filter(Boolean).join(' ');
+        const hasExternalClass = link.classList.contains('wa-navbar__link--external')
+            || link.classList.contains('url-link-external');
         link.setAttribute('data-wa-nav-id', item.id);
         if (!item.className && item.id) {
             link.setAttribute('data-nav-link', item.id);
+            link.classList.add(`wa-navbar__link--${item.id}`);
             link.classList.add(`url-link-${item.id}`);
         }
         if (item.ariaLabel) link.setAttribute('aria-label', item.ariaLabel);
@@ -368,6 +379,14 @@ class NavbarControllerImpl implements NavbarController {
 
         const span = document.createElement('span');
         span.textContent = label;
+        if (item.external || hasExternalClass) {
+            const sup = document.createElement('sup');
+            sup.className = 'wa-navbar__link-external-sup url-link-external-sup';
+            sup.setAttribute('aria-hidden', 'true');
+            sup.textContent = '↗';
+            span.appendChild(document.createTextNode(' '));
+            span.appendChild(sup);
+        }
         link.appendChild(span);
         return link;
     }
