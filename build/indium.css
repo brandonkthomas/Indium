@@ -1257,12 +1257,11 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-view {
   display: block;
 }
-.wa-view--home,
 .wa-view--search {
   display: block;
 }
 @media (min-width: 821px) {
-  .wa-view--home {
+  .wa-view--layout-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
@@ -1414,6 +1413,14 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-grid--quick {
   margin: 0.65rem 0 0.25rem 0;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+.wa-grid--quick > .wa-card {
+  height: 100%;
+}
+.wa-grid--quick > .wa-card.wa-card--link {
+  display: flex;
+  flex-direction: column;
 }
 .wa-homequick__title {
   display: flex;

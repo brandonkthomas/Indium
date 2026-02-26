@@ -263,6 +263,14 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-grid--quick {
   margin: 0.65rem 0 0.25rem 0;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+.wa-grid--quick > .wa-card {
+  height: 100%;
+}
+.wa-grid--quick > .wa-card.wa-card--link {
+  display: flex;
+  flex-direction: column;
 }
 .wa-card {
   border-radius: var(--wa-radius-md);
