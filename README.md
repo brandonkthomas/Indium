@@ -8,6 +8,8 @@
   <p align="center">
     Customizable UI kit: TypeScript, CSS, and Razor templates with full-shell and per-component bundles
     <br />
+    <i>Work in progress.</i>
+    <br />
     <br />
     <a href="https://dotnet.microsoft.com/en-us/apps/aspnet"><img alt="ASP.NET Core" src="https://img.shields.io/badge/ASP.NET%20Core-512BD4?logo=dotnet&logoColor=white"></a>
     <a href="https://learn.microsoft.com/en-us/aspnet/core/razor-pages"><img alt="Razor" src="https://img.shields.io/badge/Razor-5C2D91?logo=.net&logoColor=white"></a>
@@ -27,6 +29,9 @@ It ships as a Razor Class Library with both static web assets and JS/CSS bundles
 - **Config + Path Helpers**: `setIndiumConfig(...)`, `routePath(...)`, `apiPath(...)`, and `assetPath(...)`.
 - **Host-Compatible Navbar**: Canonical `wa-navbar*` selectors with legacy `url-*` compatibility support.
 - **Runtime Test Coverage**: Browser-executed UI contract tests via Portfolio host route `/internal/indium/tests`.
+
+## Screenshots
+Work in progress...
 
 ## Getting Started
 ```bash
