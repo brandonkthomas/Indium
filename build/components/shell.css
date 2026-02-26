@@ -525,7 +525,7 @@ body[data-initial-state=ready] .loading-overlay {
   .wa-content {
     height: calc(100% + 1.15rem);
     min-height: 0;
-    padding-top: 4rem;
+    margin-top: 4rem;
     overflow-y: auto;
     overscroll-behavior: contain;
   }
@@ -580,7 +580,7 @@ body[data-initial-state=ready] .loading-overlay {
     min-height: auto;
   }
   .wa-content {
-    padding-top: 1.25rem;
+    margin-top: 1.25rem;
     overflow-x: hidden;
   }
   .wa-app {
