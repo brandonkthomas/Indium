@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/brandonkthomas/Indium">
-    <img src="assets/branding/indium-branding-512.png" alt="Indium Logo" width="120" height="120">
+    <img src="assets/branding/indium-branding-512.png" alt="Indium Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Indium</h3>
