@@ -543,7 +543,6 @@
 .wa-navbar__link.is-active,
 .url-link.is-active {
   color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.07);
 }
 .wa-navbar__link[data-wa-active=true]:hover,
 .url-link[data-wa-active=true]:hover,
@@ -1413,7 +1412,7 @@ body[data-initial-state=ready] .loading-overlay {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .wa-grid--quick {
-  margin: 0.65rem 0 1rem 0;
+  margin: 0.65rem 0 0.25rem 0;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .wa-homequick__title {
