@@ -45,6 +45,12 @@
     gap: 0.8rem;
 }
 
+.wa-library-controls {
+    display: grid;
+    gap: 0.55rem;
+    margin-bottom: 0.75rem;
+}
+
 .url-link-external-sup {
     display: inline-flex;
     align-items: flex-start;

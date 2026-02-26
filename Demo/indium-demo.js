@@ -59,6 +59,7 @@
         recentLoading: false,
         libraryCursor: 0,
         libraryLoading: false,
+        libraryThrottleEnabled: false,
         recentController: null,
         libraryController: null,
         history: ['home'],
@@ -386,17 +387,37 @@
     function initLibrary() {
         const root = viewHost.querySelector('[data-wa-view="library"]');
         const listEl = root?.querySelector('[data-wa-list="library"]');
+        const throttleToggle = root?.querySelector('[data-wa-library-throttle-toggle]');
+        const throttleStatus = root?.querySelector('[data-wa-library-throttle-status]');
         if (!(listEl instanceof HTMLElement)) return;
 
         state.libraryCursor = 0;
         state.libraryLoading = false;
         listEl.replaceChildren();
 
+        function syncLibraryThrottleUi() {
+            if (throttleToggle instanceof HTMLInputElement) {
+                throttleToggle.checked = state.libraryThrottleEnabled;
+            }
+            if (throttleStatus instanceof HTMLElement) {
+                throttleStatus.textContent = state.libraryThrottleEnabled
+                    ? 'Throttle on (900ms/page).'
+                    : 'Throttle off (120ms/page).';
+            }
+        }
+
+        if (throttleToggle instanceof HTMLInputElement) {
+            throttleToggle.addEventListener('change', () => {
+                state.libraryThrottleEnabled = throttleToggle.checked;
+                syncLibraryThrottleUi();
+            });
+        }
+
         const pageSize = 24;
         const loadMore = async () => {
             if (state.libraryLoading) return;
             state.libraryLoading = true;
-            await wait(120);
+            await wait(state.libraryThrottleEnabled ? 900 : 120);
             const next = chunk(libraryItems, state.libraryCursor, pageSize);
             state.libraryCursor += next.length;
             for (const item of next) {
@@ -412,6 +433,7 @@
             isLoading: () => state.libraryLoading
         });
 
+        syncLibraryThrottleUi();
         void loadMore();
     }
 

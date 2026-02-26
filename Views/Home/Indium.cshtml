@@ -173,6 +173,16 @@
                                 <h1 class="wa-h1">Library</h1>
                                 <p class="wa-copy">Mock library rows loaded in pages to exercise list/card + infinite-scroll behavior.</p>
                                 <div class="wa-card wa-card--glass">
+                                    <div class="wa-library-controls">
+                                        <label class="comp-toggle">
+                                            <input type="checkbox" class="comp-toggle-input" data-wa-library-throttle-toggle />
+                                            <span class="comp-toggle-track" aria-hidden="true">
+                                                <span class="comp-toggle-thumb"></span>
+                                            </span>
+                                            <span class="wa-copy">Load throttle (show throbber)</span>
+                                        </label>
+                                        <p class="wa-copy" data-wa-library-throttle-status>Throttle off (120ms/page).</p>
+                                    </div>
                                     <div class="wa-list" data-wa-list="library" aria-label="Library items"></div>
                                 </div>
                             </section>
