@@ -415,36 +415,6 @@
             }
         }
 
-        function decorateNavbarExternalIcons() {
-            if (!(navbarRoot instanceof HTMLElement)) return;
-
-            const externalLinks = navbarRoot.querySelectorAll('a[data-wa-nav-id="docs"]');
-            externalLinks.forEach((link) => {
-                if (!(link instanceof HTMLAnchorElement)) return;
-                const label = link.querySelector('span');
-                if (!(label instanceof HTMLElement)) return;
-                if (label.querySelector('.url-link-external-sup')) return;
-
-                const sup = document.createElement('sup');
-                sup.className = 'url-link-external-sup';
-                sup.setAttribute('aria-hidden', 'true');
-
-                const icon = document.createElement('img');
-                icon.className = 'url-link-external-sup-icon';
-                icon.src = '/assets/svg/external-link-nobox.svg';
-                icon.alt = '';
-                icon.width = 14;
-                icon.height = 14;
-
-                if (label.textContent) {
-                    label.textContent = label.textContent.trim();
-                }
-                sup.appendChild(icon);
-                label.appendChild(document.createTextNode(' '));
-                label.appendChild(sup);
-            });
-        }
-
         function syncNavbarViewportState() {
             if (isMobileViewport()) {
                 syncNavbarUi();
@@ -505,7 +475,6 @@
                 navbarMenuOpen = false;
                 navbarController.close();
             }
-            decorateNavbarExternalIcons();
             syncNavbarUi();
         }
 
