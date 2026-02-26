@@ -543,7 +543,13 @@
 .wa-navbar__link.is-active,
 .url-link.is-active {
   color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+}
+.wa-navbar__link[data-wa-active=true]:hover,
+.url-link[data-wa-active=true]:hover,
+.wa-navbar__link.is-active:hover,
+.url-link.is-active:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 .wa-navbar__link img,
 .url-link img {

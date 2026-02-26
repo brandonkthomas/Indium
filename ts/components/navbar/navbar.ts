@@ -332,53 +332,103 @@ class NavbarControllerImpl implements NavbarController {
 
     private renderNav(container: HTMLElement | null, items: NavbarItem[], mobile: boolean) {
         if (!container) return;
-        container.replaceChildren();
+        const existingLinks = Array.from(container.querySelectorAll<HTMLAnchorElement>('a'));
+        const existingById = new Map<string, HTMLAnchorElement>();
+        existingLinks.forEach((link) => {
+            const id = this.readLinkId(link);
+            if (id) existingById.set(id, link);
+        });
+
+        const nextLinks: HTMLAnchorElement[] = [];
         items.forEach((item) => {
-            container.appendChild(this.buildItemElement(item, mobile));
+            const existing = existingById.get(item.id);
+            if (existing) {
+                this.syncItemElement(existing, item, mobile);
+                nextLinks.push(existing);
+                return;
+            }
+            nextLinks.push(this.buildItemElement(item, mobile));
+        });
+
+        nextLinks.forEach((link) => container.appendChild(link));
+        existingLinks.forEach((link) => {
+            if (!nextLinks.includes(link)) {
+                link.remove();
+            }
         });
     }
 
     private buildItemElement(item: NavbarItem, mobile: boolean): HTMLAnchorElement {
         const link = document.createElement('a');
-        link.href = item.href;
-        link.className = item.className
+        this.syncItemElement(link, item, mobile);
+        return link;
+    }
+
+    private getLinkClassName(item: NavbarItem): string {
+        return item.className
             || [
                 'wa-navbar__link',
                 item.external ? 'wa-navbar__link--external' : '',
                 'url-link',
                 item.external ? 'url-link-external' : ''
             ].filter(Boolean).join(' ');
-        const hasExternalClass = link.classList.contains('wa-navbar__link--external')
-            || link.classList.contains('url-link-external');
+    }
+
+    private syncItemElement(link: HTMLAnchorElement, item: NavbarItem, mobile: boolean) {
+        link.href = item.href;
+        link.className = this.getLinkClassName(item);
+
         link.setAttribute('data-wa-nav-id', item.id);
         if (!item.className && item.id) {
             link.setAttribute('data-nav-link', item.id);
             link.classList.add(`wa-navbar__link--${item.id}`);
             link.classList.add(`url-link-${item.id}`);
+        } else {
+            link.removeAttribute('data-nav-link');
         }
+
         if (item.ariaLabel) link.setAttribute('aria-label', item.ariaLabel);
+        else link.removeAttribute('aria-label');
+
         if (item.external) {
             link.target = item.target || '_blank';
             const rel = normalizeRel(item.rel, true);
             if (rel) link.rel = rel;
+            else link.removeAttribute('rel');
         } else if (item.target) {
             link.target = item.target;
+            link.removeAttribute('rel');
+        } else {
+            link.removeAttribute('target');
+            link.removeAttribute('rel');
         }
 
         const iconSrc = mobile ? item.mobileIconSrc || item.iconSrc : item.iconSrc;
         const label = mobile ? item.mobileLabel || item.label : item.label;
+        const hasExternalClass = link.classList.contains('wa-navbar__link--external')
+            || link.classList.contains('url-link-external');
 
+        let icon = link.querySelector(':scope > img') as HTMLImageElement | null;
         if (iconSrc) {
-            const icon = document.createElement('img');
+            if (!(icon instanceof HTMLImageElement)) {
+                icon = document.createElement('img');
+                link.prepend(icon);
+            }
             icon.src = iconSrc;
             icon.alt = item.iconAlt || '';
             icon.width = 20;
             icon.height = 20;
-            link.appendChild(icon);
+        } else if (icon instanceof HTMLImageElement) {
+            icon.remove();
         }
 
-        const span = document.createElement('span');
+        let span = link.querySelector(':scope > span');
+        if (!(span instanceof HTMLSpanElement)) {
+            span = document.createElement('span');
+            link.appendChild(span);
+        }
         span.textContent = label;
+
         if (item.external || hasExternalClass) {
             const sup = document.createElement('sup');
             sup.className = 'wa-navbar__link-external-sup url-link-external-sup';
@@ -387,8 +437,6 @@ class NavbarControllerImpl implements NavbarController {
             span.appendChild(document.createTextNode(' '));
             span.appendChild(sup);
         }
-        link.appendChild(span);
-        return link;
     }
 
     setActive(itemId: string | null) {
