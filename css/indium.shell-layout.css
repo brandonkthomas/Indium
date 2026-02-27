@@ -33,7 +33,7 @@
     /*
         IMPORTANT:
         Do NOT apply backdrop-filter to the shell container itself; it can cause
-        position:fixed children (like the player bar) to become fixed-to-this-
+        position:fixed children (like bottom chrome) to become fixed-to-this-
         element instead of the viewport in some browsers. Apply blur on a
         non-ancestor layer instead.
     */
@@ -61,7 +61,7 @@
 .wa-app {
     min-height: 100vh;
     /* padding: 1.25rem 1.1rem; */
-    /* Keep the outer container edge-to-edge; reserve player-bar space inside scrollable content instead. */
+    /* Keep the outer container edge-to-edge; reserve optional bottom-chrome space inside scrollable content instead. */
     padding-bottom: 0;
     /* max-width: 1280px; */
     margin: 0 auto;
@@ -400,7 +400,7 @@
     padding-bottom: calc(var(--wa-playerbar-offset) + 1rem);
 }
 
-/* Desktop app-shell behavior: only the content column scrolls. Sidebar stays pinned and stops above player bar. */
+/* Desktop app-shell behavior: only the content column scrolls. Sidebar stays pinned and stops above bottom chrome. */
 @media (min-width: 821px) {
     :root {
         /* Keep in sync with `.wa-content { margin-top: 4rem; }` on desktop. */
@@ -419,7 +419,7 @@
         height: 100%;
     }
 
-    /* Reserve space for the fixed player bar by shrinking the app layout. */
+    /* Reserve space for fixed bottom chrome by shrinking the app layout. */
     .wa-layout {
         height: calc(100% - var(--wa-playerbar-offset));
         min-height: 0;
@@ -428,14 +428,14 @@
     .wa-content {
         height: calc(
             100% + 1.15rem
-        ); /* spill behind bottom player a tiny bit */
+        ); /* spill behind bottom chrome a tiny bit */
         min-height: 0;
         margin-top: 4rem; /* 3.5rem for the topbar + 0.5rem for the gap */
         overflow-y: auto;
         overscroll-behavior: contain;
     }
 
-    /* We already reserved space for the player bar via .wa-layout height. */
+    /* We already reserved space for bottom chrome via .wa-layout height. */
     .wa-main {
         padding-bottom: 1rem;
     }

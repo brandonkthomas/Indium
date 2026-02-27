@@ -105,10 +105,7 @@ a {
     --wa-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
     --wa-radius-lg: 16px;
     --wa-radius-md: 14px;
-    --wa-playerbar-height: 48px; /* was 74px */
-    --wa-playerbar-offset: calc(
-        var(--wa-playerbar-height) + env(safe-area-inset-bottom, 0px)
-    );
+    --wa-playerbar-offset: env(safe-area-inset-bottom, 0px);
     /* Keep this in sync with `.wa-content { margin-top: ... }` per breakpoint. */
     --wa-content-pad-top: 1.25rem;
 }
@@ -189,71 +186,4 @@ body[data-initial-state="ready"] .loading-overlay {
     width: 25%;
     height: 10px;
     opacity: 0.85;
-}
-
-/* Entity header artwork skeleton */
-.wa-entityheader__art--loading {
-    position: relative;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.wa-entityheader__art--loading::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-120%);
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.18),
-        transparent
-    );
-    animation: wa-shimmer 1.1s ease-in-out infinite;
-}
-
-.wa-entityheader__art--loading .wa-entityheader__img {
-    opacity: 0;
-}
-
-@keyframes wa-spin {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* Indeterminate "busy" ring for play buttons while switching tracks */
-.wa-playerbar__btn--play[data-wa-busy="true"],
-.wa-nowplaying__btn--play[data-wa-busy="true"] {
-    position: relative;
-}
-
-.wa-playerbar__btn--play[data-wa-busy="true"] .wa-playerbar__icon,
-.wa-nowplaying__btn--play[data-wa-busy="true"] .wa-nowplaying__icon--playpause {
-    opacity: 0;
-}
-
-.wa-playerbar__btn--play[data-wa-busy="true"]::after,
-.wa-nowplaying__btn--play[data-wa-busy="true"]::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 22px;
-    height: 22px;
-    border-radius: 999px;
-    border: 2px solid rgba(255, 255, 255, 0.22);
-    border-top-color: rgba(255, 255, 255, 0.88);
-    animation: wa-spin 0.9s linear infinite;
-    pointer-events: none;
-}
-
-.wa-nowplaying__btn--play[data-wa-busy="true"]::after {
-    width: 26px;
-    height: 26px;
-    border-width: 3px;
-    border-color: rgba(10, 10, 12, 0.22);
-    border-top-color: rgba(10, 10, 12, 0.82);
 }
