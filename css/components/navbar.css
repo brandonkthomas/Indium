@@ -176,7 +176,7 @@
     padding: 0.5rem 0 0.5rem 0.5rem;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.7);
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
     border-radius: 6px;
 }
 
@@ -188,7 +188,8 @@
 
 .wa-navbar__burger:active,
 .burger-menu:active {
-    transform: scale(0.95);
+    transform: scale(0.985);
+    filter: brightness(0.95);
 }
 
 .burger-icon {

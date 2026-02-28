@@ -279,7 +279,8 @@ body.ui-dialog-open {
   box-shadow: 0 7px 24px rgba(0, 0, 0, 0.6);
 }
 .ui-dialog-button:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.985);
+  filter: brightness(0.96);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
 }
 .ui-dialog-button:focus-visible {
@@ -605,7 +606,10 @@ body.ui-dialog-open {
   padding: 0.5rem 0 0.5rem 0.5rem;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.7);
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
   border-radius: 6px;
 }
 .wa-navbar__burger:hover,
@@ -615,7 +619,8 @@ body.ui-dialog-open {
 }
 .wa-navbar__burger:active,
 .burger-menu:active {
-  transform: scale(0.95);
+  transform: scale(0.985);
+  filter: brightness(0.95);
 }
 .burger-icon {
   display: flex;
@@ -770,6 +775,51 @@ button,
 input {
   font: inherit;
   color: inherit;
+}
+@keyframes wa-button-detent {
+  0% {
+    transform: scale(1);
+  }
+  48% {
+    transform: scale(0.985);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+button,
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition:
+    background-color 0.16s ease,
+    filter 0.14s ease,
+    transform 0.14s ease;
+}
+@media (hover: hover) {
+  button:not(:disabled):hover,
+  input[type=button]:not(:disabled):hover,
+  input[type=submit]:not(:disabled):hover,
+  input[type=reset]:not(:disabled):hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
+button:not(:disabled):active,
+input[type=button]:not(:disabled):active,
+input[type=submit]:not(:disabled):active,
+input[type=reset]:not(:disabled):active {
+  animation: wa-button-detent 0.16s ease-out 1;
+  filter: brightness(0.94);
+}
+@media (prefers-reduced-motion: reduce) {
+  button:not(:disabled):active,
+  input[type=button]:not(:disabled):active,
+  input[type=submit]:not(:disabled):active,
+  input[type=reset]:not(:disabled):active {
+    animation: none;
+  }
 }
 a {
   color: inherit;
@@ -964,11 +1014,12 @@ body[data-initial-state=ready] .loading-overlay {
   height: 40px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 .wa-iconbtn img {
   width: 18px;
@@ -986,6 +1037,12 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-iconbtn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+@media (hover: hover) {
+  .wa-iconbtn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
 }
 .wa-sidebar {
   border-radius: var(--wa-radius-lg);
@@ -1503,17 +1560,28 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-btn {
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.07);
   padding: 0.55rem 0.9rem;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.9);
+  transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 .wa-btn:disabled {
   cursor: not-allowed;
   opacity: 0.55;
+  background: rgba(255, 255, 255, 0.04);
 }
 .wa-btn--primary {
   border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.16);
+}
+@media (hover: hover) {
+  .wa-btn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .wa-btn--primary:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
 }
 .wa-btn:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.9);

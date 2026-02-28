@@ -259,7 +259,8 @@ body.ui-dialog-open {
   box-shadow: 0 7px 24px rgba(0, 0, 0, 0.6);
 }
 .ui-dialog-button:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.985);
+  filter: brightness(0.96);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
 }
 .ui-dialog-button:focus-visible {

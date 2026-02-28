@@ -57,6 +57,51 @@ input {
   font: inherit;
   color: inherit;
 }
+@keyframes wa-button-detent {
+  0% {
+    transform: scale(1);
+  }
+  48% {
+    transform: scale(0.985);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+button,
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transition:
+    background-color 0.16s ease,
+    filter 0.14s ease,
+    transform 0.14s ease;
+}
+@media (hover: hover) {
+  button:not(:disabled):hover,
+  input[type=button]:not(:disabled):hover,
+  input[type=submit]:not(:disabled):hover,
+  input[type=reset]:not(:disabled):hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+}
+button:not(:disabled):active,
+input[type=button]:not(:disabled):active,
+input[type=submit]:not(:disabled):active,
+input[type=reset]:not(:disabled):active {
+  animation: wa-button-detent 0.16s ease-out 1;
+  filter: brightness(0.94);
+}
+@media (prefers-reduced-motion: reduce) {
+  button:not(:disabled):active,
+  input[type=button]:not(:disabled):active,
+  input[type=submit]:not(:disabled):active,
+  input[type=reset]:not(:disabled):active {
+    animation: none;
+  }
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -165,17 +210,28 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-btn {
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.07);
   padding: 0.55rem 0.9rem;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.9);
+  transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 .wa-btn:disabled {
   cursor: not-allowed;
   opacity: 0.55;
+  background: rgba(255, 255, 255, 0.04);
 }
 .wa-btn--primary {
   border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.16);
+}
+@media (hover: hover) {
+  .wa-btn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .wa-btn--primary:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
 }
 .wa-btn:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.9);
