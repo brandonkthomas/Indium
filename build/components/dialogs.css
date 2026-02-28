@@ -66,6 +66,10 @@
 }
 
 /* css/components/dialogs.css */
+html.ui-dialog-open,
+body.ui-dialog-open {
+  overflow: hidden !important;
+}
 .ui-dialog-overlay {
   position: fixed;
   inset: 0;

@@ -419,8 +419,8 @@ var DialogManager = class {
     this.activeOverlay = null;
     this.glassSurface = null;
     this.lastFocusedElement = null;
-    this.bodyOverflowBefore = null;
     this.activeReject = null;
+    this.scrollLockClass = "ui-dialog-open";
     // Simple mutex to avoid overlapping dialogs; queue could be added later if needed
     this.isOpen = false;
   }
@@ -576,8 +576,8 @@ var DialogManager = class {
     this.activeOverlay = overlay;
     this.glassSurface = glass;
     this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    this.bodyOverflowBefore = document.body.style.overflow || null;
-    document.body.style.overflow = "hidden";
+    document.documentElement.classList.add(this.scrollLockClass);
+    document.body.classList.add(this.scrollLockClass);
     dialogRoot.setAttribute("aria-labelledby", titleId);
     dialogRoot.setAttribute("aria-describedby", messageId);
     const firstFocusTarget = kind === "prompt" && inputEl || primaryBtn || dialogRoot;
@@ -698,12 +698,8 @@ var DialogManager = class {
       this.lastFocusedElement.focus();
     }
     this.lastFocusedElement = null;
-    if (this.bodyOverflowBefore !== null) {
-      document.body.style.overflow = this.bodyOverflowBefore;
-    } else {
-      document.body.style.overflow = "";
-    }
-    this.bodyOverflowBefore = null;
+    document.documentElement.classList.remove(this.scrollLockClass);
+    document.body.classList.remove(this.scrollLockClass);
     if (fromDestroy) {
       rejectActive?.();
     }
@@ -820,7 +816,7 @@ function pickRoot(listEl, explicitRoot) {
 function attachInfiniteScroll(opts) {
   const debug = isDebugScrollEnabled();
   const sentinel = document.createElement("div");
-  sentinel.className = "wa-infinite-sentinel";
+  sentinel.className = "wa-infinite-sentinel wa-infinite-sentinel--idle";
   sentinel.setAttribute("aria-hidden", "true");
   opts.listEl.insertAdjacentElement("afterend", sentinel);
   const listLabel = getListLabel(opts.listEl);
@@ -837,17 +833,14 @@ function attachInfiniteScroll(opts) {
       opts.renderSentinel(sentinel, state);
       return;
     }
+    sentinel.classList.toggle("wa-infinite-sentinel--loading", state.isLoading);
+    sentinel.classList.toggle("wa-infinite-sentinel--idle", !state.isLoading);
+    sentinel.setAttribute("data-wa-loading", state.isLoading ? "true" : "false");
+    sentinel.setAttribute("data-wa-has-more", state.hasMore ? "true" : "false");
     if (state.isLoading) {
-      sentinel.style.display = "flex";
-      sentinel.style.justifyContent = "center";
-      sentinel.style.padding = "0.75rem 0 0.25rem";
-      sentinel.style.minHeight = "auto";
       const throbberSrc = opts.throbberSrc?.trim() || assetPath("assets/svg/throbber-ring-indef.svg");
       sentinel.innerHTML = `<img class="wa-throbber" src="${throbberSrc}" alt="" />`;
     } else {
-      sentinel.style.display = "block";
-      sentinel.style.minHeight = "1px";
-      sentinel.style.padding = "0";
       sentinel.innerHTML = "";
     }
   };

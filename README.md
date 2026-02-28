@@ -6,7 +6,7 @@
   <h3 align="center">Indium</h3>
 
   <p align="center">
-    Customizable UI kit: TypeScript, CSS, and Razor templates with full-shell and per-component bundles
+    CSS-first UI kit with Razor templates and lightweight TypeScript behavior wiring
     <br />
     <i>Work in progress.</i>
     <br />
@@ -19,12 +19,14 @@
 </div>
 
 ## About the Project
-Indium is a reusable UI-core package for host applications that need a consistent shell, component library, and static asset contract.
+Indium is a reusable, CSS-first UI-core package for host applications that need a consistent shell, component library, and static asset contract.
 
-It ships as a Razor Class Library with both static web assets and JS/CSS bundles for both full-shell usage + optional component-level usage.
+It ships as a Razor Class Library with static web assets and full-shell/per-component bundles.
+Templates + CSS define the look/layout contract; TypeScript focuses on state, accessibility, and host wiring.
 
 ### Feature Highlights
-- **Full Shell Boot**: `bootIndium(...)` for app-root wiring, sidebar behavior, branding, and runtime layout contracts.
+- **CSS-First Architecture**: Layout, visual states, and component presentation are primarily authored in CSS/templates.
+- **Full Shell Boot**: `bootIndium(...)` wires host config, branding, and behavior contracts.
 - **Optional Components**: Dialogs, glass surface, infinite scroll, sidebar, grad-noise canvas, and navbar can be consumed independently.
 - **Config + Path Helpers**: `setIndiumConfig(...)`, `routePath(...)`, `apiPath(...)`, and `assetPath(...)`.
 - **Host-Compatible Navbar**: Canonical `wa-navbar*` selectors with legacy `url-*` compatibility support.

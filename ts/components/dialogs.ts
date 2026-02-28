@@ -109,8 +109,8 @@ class DialogManager {
     private activeOverlay: HTMLElement | null = null;
     private glassSurface: GlassSurfaceInstance | null = null;
     private lastFocusedElement: HTMLElement | null = null;
-    private bodyOverflowBefore: string | null = null;
     private activeReject: (() => void) | null = null;
+    private readonly scrollLockClass = 'ui-dialog-open';
 
     // Simple mutex to avoid overlapping dialogs; queue could be added later if needed
     private isOpen = false;
@@ -319,8 +319,8 @@ class DialogManager {
         // Track focus + scrolling
         this.lastFocusedElement =
             document.activeElement instanceof HTMLElement ? document.activeElement : null;
-        this.bodyOverflowBefore = document.body.style.overflow || null;
-        document.body.style.overflow = 'hidden';
+        document.documentElement.classList.add(this.scrollLockClass);
+        document.body.classList.add(this.scrollLockClass);
 
         dialogRoot.setAttribute('aria-labelledby', titleId);
         dialogRoot.setAttribute('aria-describedby', messageId);
@@ -475,13 +475,8 @@ class DialogManager {
             this.lastFocusedElement.focus();
         }
         this.lastFocusedElement = null;
-
-        if (this.bodyOverflowBefore !== null) {
-            document.body.style.overflow = this.bodyOverflowBefore;
-        } else {
-            document.body.style.overflow = '';
-        }
-        this.bodyOverflowBefore = null;
+        document.documentElement.classList.remove(this.scrollLockClass);
+        document.body.classList.remove(this.scrollLockClass);
 
         if (fromDestroy) {
             rejectActive?.();

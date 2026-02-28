@@ -121,7 +121,7 @@ export function attachInfiniteScroll(opts: {
 }): InfiniteScrollController {
     const debug = isDebugScrollEnabled();
     const sentinel = document.createElement('div');
-    sentinel.className = 'wa-infinite-sentinel';
+    sentinel.className = 'wa-infinite-sentinel wa-infinite-sentinel--idle';
     sentinel.setAttribute('aria-hidden', 'true');
     // Insert as a sibling right after the list so callers can freely replaceChildren() on listEl
     // without destroying the observer target.
@@ -142,21 +142,18 @@ export function attachInfiniteScroll(opts: {
             opts.renderSentinel(sentinel, state);
             return;
         }
-        // Default: show throbber while loading, otherwise keep sentinel visible but minimal for IntersectionObserver.
+        // Default: throbber/content is JS, visual state is CSS-driven via classes.
+        sentinel.classList.toggle('wa-infinite-sentinel--loading', state.isLoading);
+        sentinel.classList.toggle('wa-infinite-sentinel--idle', !state.isLoading);
+        sentinel.setAttribute('data-wa-loading', state.isLoading ? 'true' : 'false');
+        sentinel.setAttribute('data-wa-has-more', state.hasMore ? 'true' : 'false');
+
         // Keep sentinel always visible (not display:none) so IntersectionObserver can detect it.
         if (state.isLoading) {
-            sentinel.style.display = 'flex';
-            sentinel.style.justifyContent = 'center';
-            sentinel.style.padding = '0.75rem 0 0.25rem';
-            sentinel.style.minHeight = 'auto';
             // Use Indium asset-base-resolved throbber SVG.
             const throbberSrc = opts.throbberSrc?.trim() || assetPath('assets/svg/throbber-ring-indef.svg');
             sentinel.innerHTML = `<img class="wa-throbber" src="${throbberSrc}" alt="" />`;
         } else {
-            // Keep sentinel visible but minimal so IntersectionObserver can still detect it
-            sentinel.style.display = 'block';
-            sentinel.style.minHeight = '1px';
-            sentinel.style.padding = '0';
             sentinel.innerHTML = '';
         }
     };

@@ -223,8 +223,8 @@ var DialogManager = class {
     this.activeOverlay = null;
     this.glassSurface = null;
     this.lastFocusedElement = null;
-    this.bodyOverflowBefore = null;
     this.activeReject = null;
+    this.scrollLockClass = "ui-dialog-open";
     // Simple mutex to avoid overlapping dialogs; queue could be added later if needed
     this.isOpen = false;
   }
@@ -380,8 +380,8 @@ var DialogManager = class {
     this.activeOverlay = overlay;
     this.glassSurface = glass;
     this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    this.bodyOverflowBefore = document.body.style.overflow || null;
-    document.body.style.overflow = "hidden";
+    document.documentElement.classList.add(this.scrollLockClass);
+    document.body.classList.add(this.scrollLockClass);
     dialogRoot.setAttribute("aria-labelledby", titleId);
     dialogRoot.setAttribute("aria-describedby", messageId);
     const firstFocusTarget = kind === "prompt" && inputEl || primaryBtn || dialogRoot;
@@ -502,12 +502,8 @@ var DialogManager = class {
       this.lastFocusedElement.focus();
     }
     this.lastFocusedElement = null;
-    if (this.bodyOverflowBefore !== null) {
-      document.body.style.overflow = this.bodyOverflowBefore;
-    } else {
-      document.body.style.overflow = "";
-    }
-    this.bodyOverflowBefore = null;
+    document.documentElement.classList.remove(this.scrollLockClass);
+    document.body.classList.remove(this.scrollLockClass);
     if (fromDestroy) {
       rejectActive?.();
     }
