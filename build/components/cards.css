@@ -254,6 +254,9 @@ body[data-initial-state=ready] .loading-overlay {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -267,6 +270,35 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-listitem:hover {
   border-color: rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.025);
+}
+.wa-listitem:disabled,
+.wa-listitem[aria-disabled=true],
+.wa-listitem.wa-listitem--disabled {
+  border-color: rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: not-allowed;
+}
+.wa-listitem:disabled > *,
+.wa-listitem[aria-disabled=true] > *,
+.wa-listitem.wa-listitem--disabled > * {
+  opacity: 0.56;
+}
+.wa-listitem:disabled::after,
+.wa-listitem[aria-disabled=true]::after,
+.wa-listitem.wa-listitem--disabled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(6, 8, 10, 0.35);
+  pointer-events: none;
+}
+.wa-listitem:disabled:hover,
+.wa-listitem[aria-disabled=true]:hover,
+.wa-listitem.wa-listitem--disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.14);
+  background: transparent;
 }
 .wa-listitem__title {
   font-weight: 600;
