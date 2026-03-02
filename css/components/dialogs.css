@@ -22,9 +22,9 @@ body.ui-dialog-open {
     transform: scale(1.02);
     filter: blur(4px);
     transition:
-        opacity 0.12s ease-out,
-        transform 0.12s ease-out,
-        filter 0.12s ease-out;
+        opacity 0.2s ease-out,
+        transform 0.2s ease-out,
+        filter 0.2s ease-out;
 }
 
 .ui-dialog-overlay.is-visible {
