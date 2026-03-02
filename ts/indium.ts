@@ -122,13 +122,14 @@ function applyBranding(appRoot: HTMLElement, config: Readonly<IndiumConfig>) {
 
 function computePlayerbarOffsetPx(appRoot: HTMLElement): number {
     const playerbar =
-        appRoot.querySelector<HTMLElement>('.wa-playerbar')
-        || document.querySelector<HTMLElement>('.wa-playerbar');
+        appRoot.querySelector<HTMLElement>('[data-wa-playerbar]')
+        || appRoot.querySelector<HTMLElement>('.wa-playerbar');
 
     if (!playerbar) return 0;
 
     const style = getComputedStyle(playerbar);
     if (style.display === 'none' || style.visibility === 'hidden') return 0;
+    if (style.position !== 'fixed') return 0;
 
     const rect = playerbar.getBoundingClientRect();
     if (rect.height <= 0) return 0;
