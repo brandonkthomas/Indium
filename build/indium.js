@@ -1940,10 +1940,11 @@ function applyBranding(appRoot, config) {
   });
 }
 function computePlayerbarOffsetPx(appRoot) {
-  const playerbar = appRoot.querySelector(".wa-playerbar") || document.querySelector(".wa-playerbar");
+  const playerbar = appRoot.querySelector("[data-wa-playerbar]") || appRoot.querySelector(".wa-playerbar");
   if (!playerbar) return 0;
   const style = getComputedStyle(playerbar);
   if (style.display === "none" || style.visibility === "hidden") return 0;
+  if (style.position !== "fixed") return 0;
   const rect = playerbar.getBoundingClientRect();
   if (rect.height <= 0) return 0;
   return Math.max(0, Math.ceil(window.innerHeight - rect.top));
