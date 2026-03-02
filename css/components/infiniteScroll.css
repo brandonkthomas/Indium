@@ -27,6 +27,6 @@
     display: block;
     width: 22px;
     height: 22px;
-    filter: invert(1);
+    filter: var(--wa-loading-filter);
     opacity: 0.9;
 }

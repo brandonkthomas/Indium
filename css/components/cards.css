@@ -5,37 +5,37 @@
 
 .wa-btn {
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--wa-color-border-active);
+    background: var(--wa-color-btn-bg);
     padding: 0.55rem 0.9rem;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--wa-color-btn-text);
     transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 
 .wa-btn:disabled {
     cursor: not-allowed;
     opacity: 0.55;
-    background: rgba(255, 255, 255, 0.04)
+    background: var(--wa-color-btn-bg-disabled)
 }
 
 .wa-btn--primary {
-    border-color: rgba(255, 255, 255, 0.28);
-    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--wa-color-border-strong);
+    background: var(--wa-color-btn-primary-bg);
 }
 
 @media (hover: hover) {
     .wa-btn:not(:disabled):hover {
-        background: rgba(255, 255, 255, 0.14);
+        background: var(--wa-color-btn-bg-hover);
     }
 
     .wa-btn--primary:not(:disabled):hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: var(--wa-color-btn-primary-bg-hover);
     }
 }
 
 .wa-btn:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline: 2px solid var(--wa-color-focus-ring);
     outline-offset: 2px;
 }
 
@@ -62,7 +62,7 @@
     max-height: 100%;
     object-fit: contain;
     display: block;
-    filter: invert(1);
+    filter: var(--wa-icon-filter);
 }
 
 .wa-grid {
@@ -96,11 +96,11 @@
 
 .wa-card {
     border-radius: var(--wa-radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid var(--wa-color-iconbtn-border);
     padding: 0.95rem 1rem;
     margin: 0.65rem 0;
     height: fit-content;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--wa-shadow-card);
 }
 
 .wa-card:has(.wa-list) {
@@ -129,7 +129,7 @@
 
 .wa-card--link:hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: var(--wa-color-border-hover);
 }
 
 .wa-list {
@@ -152,22 +152,22 @@
     min-width: 0;
     text-align: left;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid var(--wa-color-iconbtn-border);
     background: transparent;
     padding: 0.7rem 0.85rem;
     cursor: pointer;
 }
 
 .wa-listitem:hover {
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.025);
+    border-color: var(--wa-color-border-hover);
+    background: var(--wa-color-surface-elevated-soft);
 }
 
 .wa-listitem:disabled,
 .wa-listitem[aria-disabled="true"],
 .wa-listitem.wa-listitem--disabled {
-    border-color: rgba(255, 255, 255, 0.11);
-    background: rgba(255, 255, 255, 0.02);
+    border-color: var(--wa-color-border-subtle);
+    background: var(--wa-color-surface-elevated-soft);
     cursor: not-allowed;
 }
 
@@ -184,7 +184,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: rgba(6, 8, 10, 0.35);
+    background: var(--wa-color-listitem-disabled-overlay);
     pointer-events: none;
 }
 
@@ -192,17 +192,17 @@
 .wa-listitem[aria-disabled="true"]:hover,
 .wa-listitem.wa-listitem--disabled:hover {
     transform: none;
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: var(--wa-color-iconbtn-border);
     background: transparent;
 }
 
 .wa-listitem__title {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--wa-color-text);
 }
 
 .wa-listitem__meta {
-    color: rgba(255, 255, 255, 0.66);
+    color: var(--wa-color-text-muted);
     font-size: 0.9rem;
 }
 
@@ -211,12 +211,12 @@
     margin-left: auto;
     padding: 0.1rem 0.55rem;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--wa-color-border-active);
     font-size: 0.78rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.78);
-    background: rgba(255, 255, 255, 0.06);
+    color: var(--wa-color-text-dim);
+    background: var(--wa-color-surface-elevated);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -228,6 +228,6 @@
 
     .wa-listitem:hover {
         transform: translateY(-1px);
-        border-color: rgba(255, 255, 255, 0.22);
+        border-color: var(--wa-color-border-hover);
     }
 }

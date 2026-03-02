@@ -13,7 +13,7 @@
 }
 
 #gnc {
-    background-color: #242424;
+    background-color: var(--wa-color-bg-canvas-soft);
     position: fixed;
     top: 0;
     left: 0;

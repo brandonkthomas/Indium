@@ -63,7 +63,7 @@
     font-size: 1.05rem;
     /* text-transform: uppercase; */
     letter-spacing: 0.04em;
-    color: rgba(255, 255, 255, 0.86);
+    color: var(--wa-color-text);
 }
 
 .wa-h2--link {
@@ -80,7 +80,7 @@
     font-size: 0.95rem;
     /* text-transform: uppercase; */
     letter-spacing: 0.04em;
-    color: rgba(255, 255, 255, 0.84);
+    color: var(--wa-color-text-dim);
 }
 
 .wa-lede {
@@ -122,7 +122,7 @@
 
 .wa-copy {
     margin: 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--wa-color-text-dim);
     line-height: 1.6;
 }
 
@@ -167,7 +167,7 @@
     max-height: 100%;
     object-fit: contain;
     display: block;
-    filter: invert(1);
+    filter: var(--wa-icon-filter);
 }
 
 .wa-view__actions {
@@ -220,17 +220,17 @@
     flex: 0 0 auto;
     display: block;
     object-fit: contain;
-    filter: invert(1);
+    filter: var(--wa-icon-filter);
     opacity: 0.9;
 }
 
 .wa-card {
     border-radius: var(--wa-radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid var(--wa-color-iconbtn-border);
     padding: 0.95rem 1rem;
     margin: 0.65rem 0;
     height: fit-content;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--wa-shadow-card);
 }
 
 /* Cards with lists use compact bottom padding by default. */
@@ -269,7 +269,7 @@
 
 .wa-card--link:hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: var(--wa-color-border-hover);
 }
 
 /* List items share the same subtle hover lift as cards on pointer devices */
@@ -282,7 +282,7 @@
 
     .wa-listitem:hover {
         transform: translateY(-1px);
-        border-color: rgba(255, 255, 255, 0.22);
+        border-color: var(--wa-color-border-hover);
     }
 }
 
@@ -311,19 +311,19 @@
     width: 100%;
     font-size: calc(1em + 2pt); /* Prevent Safari zoom on focus (inputs <16px trigger zoom) */
     border-radius: var(--wa-radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--wa-color-border-active);
+    background: var(--wa-color-surface-input);
     padding: 0.85rem 1.05rem;
     outline: none;
 }
 
 .wa-searchbar__input::placeholder {
-    color: rgba(255, 255, 255, 0.58);
+    color: var(--wa-color-text-subtle);
 }
 
 .wa-searchbar__input:focus {
-    border-color: rgba(255, 255, 255, 0.34);
-    background: rgba(0, 0, 0, 0.3);
+    border-color: var(--wa-color-border-input-focus);
+    background: var(--wa-color-surface-input-focus);
 }
 
 .wa-searchbar__input::-webkit-search-cancel-button {
@@ -331,8 +331,7 @@
     height: 18px;
     width: 18px;
     cursor: pointer;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E")
-        center/18px 18px no-repeat;
+    background: var(--wa-search-cancel-icon) center/18px 18px no-repeat;
     opacity: 0.9;
 }
 
@@ -347,14 +346,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--wa-color-surface-elevated);
 }
 
 .wa-searchbar__icon {
     width: 18px;
     height: 18px;
     display: block;
-    filter: invert(1);
+    filter: var(--wa-icon-filter);
     opacity: 0.95;
 }
 
@@ -367,44 +366,44 @@
 
 .wa-btn {
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--wa-color-border-active);
+    background: var(--wa-color-btn-bg);
     padding: 0.55rem 0.9rem;
     cursor: pointer;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--wa-color-btn-text);
     transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 
 .wa-btn:disabled {
     cursor: not-allowed;
     opacity: 0.55;
-    background: rgba(255, 255, 255, 0.04)
+    background: var(--wa-color-btn-bg-disabled)
 }
 
 .wa-btn--primary {
-    border-color: rgba(255, 255, 255, 0.28);
-    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--wa-color-border-strong);
+    background: var(--wa-color-btn-primary-bg);
 }
 
 @media (hover: hover) {
     .wa-btn:not(:disabled):hover {
-        background: rgba(255, 255, 255, 0.14);
+        background: var(--wa-color-btn-bg-hover);
     }
 
     .wa-btn--primary:not(:disabled):hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: var(--wa-color-btn-primary-bg-hover);
     }
 }
 
 .wa-btn:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.9);
+    outline: 2px solid var(--wa-color-focus-ring);
     outline-offset: 2px;
 }
 
 .wa-note {
     margin-top: 0.85rem;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--wa-color-text-dim);
 }
 
 .wa-list {
@@ -425,24 +424,24 @@
     min-width: 0;
     text-align: left;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid var(--wa-color-iconbtn-border);
     background: transparent;
     padding: 0.7rem 0.85rem;
     cursor: pointer;
 }
 
 .wa-listitem:hover {
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.025);
+    border-color: var(--wa-color-border-hover);
+    background: var(--wa-color-surface-elevated-soft);
 }
 
 .wa-listitem__title {
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--wa-color-text);
 }
 
 .wa-listitem__meta {
-    color: rgba(255, 255, 255, 0.66);
+    color: var(--wa-color-text-muted);
     font-size: 0.9rem;
 }
 
@@ -452,10 +451,10 @@
     margin-left: auto;
     padding: 0.1rem 0.55rem;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid var(--wa-color-border-active);
     font-size: 0.78rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.78);
-    background: rgba(255, 255, 255, 0.06);
+    color: var(--wa-color-text-dim);
+    background: var(--wa-color-surface-elevated);
 }

@@ -29,6 +29,7 @@ Templates + CSS define the look/layout contract; TypeScript focuses on state, ac
 - **Full Shell Boot**: `bootIndium(...)` wires host config, branding, and behavior contracts.
 - **Optional Components**: Dialogs, glass surface, infinite scroll, sidebar, grad-noise canvas, and navbar can be consumed independently.
 - **Config + Path Helpers**: `setIndiumConfig(...)`, `routePath(...)`, `apiPath(...)`, and `assetPath(...)`.
+- **Theme System**: System-default color mode with host force classes, scoped `[data-wa-theme]` container overrides, and runtime theme mode APIs.
 - **Host-Compatible Navbar**: Canonical `wa-navbar*` selectors with legacy `url-*` compatibility support.
 - **Runtime Test Coverage**: Browser-executed UI contract tests via Portfolio host route `/internal/indium/tests`.
 
@@ -52,6 +53,7 @@ dotnet build Indium.csproj /v:minimal
 - `createGlassSurface()`
 - `createGradNoiseCanvas()`
 - `routePath()`, `apiPath()`, `assetPath()`, `setIndiumConfig()`
+- `setIndiumThemeMode()`, `getIndiumThemeMode()`, `getResolvedIndiumTheme()`
 
 ## Build Outputs
 - Full bundle:

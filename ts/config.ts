@@ -1,5 +1,6 @@
 import { setIndiumLogger } from './internal/logging';
 import type { IndiumLogger } from './internal/logging';
+import type { IndiumThemeMode } from './theme';
 
 declare const __INDIUM_APP_VERSION__: string;
 
@@ -13,6 +14,7 @@ export interface IndiumConfig {
     logger?: IndiumLogger;
     version: string;
     exposeLegacyWindowDialogs: boolean;
+    themeMode: IndiumThemeMode;
 }
 
 const defaults: IndiumConfig = {
@@ -26,7 +28,8 @@ const defaults: IndiumConfig = {
         typeof __INDIUM_APP_VERSION__ === 'string' && __INDIUM_APP_VERSION__.trim().length
             ? __INDIUM_APP_VERSION__.trim()
             : 'dev',
-    exposeLegacyWindowDialogs: false
+    exposeLegacyWindowDialogs: false,
+    themeMode: 'system'
 };
 
 const GLOBAL_CONFIG_KEY = '__indium_config_state_v1__';
@@ -88,8 +91,16 @@ function applyNormalization(next: IndiumConfig): IndiumConfig {
         brandLogoSrc: (next.brandLogoSrc || '').trim(),
         brandLogoAlt: normalizedBrandLogoAlt || defaults.brandLogoAlt,
         version: next.version || defaults.version,
-        exposeLegacyWindowDialogs: !!next.exposeLegacyWindowDialogs
+        exposeLegacyWindowDialogs: !!next.exposeLegacyWindowDialogs,
+        themeMode: normalizeThemeMode(next.themeMode)
     };
+}
+
+function normalizeThemeMode(value: unknown): IndiumThemeMode {
+    if (value === 'light' || value === 'dark' || value === 'system') {
+        return value;
+    }
+    return defaults.themeMode;
 }
 
 export function getIndiumConfig(): Readonly<IndiumConfig> {

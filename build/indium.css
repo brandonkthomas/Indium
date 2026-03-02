@@ -1,8 +1,314 @@
+/* css/indium.theme.tokens.css */
+:root {
+  color-scheme: dark;
+  --wa-color-text: rgba(255, 255, 255, 0.92);
+  --wa-color-text-strong: rgba(255, 255, 255, 0.96);
+  --wa-color-text-dim: rgba(255, 255, 255, 0.74);
+  --wa-color-text-muted: rgba(255, 255, 255, 0.66);
+  --wa-color-text-subtle: rgba(255, 255, 255, 0.55);
+  --wa-color-text-soft: rgba(255, 255, 255, 0.45);
+  --wa-color-bg-canvas: #1c1c1c;
+  --wa-color-bg-canvas-soft: #242424;
+  --wa-color-bg-gradient-end: rgba(28, 28, 28, 0.98);
+  --wa-body-bg-image:
+    linear-gradient(
+      
+      145deg,
+      rgba(var(--wa-accent-r), var(--wa-accent-g), var(--wa-accent-b), 0.52) 0%,
+      var(--wa-color-bg-gradient-end) 70% );
+  --wa-color-bg-loading: #1c1c1c;
+  --wa-color-bg-overlay: rgba(0, 0, 0, 0.55);
+  --wa-color-surface-shell: transparent;
+  --wa-color-surface-shell-glow: rgba(255, 255, 255, 0.04);
+  --wa-color-surface-sidebar: rgba(0, 0, 0, 0.28);
+  --wa-color-surface-sidebar-mobile: rgba(0, 0, 0, 0.78);
+  --wa-color-surface-topbar: rgba(10, 10, 14, 0.88);
+  --wa-color-surface-topbar-blur: rgba(33, 33, 33, 0.75);
+  --wa-color-surface-input: rgba(0, 0, 0, 0.22);
+  --wa-color-surface-input-focus: rgba(0, 0, 0, 0.3);
+  --wa-color-surface-elevated: rgba(255, 255, 255, 0.06);
+  --wa-color-surface-elevated-strong: rgba(255, 255, 255, 0.1);
+  --wa-color-surface-elevated-soft: rgba(255, 255, 255, 0.025);
+  --wa-glass-fallback-bg: rgba(255, 255, 255, 0.1);
+  --wa-glass-fallback-bg-no-backdrop: rgba(0, 0, 0, 0.4);
+  --wa-color-border: rgba(255, 255, 255, 0.16);
+  --wa-color-border-strong: rgba(255, 255, 255, 0.26);
+  --wa-color-border-soft: rgba(255, 255, 255, 0.12);
+  --wa-color-border-subtle: rgba(255, 255, 255, 0.1);
+  --wa-color-border-active: rgba(255, 255, 255, 0.18);
+  --wa-color-border-hover: rgba(255, 255, 255, 0.22);
+  --wa-color-border-input-focus: rgba(255, 255, 255, 0.34);
+  --wa-color-focus-ring: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-text: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-bg: rgba(255, 255, 255, 0.07);
+  --wa-color-btn-bg-hover: rgba(255, 255, 255, 0.14);
+  --wa-color-btn-bg-disabled: rgba(255, 255, 255, 0.04);
+  --wa-color-btn-primary-bg: rgba(255, 255, 255, 0.16);
+  --wa-color-btn-primary-bg-hover: rgba(255, 255, 255, 0.2);
+  --wa-color-iconbtn-border: rgba(255, 255, 255, 0.14);
+  --wa-color-iconbtn-bg: rgba(255, 255, 255, 0.1);
+  --wa-color-iconbtn-bg-hover: rgba(255, 255, 255, 0.15);
+  --wa-color-listitem-disabled-overlay: rgba(6, 8, 10, 0.35);
+  --wa-color-text-inverse: #050710;
+  --wa-color-navbar-burger-line: rgb(179, 179, 179);
+  --wa-dialog-overlay-start: rgba(0, 0, 0, 0.7);
+  --wa-dialog-overlay-end: rgba(0, 0, 0, 0.95);
+  --wa-dialog-input-bg: rgba(0, 0, 0, 0.35);
+  --wa-dialog-btn-bg: rgba(0, 0, 0, 0.45);
+  --wa-dialog-btn-secondary-bg: rgba(0, 0, 0, 0.3);
+  --wa-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  --wa-shadow-card: 0 10px 10px rgba(0, 0, 0, 0.15);
+  --wa-shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --wa-shadow-topbar: 0 0 35px rgb(0 0 0 / 50%);
+  --wa-color-shadow-soft: rgba(0, 0, 0, 0.35);
+  --wa-color-shadow-strong: rgba(0, 0, 0, 0.5);
+  --wa-color-shadow-heavy: rgba(0, 0, 0, 0.6);
+  --wa-noise-opacity: 0.34;
+  --wa-icon-filter: invert(1);
+  --wa-icon-filter-strong: brightness(0) invert(1);
+  --wa-loading-filter: invert(1);
+  --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+  --wa-brand-outline-ring: rgba(255, 255, 255, 0.9);
+  --wa-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.45);
+  --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.5);
+  --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  --wa-border: var(--wa-color-border);
+  --wa-border-strong: var(--wa-color-border-strong);
+  --wa-text-dim: var(--wa-color-text-dim);
+}
+
+/* css/indium.theme.light.css */
+html.wa-theme-light,
+html[data-wa-theme=light],
+[data-wa-theme=light] {
+  color-scheme: light;
+  --wa-color-text: rgba(20, 23, 29, 0.92);
+  --wa-color-text-strong: rgba(12, 16, 22, 0.96);
+  --wa-color-text-dim: rgba(31, 36, 45, 0.72);
+  --wa-color-text-muted: rgba(41, 47, 58, 0.66);
+  --wa-color-text-subtle: rgba(52, 59, 72, 0.6);
+  --wa-color-text-soft: rgba(61, 70, 86, 0.56);
+  --wa-color-bg-canvas: #f4f6fa;
+  --wa-color-bg-canvas-soft: #eef2f8;
+  --wa-color-bg-gradient-end: rgba(244, 246, 250, 0.98);
+  --wa-body-bg-image: none;
+  --wa-color-bg-loading: #f1f4f9;
+  --wa-color-bg-overlay: rgba(14, 20, 30, 0.28);
+  --wa-color-surface-shell: transparent;
+  --wa-color-surface-shell-glow: rgba(10, 16, 28, 0.07);
+  --wa-color-surface-sidebar: rgba(255, 255, 255, 0.68);
+  --wa-color-surface-sidebar-mobile: rgba(245, 248, 253, 0.9);
+  --wa-color-surface-topbar: rgba(245, 248, 253, 0.92);
+  --wa-color-surface-topbar-blur: rgba(247, 250, 255, 0.86);
+  --wa-color-surface-input: rgba(255, 255, 255, 0.72);
+  --wa-color-surface-input-focus: rgba(255, 255, 255, 0.94);
+  --wa-color-surface-elevated: rgba(17, 24, 39, 0.06);
+  --wa-color-surface-elevated-strong: rgba(17, 24, 39, 0.1);
+  --wa-color-surface-elevated-soft: rgba(17, 24, 39, 0.025);
+  --wa-glass-fallback-bg: rgba(255, 255, 255, 0.8);
+  --wa-glass-fallback-bg-no-backdrop: rgba(255, 255, 255, 0.8);
+  --wa-color-border: rgba(17, 24, 39, 0.18);
+  --wa-color-border-strong: rgba(17, 24, 39, 0.26);
+  --wa-color-border-soft: rgba(17, 24, 39, 0.14);
+  --wa-color-border-subtle: rgba(17, 24, 39, 0.1);
+  --wa-color-border-active: rgba(17, 24, 39, 0.2);
+  --wa-color-border-hover: rgba(17, 24, 39, 0.3);
+  --wa-color-border-input-focus: rgba(17, 24, 39, 0.32);
+  --wa-color-focus-ring: rgba(20, 96, 210, 0.75);
+  --wa-color-btn-text: rgba(17, 24, 39, 0.9);
+  --wa-color-btn-bg: rgba(17, 24, 39, 0.07);
+  --wa-color-btn-bg-hover: rgba(17, 24, 39, 0.12);
+  --wa-color-btn-bg-disabled: rgba(17, 24, 39, 0.045);
+  --wa-color-btn-primary-bg: rgba(17, 24, 39, 0.14);
+  --wa-color-btn-primary-bg-hover: rgba(17, 24, 39, 0.2);
+  --wa-color-iconbtn-border: rgba(17, 24, 39, 0.14);
+  --wa-color-iconbtn-bg: rgba(17, 24, 39, 0.08);
+  --wa-color-iconbtn-bg-hover: rgba(17, 24, 39, 0.14);
+  --wa-color-listitem-disabled-overlay: rgba(255, 255, 255, 0.45);
+  --wa-color-text-inverse: #f8fbff;
+  --wa-color-navbar-burger-line: rgba(17, 24, 39, 0.75);
+  --wa-dialog-overlay-start: rgba(8, 16, 28, 0.22);
+  --wa-dialog-overlay-end: rgba(8, 16, 28, 0.42);
+  --wa-dialog-input-bg: rgba(255, 255, 255, 0.82);
+  --wa-dialog-btn-bg: rgba(17, 24, 39, 0.12);
+  --wa-dialog-btn-secondary-bg: rgba(17, 24, 39, 0.08);
+  --wa-shadow: 0 18px 60px rgba(17, 24, 39, 0.14);
+  --wa-shadow-card: 0 10px 10px rgba(17, 24, 39, 0.08);
+  --wa-shadow-soft: 0 10px 40px rgba(17, 24, 39, 0.14);
+  --wa-shadow-topbar: 0 0 35px rgb(15 23 42 / 12%);
+  --wa-color-shadow-soft: rgba(17, 24, 39, 0.18);
+  --wa-color-shadow-strong: rgba(17, 24, 39, 0.24);
+  --wa-color-shadow-heavy: rgba(17, 24, 39, 0.32);
+  --wa-noise-opacity: 0.14;
+  --wa-icon-filter: none;
+  --wa-icon-filter-strong: none;
+  --wa-loading-filter: none;
+  --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23111827' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+  --wa-brand-outline-ring: rgba(20, 96, 210, 0.72);
+  --wa-toggle-thumb-shadow: 0 1px 3px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.2);
+  --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(15, 23, 42, 0.24);
+  --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(15, 23, 42, 0.18);
+}
+@media (prefers-color-scheme: light) {
+  html:not(.wa-theme-dark):not([data-wa-theme=dark]) {
+    color-scheme: light;
+    --wa-color-text: rgba(20, 23, 29, 0.92);
+    --wa-color-text-strong: rgba(12, 16, 22, 0.96);
+    --wa-color-text-dim: rgba(31, 36, 45, 0.72);
+    --wa-color-text-muted: rgba(41, 47, 58, 0.66);
+    --wa-color-text-subtle: rgba(52, 59, 72, 0.6);
+    --wa-color-text-soft: rgba(61, 70, 86, 0.56);
+    --wa-color-bg-canvas: #f4f6fa;
+    --wa-color-bg-canvas-soft: #eef2f8;
+    --wa-color-bg-gradient-end: rgba(244, 246, 250, 0.98);
+    --wa-body-bg-image: none;
+    --wa-color-bg-loading: #f1f4f9;
+    --wa-color-bg-overlay: rgba(14, 20, 30, 0.28);
+    --wa-color-surface-shell: transparent;
+    --wa-color-surface-shell-glow: rgba(10, 16, 28, 0.07);
+    --wa-color-surface-sidebar: rgba(255, 255, 255, 0.68);
+    --wa-color-surface-sidebar-mobile: rgba(245, 248, 253, 0.9);
+    --wa-color-surface-topbar: rgba(245, 248, 253, 0.92);
+    --wa-color-surface-topbar-blur: rgba(247, 250, 255, 0.86);
+    --wa-color-surface-input: rgba(255, 255, 255, 0.72);
+    --wa-color-surface-input-focus: rgba(255, 255, 255, 0.94);
+    --wa-color-surface-elevated: rgba(17, 24, 39, 0.06);
+    --wa-color-surface-elevated-strong: rgba(17, 24, 39, 0.1);
+    --wa-color-surface-elevated-soft: rgba(17, 24, 39, 0.025);
+    --wa-glass-fallback-bg: rgba(255, 255, 255, 0.8);
+    --wa-glass-fallback-bg-no-backdrop: rgba(255, 255, 255, 0.8);
+    --wa-color-border: rgba(17, 24, 39, 0.18);
+    --wa-color-border-strong: rgba(17, 24, 39, 0.26);
+    --wa-color-border-soft: rgba(17, 24, 39, 0.14);
+    --wa-color-border-subtle: rgba(17, 24, 39, 0.1);
+    --wa-color-border-active: rgba(17, 24, 39, 0.2);
+    --wa-color-border-hover: rgba(17, 24, 39, 0.3);
+    --wa-color-border-input-focus: rgba(17, 24, 39, 0.32);
+    --wa-color-focus-ring: rgba(20, 96, 210, 0.75);
+    --wa-color-btn-text: rgba(17, 24, 39, 0.9);
+    --wa-color-btn-bg: rgba(17, 24, 39, 0.07);
+    --wa-color-btn-bg-hover: rgba(17, 24, 39, 0.12);
+    --wa-color-btn-bg-disabled: rgba(17, 24, 39, 0.045);
+    --wa-color-btn-primary-bg: rgba(17, 24, 39, 0.14);
+    --wa-color-btn-primary-bg-hover: rgba(17, 24, 39, 0.2);
+    --wa-color-iconbtn-border: rgba(17, 24, 39, 0.14);
+    --wa-color-iconbtn-bg: rgba(17, 24, 39, 0.08);
+    --wa-color-iconbtn-bg-hover: rgba(17, 24, 39, 0.14);
+    --wa-color-listitem-disabled-overlay: rgba(255, 255, 255, 0.45);
+    --wa-color-text-inverse: #f8fbff;
+    --wa-color-navbar-burger-line: rgba(17, 24, 39, 0.75);
+    --wa-dialog-overlay-start: rgba(8, 16, 28, 0.22);
+    --wa-dialog-overlay-end: rgba(8, 16, 28, 0.42);
+    --wa-dialog-input-bg: rgba(255, 255, 255, 0.82);
+    --wa-dialog-btn-bg: rgba(17, 24, 39, 0.12);
+    --wa-dialog-btn-secondary-bg: rgba(17, 24, 39, 0.08);
+    --wa-shadow: 0 18px 60px rgba(17, 24, 39, 0.14);
+    --wa-shadow-card: 0 10px 10px rgba(17, 24, 39, 0.08);
+    --wa-shadow-soft: 0 10px 40px rgba(17, 24, 39, 0.14);
+    --wa-shadow-topbar: 0 0 35px rgb(15 23 42 / 12%);
+    --wa-color-shadow-soft: rgba(17, 24, 39, 0.18);
+    --wa-color-shadow-strong: rgba(17, 24, 39, 0.24);
+    --wa-color-shadow-heavy: rgba(17, 24, 39, 0.32);
+    --wa-noise-opacity: 0.14;
+    --wa-icon-filter: none;
+    --wa-icon-filter-strong: none;
+    --wa-loading-filter: none;
+    --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23111827' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+    --wa-brand-outline-ring: rgba(20, 96, 210, 0.72);
+    --wa-toggle-thumb-shadow: 0 1px 3px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.2);
+    --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(15, 23, 42, 0.24);
+    --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(15, 23, 42, 0.18);
+  }
+}
+
+/* css/indium.theme.dark.css */
+html.wa-theme-dark,
+html[data-wa-theme=dark],
+[data-wa-theme=dark] {
+  color-scheme: dark;
+  --wa-color-text: rgba(255, 255, 255, 0.92);
+  --wa-color-text-strong: rgba(255, 255, 255, 0.96);
+  --wa-color-text-dim: rgba(255, 255, 255, 0.74);
+  --wa-color-text-muted: rgba(255, 255, 255, 0.66);
+  --wa-color-text-subtle: rgba(255, 255, 255, 0.55);
+  --wa-color-text-soft: rgba(255, 255, 255, 0.45);
+  --wa-color-bg-canvas: #1c1c1c;
+  --wa-color-bg-canvas-soft: #242424;
+  --wa-color-bg-gradient-end: rgba(28, 28, 28, 0.98);
+  --wa-body-bg-image:
+    linear-gradient(
+      
+      145deg,
+      rgba(var(--wa-accent-r), var(--wa-accent-g), var(--wa-accent-b), 0.52) 0%,
+      var(--wa-color-bg-gradient-end) 70% );
+  --wa-color-bg-loading: #1c1c1c;
+  --wa-color-bg-overlay: rgba(0, 0, 0, 0.55);
+  --wa-color-surface-shell: transparent;
+  --wa-color-surface-shell-glow: rgba(255, 255, 255, 0.04);
+  --wa-color-surface-sidebar: rgba(0, 0, 0, 0.28);
+  --wa-color-surface-sidebar-mobile: rgba(0, 0, 0, 0.78);
+  --wa-color-surface-topbar: rgba(10, 10, 14, 0.88);
+  --wa-color-surface-topbar-blur: rgba(33, 33, 33, 0.75);
+  --wa-color-surface-input: rgba(0, 0, 0, 0.22);
+  --wa-color-surface-input-focus: rgba(0, 0, 0, 0.3);
+  --wa-color-surface-elevated: rgba(255, 255, 255, 0.06);
+  --wa-color-surface-elevated-strong: rgba(255, 255, 255, 0.1);
+  --wa-color-surface-elevated-soft: rgba(255, 255, 255, 0.025);
+  --wa-glass-fallback-bg: rgba(255, 255, 255, 0.1);
+  --wa-glass-fallback-bg-no-backdrop: rgba(0, 0, 0, 0.4);
+  --wa-color-border: rgba(255, 255, 255, 0.16);
+  --wa-color-border-strong: rgba(255, 255, 255, 0.26);
+  --wa-color-border-soft: rgba(255, 255, 255, 0.12);
+  --wa-color-border-subtle: rgba(255, 255, 255, 0.1);
+  --wa-color-border-active: rgba(255, 255, 255, 0.18);
+  --wa-color-border-hover: rgba(255, 255, 255, 0.22);
+  --wa-color-border-input-focus: rgba(255, 255, 255, 0.34);
+  --wa-color-focus-ring: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-text: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-bg: rgba(255, 255, 255, 0.07);
+  --wa-color-btn-bg-hover: rgba(255, 255, 255, 0.14);
+  --wa-color-btn-bg-disabled: rgba(255, 255, 255, 0.04);
+  --wa-color-btn-primary-bg: rgba(255, 255, 255, 0.16);
+  --wa-color-btn-primary-bg-hover: rgba(255, 255, 255, 0.2);
+  --wa-color-iconbtn-border: rgba(255, 255, 255, 0.14);
+  --wa-color-iconbtn-bg: rgba(255, 255, 255, 0.1);
+  --wa-color-iconbtn-bg-hover: rgba(255, 255, 255, 0.15);
+  --wa-color-listitem-disabled-overlay: rgba(6, 8, 10, 0.35);
+  --wa-color-text-inverse: #050710;
+  --wa-color-navbar-burger-line: rgb(179, 179, 179);
+  --wa-dialog-overlay-start: rgba(0, 0, 0, 0.7);
+  --wa-dialog-overlay-end: rgba(0, 0, 0, 0.95);
+  --wa-dialog-input-bg: rgba(0, 0, 0, 0.35);
+  --wa-dialog-btn-bg: rgba(0, 0, 0, 0.45);
+  --wa-dialog-btn-secondary-bg: rgba(0, 0, 0, 0.3);
+  --wa-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  --wa-shadow-card: 0 10px 10px rgba(0, 0, 0, 0.15);
+  --wa-shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --wa-shadow-topbar: 0 0 35px rgb(0 0 0 / 50%);
+  --wa-color-shadow-soft: rgba(0, 0, 0, 0.35);
+  --wa-color-shadow-strong: rgba(0, 0, 0, 0.5);
+  --wa-color-shadow-heavy: rgba(0, 0, 0, 0.6);
+  --wa-noise-opacity: 0.34;
+  --wa-icon-filter: invert(1);
+  --wa-icon-filter-strong: brightness(0) invert(1);
+  --wa-loading-filter: invert(1);
+  --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+  --wa-brand-outline-ring: rgba(255, 255, 255, 0.9);
+  --wa-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.45);
+  --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.5);
+  --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  --wa-border: var(--wa-color-border);
+  --wa-border-strong: var(--wa-color-border-strong);
+  --wa-text-dim: var(--wa-color-text-dim);
+}
+
+/* css/indium.theme.css */
+
 /* css/components/loadingOverlay.css */
 .loading-overlay img {
   width: 80px;
   height: auto;
-  filter: invert(1);
+  filter: var(--wa-loading-filter);
 }
 .loading-overlay .loading-logo {
   position: absolute;
@@ -60,7 +366,7 @@
     0px 16px 56px rgba(17, 17, 26, 0.05) inset;
 }
 .glass-surface--fallback {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--wa-glass-fallback-bg);
   backdrop-filter: blur(5px) saturate(1.8) brightness(0.6);
   -webkit-backdrop-filter: blur(5px) saturate(1.8) brightness(0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -68,7 +374,7 @@
 }
 @supports not (backdrop-filter: blur(10px)) {
   .glass-surface--fallback {
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--wa-glass-fallback-bg-no-backdrop);
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 0 rgba(255, 255, 255, 0.3);
   }
   .glass-surface--fallback::before {
@@ -101,23 +407,23 @@ body.ui-dialog-open {
   background:
     radial-gradient(
       circle at top,
-      rgba(0, 0, 0, 0.7),
-      rgba(0, 0, 0, 0.95));
+      var(--wa-dialog-overlay-start),
+      var(--wa-dialog-overlay-end));
   opacity: 0;
   pointer-events: none;
   transform: scale(1.02);
   filter: blur(4px);
   transition:
-    opacity 0.2s ease-out,
-    transform 0.2s ease-out,
-    filter 0.2s ease-out;
+    opacity 0.12s ease-out,
+    transform 0.12s ease-out,
+    filter 0.12s ease-out;
 }
 .ui-dialog-overlay.is-visible {
   opacity: 1;
   pointer-events: auto;
   transform: none;
   filter: none;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
 }
 .ui-dialog {
   max-width: min(500px, 100%);
@@ -131,7 +437,7 @@ body.ui-dialog-open {
   gap: 1.25rem;
   padding: 1.25rem 1.4rem 1.3rem 1.4rem;
   box-sizing: border-box;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--wa-color-text);
   font-family:
     system-ui,
     -apple-system,
@@ -155,7 +461,7 @@ body.ui-dialog-open {
   font-weight: 600;
   margin: 0;
   letter-spacing: 0.01em;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 1px 8px var(--wa-color-shadow-soft);
   text-align: center;
   grid-column: 1 / -1;
   justify-self: center;
@@ -177,18 +483,18 @@ body.ui-dialog-open {
     "SF Mono",
     monospace;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--wa-color-text-dim);
 }
 .ui-dialog-input {
   width: auto;
   margin-top: 0.35rem;
   padding: 0.55rem 0.7rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(0, 0, 0, 0.35);
-  color: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--wa-color-border-active);
+  background: var(--wa-dialog-input-bg);
+  color: var(--wa-color-text-strong);
   font: inherit;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 16px var(--wa-color-shadow-strong);
   outline: none;
   transition:
     border-color 0.16s ease,
@@ -196,7 +502,7 @@ body.ui-dialog-open {
     box-shadow 0.16s ease;
 }
 .ui-dialog-input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--wa-color-text-soft);
 }
 .ui-dialog-input:focus-visible {
   border-color: rgba(120, 212, 255, 0.25);
@@ -215,7 +521,7 @@ body.ui-dialog-open {
 }
 .ui-dialog-button {
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--wa-color-border);
   padding: 0.75rem 0.9rem;
   font-family:
     ui-monospace,
@@ -229,10 +535,10 @@ body.ui-dialog-open {
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(0, 0, 0, 0.45);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+  color: var(--wa-color-btn-text);
+  background: var(--wa-dialog-btn-bg);
+  text-shadow: 0 1px 8px var(--wa-color-shadow-soft);
+  box-shadow: 0 4px 18px var(--wa-color-shadow-strong);
   transition:
     background 0.16s ease,
     color 0.16s ease,
@@ -241,8 +547,8 @@ body.ui-dialog-open {
     box-shadow 0.16s ease;
 }
 .ui-dialog-button--secondary {
-  background: rgba(0, 0, 0, 0.3);
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--wa-dialog-btn-secondary-bg);
+  color: var(--wa-color-text-dim);
 }
 .ui-dialog-button--primary {
   background:
@@ -250,7 +556,7 @@ body.ui-dialog-open {
       145deg,
       rgba(120, 212, 255, 0.9),
       rgba(88, 159, 255, 0.95));
-  color: #050710;
+  color: var(--wa-color-text-inverse);
   border-color: rgba(197, 238, 255, 0.2);
 }
 .ui-dialog-button--info {
@@ -276,15 +582,15 @@ body.ui-dialog-open {
 }
 .ui-dialog-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 7px 24px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 7px 24px var(--wa-color-shadow-heavy);
 }
 .ui-dialog-button:active {
   transform: translateY(0) scale(0.985);
   filter: brightness(0.96);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 3px 12px var(--wa-color-shadow-strong);
 }
 .ui-dialog-button:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline: 2px solid var(--wa-color-focus-ring);
   outline-offset: 2px;
 }
 @media (max-width: 480px) {
@@ -315,7 +621,7 @@ body.ui-dialog-open {
   align-items: center;
 }
 #gnc {
-  background-color: #242424;
+  background-color: var(--wa-color-bg-canvas-soft);
   position: fixed;
   top: 0;
   left: 0;
@@ -352,7 +658,7 @@ body.ui-dialog-open {
   width: 40px;
   height: 22px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--wa-color-btn-primary-bg);
   transition:
     transform 160ms ease-in-out,
     background 160ms ease-in-out,
@@ -371,7 +677,7 @@ body.ui-dialog-open {
   height: 16px;
   border-radius: 50%;
   background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--wa-toggle-thumb-shadow);
   transition:
     transform 160ms ease-in-out,
     background 160ms ease-in-out,
@@ -405,13 +711,13 @@ body.ui-dialog-open {
 }
 .comp-toggle-input:checked + .comp-toggle-track .comp-toggle-thumb {
   transform: translateX(18px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--wa-toggle-thumb-shadow-checked);
 }
 .comp-toggle-input:checked + .comp-toggle-track.comp-toggle-large .comp-toggle-thumb {
   transform: translateX(20px);
 }
 .comp-toggle-input:focus-visible + .comp-toggle-track {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline: 2px solid var(--wa-color-focus-ring);
   outline-offset: 2px;
 }
 .comp-toggle-input:disabled + .comp-toggle-track {
@@ -419,7 +725,7 @@ body.ui-dialog-open {
   cursor: default;
 }
 .comp-toggle-input:disabled + .comp-toggle-track .comp-toggle-thumb {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--wa-toggle-thumb-shadow-disabled);
 }
 
 /* css/components/infiniteScroll.css */
@@ -444,7 +750,7 @@ body.ui-dialog-open {
   display: block;
   width: 22px;
   height: 22px;
-  filter: invert(1);
+  filter: var(--wa-loading-filter);
   opacity: 0.9;
 }
 
@@ -488,10 +794,10 @@ body.ui-dialog-open {
 }
 .wa-navbar__brand,
 .url-text {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--wa-color-text-dim);
   font-weight: 500;
   white-space: nowrap;
-  text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 8px var(--wa-color-shadow-soft);
   padding: 0.25rem 0.5rem 0.25rem 0;
   border-radius: 8px;
   transition: color 0.2s ease, background 0.2s ease;
@@ -503,8 +809,8 @@ body.ui-dialog-open {
   }
   .wa-navbar__brand:hover,
   .url-text:hover {
-    color: rgba(255, 255, 255, 1);
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--wa-color-text-strong);
+    background: var(--wa-color-surface-elevated-strong);
   }
 }
 .wa-navbar__links,
@@ -522,7 +828,7 @@ body.ui-dialog-open {
   align-items: stretch;
   gap: 0.5rem;
   padding-top: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0);
+  border-top: 1px solid transparent;
   margin-top: 0;
   opacity: 0;
   max-height: 0;
@@ -543,30 +849,30 @@ body.ui-dialog-open {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--wa-color-text-dim);
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
   white-space: nowrap;
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
-  text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 8px var(--wa-color-shadow-soft);
 }
 .wa-navbar__link:hover,
 .url-link:hover {
-  color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--wa-color-text-strong);
+  background: var(--wa-color-surface-elevated-strong);
 }
 .wa-navbar__link[data-wa-active=true],
 .url-link[data-wa-active=true],
 .wa-navbar__link.is-active,
 .url-link.is-active {
-  color: rgba(255, 255, 255, 1);
+  color: var(--wa-color-text-strong);
 }
 .wa-navbar__link[data-wa-active=true]:hover,
 .url-link[data-wa-active=true]:hover,
 .wa-navbar__link.is-active:hover,
 .url-link.is-active:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--wa-color-surface-elevated-strong);
 }
 .wa-navbar__link img,
 .url-link img {
@@ -576,7 +882,7 @@ body.ui-dialog-open {
 }
 .wa-navbar__link img,
 .url-link img {
-  filter: brightness(0) invert(1);
+  filter: var(--wa-icon-filter-strong);
 }
 .wa-navbar__link-external-sup,
 .url-link-external-sup {
@@ -605,7 +911,7 @@ body.ui-dialog-open {
   border: none;
   padding: 0.5rem 0 0.5rem 0.5rem;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--wa-color-text-dim);
   transition:
     color 0.2s ease,
     transform 0.2s ease,
@@ -614,8 +920,8 @@ body.ui-dialog-open {
 }
 .wa-navbar__burger:hover,
 .burger-menu:hover {
-  color: rgba(255, 255, 255, 1);
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--wa-color-text-strong);
+  background: var(--wa-color-surface-elevated-strong);
 }
 .wa-navbar__burger:active,
 .burger-menu:active {
@@ -630,14 +936,14 @@ body.ui-dialog-open {
   width: 20px;
   height: 20px;
   position: relative;
-  filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 1px 8px var(--wa-color-shadow-soft));
 }
 .burger-line {
   display: block;
   width: 20px;
   height: 2px;
   background-color: currentColor;
-  color: rgb(179, 179, 179);
+  color: var(--wa-color-navbar-burger-line);
   border-radius: 2px;
   transition: all 0.2s ease;
   position: absolute;
@@ -700,7 +1006,7 @@ body.ui-dialog-open {
     max-height: 200px;
     padding-top: 0.75rem;
     margin-top: 0.75rem;
-    border-top-color: rgba(255, 255, 255, 0.15);
+    border-top-color: var(--wa-color-border);
   }
   .wa-navbar.wa-navbar--open .wa-navbar__surface,
   .url-display.menu-open .url-display-glass {
@@ -729,8 +1035,8 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100%;
-  background: #1c1c1c;
-  color: rgba(255, 255, 255, 0.92);
+  background: var(--wa-color-bg-canvas);
+  color: var(--wa-color-text);
   font-family:
     system-ui,
     -apple-system,
@@ -744,12 +1050,8 @@ body {
 @property --wa-accent-g { syntax: "<number>"; inherits: true; initial-value: 14; }
 @property --wa-accent-b { syntax: "<number>"; inherits: true; initial-value: 18; }
 body {
-  background-color: #1c1c1c;
-  background-image:
-    linear-gradient(
-      145deg,
-      rgba(var(--wa-accent-r), var(--wa-accent-g), var(--wa-accent-b), 0.52) 0%,
-      rgba(28, 28, 28, 0.98) 70%);
+  background-color: var(--wa-color-bg-canvas);
+  background-image: var(--wa-body-bg-image);
   background-attachment: fixed;
   transition:
     --wa-accent-r 900ms ease,
@@ -761,7 +1063,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.34;
+  opacity: var(--wa-noise-opacity);
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -791,8 +1093,8 @@ button,
 input[type=button],
 input[type=submit],
 input[type=reset] {
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background-color: var(--wa-color-surface-elevated);
+  border: 1px solid var(--wa-color-border);
   transition:
     background-color 0.16s ease,
     filter 0.14s ease,
@@ -803,7 +1105,7 @@ input[type=reset] {
   input[type=button]:not(:disabled):hover,
   input[type=submit]:not(:disabled):hover,
   input[type=reset]:not(:disabled):hover {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: var(--wa-color-surface-elevated-strong);
   }
 }
 button:not(:disabled):active,
@@ -826,10 +1128,6 @@ a {
   text-decoration: none;
 }
 :root {
-  --wa-border: rgba(255, 255, 255, 0.16);
-  --wa-border-strong: rgba(255, 255, 255, 0.26);
-  --wa-text-dim: rgba(255, 255, 255, 0.74);
-  --wa-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
   --wa-radius-lg: 16px;
   --wa-radius-md: 14px;
   --wa-playerbar-offset: env(safe-area-inset-bottom, 0px);
@@ -842,7 +1140,7 @@ a {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: #1c1c1c;
+  background: var(--wa-color-bg-loading);
   display: block;
   opacity: 1;
   transition:
@@ -868,7 +1166,7 @@ body[data-initial-state=ready] .loading-overlay {
   display: inline-block;
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--wa-color-surface-elevated-strong);
   border-radius: 999px;
 }
 .wa-skeleton::after {
@@ -880,14 +1178,14 @@ body[data-initial-state=ready] .loading-overlay {
     linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.18),
+      var(--wa-color-border-active),
       transparent);
   animation: wa-shimmer 1.1s ease-in-out infinite;
 }
 .wa-listitem--skeleton {
   cursor: default;
   pointer-events: none;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--wa-color-border-subtle);
 }
 .wa-skeleton--title {
   width: 55%;
@@ -902,7 +1200,7 @@ body[data-initial-state=ready] .loading-overlay {
 /* css/indium.shell-layout.css */
 .wa-shell.glass-surface {
   border-radius: 0;
-  background: transparent;
+  background: var(--wa-color-surface-shell);
   box-shadow: var(--wa-shadow);
   position: relative;
   overflow: hidden;
@@ -926,7 +1224,7 @@ body[data-initial-state=ready] .loading-overlay {
     background:
       radial-gradient(
         circle at top left,
-        rgba(255, 255, 255, 0.04),
+        var(--wa-color-surface-shell-glow),
         transparent 55%);
     z-index: -1;
   }
@@ -977,11 +1275,11 @@ body[data-initial-state=ready] .loading-overlay {
   border-radius: 999px;
 }
 .wa-brand:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline: 2px solid var(--wa-brand-outline-ring);
   outline-offset: 2px;
 }
 .wa-brand--sidebar {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--wa-color-border-soft);
 }
 .wa-brand__mark {
   width: 28px;
@@ -990,7 +1288,7 @@ body[data-initial-state=ready] .loading-overlay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--wa-color-border-active);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
 }
@@ -1013,8 +1311,8 @@ body[data-initial-state=ready] .loading-overlay {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--wa-color-iconbtn-border);
+  background: var(--wa-color-iconbtn-bg);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1028,10 +1326,10 @@ body[data-initial-state=ready] .loading-overlay {
   max-height: 100%;
   object-fit: contain;
   display: block;
-  filter: invert(1);
+  filter: var(--wa-icon-filter);
 }
 .wa-iconbtn:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline: 2px solid var(--wa-color-focus-ring);
   outline-offset: 2px;
 }
 .wa-iconbtn:disabled {
@@ -1040,15 +1338,15 @@ body[data-initial-state=ready] .loading-overlay {
 }
 @media (hover: hover) {
   .wa-iconbtn:not(:disabled):hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--wa-color-iconbtn-bg-hover);
+    border-color: var(--wa-color-border-hover);
   }
 }
 .wa-sidebar {
   border-radius: var(--wa-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.28);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--wa-color-border-soft);
+  background: var(--wa-color-surface-sidebar);
+  box-shadow: var(--wa-shadow-soft);
   overflow: hidden;
   position: relative;
   height: auto;
@@ -1082,13 +1380,13 @@ body[data-initial-state=ready] .loading-overlay {
   padding: 0.6rem 0.7rem;
   border-radius: 12px;
   border: 1px solid transparent;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--wa-color-text-dim);
 }
 .wa-sidenav__icon {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
-  filter: invert(1);
+  filter: var(--wa-icon-filter);
   opacity: 0.86;
 }
 .wa-sidenav__label {
@@ -1096,12 +1394,12 @@ body[data-initial-state=ready] .loading-overlay {
   flex: 1 1 auto;
 }
 .wa-sidenav__link:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: var(--wa-color-border-hover);
 }
 .wa-sidenav__link[data-wa-active=true] {
-  border-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.96);
-  background-color: rgba(255, 255, 255, 0.075);
+  border-color: var(--wa-color-border-subtle);
+  color: var(--wa-color-text-strong);
+  background-color: var(--wa-color-surface-elevated);
 }
 .wa-sidenav__link[data-wa-active=true] .wa-sidenav__icon {
   opacity: 0.98;
@@ -1113,7 +1411,7 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-sidebar__version {
   margin-top: 0.55rem;
   font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--wa-color-text-subtle);
   text-align: right;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
@@ -1123,7 +1421,7 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-sidebar__status {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--wa-color-text-muted);
 }
 .wa-topbar {
   position: fixed;
@@ -1139,15 +1437,15 @@ body[data-initial-state=ready] .loading-overlay {
   justify-content: space-between;
   gap: 0.65rem;
   border-radius: var(--wa-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(10, 10, 14, 0.88);
-  box-shadow: 0px 0px 35px rgb(0 0 0 / 50%);
+  border: 1px solid var(--wa-color-border-soft);
+  background: var(--wa-color-surface-topbar);
+  box-shadow: var(--wa-shadow-topbar);
 }
 @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
   .wa-topbar__inner {
     backdrop-filter: blur(16px) saturate(1.25);
     -webkit-backdrop-filter: blur(16px) saturate(1.25);
-    background: rgba(33, 33, 33, 0.75);
+    background: var(--wa-color-surface-topbar-blur);
   }
 }
 .wa-topbar__left {
@@ -1165,7 +1463,7 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-topbar__title {
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--wa-color-btn-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1318,7 +1616,7 @@ body[data-initial-state=ready] .loading-overlay {
   margin: 0.4rem 0 0.75rem 0;
   font-size: 1.05rem;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--wa-color-text);
 }
 .wa-h2--link {
   cursor: pointer;
@@ -1331,7 +1629,7 @@ body[data-initial-state=ready] .loading-overlay {
   margin: 0 0 0.35rem 0;
   font-size: 0.95rem;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.84);
+  color: var(--wa-color-text-dim);
 }
 .wa-lede {
   margin: 0;
@@ -1366,7 +1664,7 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-copy {
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--wa-color-text-dim);
   line-height: 1.6;
 }
 .wa-view__header {
@@ -1405,7 +1703,7 @@ body[data-initial-state=ready] .loading-overlay {
   max-height: 100%;
   object-fit: contain;
   display: block;
-  filter: invert(1);
+  filter: var(--wa-icon-filter);
 }
 .wa-view__actions {
   position: absolute;
@@ -1449,16 +1747,16 @@ body[data-initial-state=ready] .loading-overlay {
   flex: 0 0 auto;
   display: block;
   object-fit: contain;
-  filter: invert(1);
+  filter: var(--wa-icon-filter);
   opacity: 0.9;
 }
 .wa-card {
   border-radius: var(--wa-radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--wa-color-iconbtn-border);
   padding: 0.95rem 1rem;
   margin: 0.65rem 0;
   height: fit-content;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--wa-shadow-card);
 }
 .wa-card:has(.wa-list) {
   padding: 0.5rem 1rem 1rem 1rem;
@@ -1479,7 +1777,7 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-card--link:hover {
   transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.22);
+  border-color: var(--wa-color-border-hover);
 }
 @media (hover: hover) and (pointer: fine) {
   .wa-listitem {
@@ -1487,7 +1785,7 @@ body[data-initial-state=ready] .loading-overlay {
   }
   .wa-listitem:hover {
     transform: translateY(-1px);
-    border-color: rgba(255, 255, 255, 0.22);
+    border-color: var(--wa-color-border-hover);
   }
 }
 .wa-searchbar {
@@ -1511,24 +1809,24 @@ body[data-initial-state=ready] .loading-overlay {
   width: 100%;
   font-size: calc(1em + 2pt);
   border-radius: var(--wa-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--wa-color-border-active);
+  background: var(--wa-color-surface-input);
   padding: 0.85rem 1.05rem;
   outline: none;
 }
 .wa-searchbar__input::placeholder {
-  color: rgba(255, 255, 255, 0.58);
+  color: var(--wa-color-text-subtle);
 }
 .wa-searchbar__input:focus {
-  border-color: rgba(255, 255, 255, 0.34);
-  background: rgba(0, 0, 0, 0.3);
+  border-color: var(--wa-color-border-input-focus);
+  background: var(--wa-color-surface-input-focus);
 }
 .wa-searchbar__input::-webkit-search-cancel-button {
   -webkit-appearance: none;
   height: 18px;
   width: 18px;
   cursor: pointer;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E") center/18px 18px no-repeat;
+  background: var(--wa-search-cancel-icon) center/18px 18px no-repeat;
   opacity: 0.9;
 }
 .wa-searchbar__btn {
@@ -1542,13 +1840,13 @@ body[data-initial-state=ready] .loading-overlay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--wa-color-surface-elevated);
 }
 .wa-searchbar__icon {
   width: 18px;
   height: 18px;
   display: block;
-  filter: invert(1);
+  filter: var(--wa-icon-filter);
   opacity: 0.95;
 }
 .wa-actions {
@@ -1559,38 +1857,38 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-btn {
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--wa-color-border-active);
+  background: var(--wa-color-btn-bg);
   padding: 0.55rem 0.9rem;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--wa-color-btn-text);
   transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 .wa-btn:disabled {
   cursor: not-allowed;
   opacity: 0.55;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--wa-color-btn-bg-disabled);
 }
 .wa-btn--primary {
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--wa-color-border-strong);
+  background: var(--wa-color-btn-primary-bg);
 }
 @media (hover: hover) {
   .wa-btn:not(:disabled):hover {
-    background: rgba(255, 255, 255, 0.14);
+    background: var(--wa-color-btn-bg-hover);
   }
   .wa-btn--primary:not(:disabled):hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--wa-color-btn-primary-bg-hover);
   }
 }
 .wa-btn:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline: 2px solid var(--wa-color-focus-ring);
   outline-offset: 2px;
 }
 .wa-note {
   margin-top: 0.85rem;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--wa-color-text-dim);
 }
 .wa-list {
   display: flex;
@@ -1608,21 +1906,21 @@ body[data-initial-state=ready] .loading-overlay {
   min-width: 0;
   text-align: left;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--wa-color-iconbtn-border);
   background: transparent;
   padding: 0.7rem 0.85rem;
   cursor: pointer;
 }
 .wa-listitem:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.025);
+  border-color: var(--wa-color-border-hover);
+  background: var(--wa-color-surface-elevated-soft);
 }
 .wa-listitem__title {
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--wa-color-text);
 }
 .wa-listitem__meta {
-  color: rgba(255, 255, 255, 0.66);
+  color: var(--wa-color-text-muted);
   font-size: 0.9rem;
 }
 .wa-listitem__pill {
@@ -1630,12 +1928,12 @@ body[data-initial-state=ready] .loading-overlay {
   margin-left: auto;
   padding: 0.1rem 0.55rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--wa-color-border-active);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--wa-color-text-dim);
+  background: var(--wa-color-surface-elevated);
 }
 
 /* css/indium.responsive.css */
@@ -1679,7 +1977,7 @@ body[data-initial-state=ready] .loading-overlay {
     border-radius: 0;
     transform: translateX(-102%);
     transition: transform 0.18s ease;
-    background: rgba(0, 0, 0, 0.78);
+    background: var(--wa-color-surface-sidebar-mobile);
     height: auto;
     max-height: none;
   }
@@ -1690,7 +1988,7 @@ body[data-initial-state=ready] .loading-overlay {
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--wa-color-bg-overlay);
     display: block;
     opacity: 0;
     pointer-events: none;
@@ -1732,7 +2030,7 @@ body[data-initial-state=ready] .loading-overlay {
     height: 40px;
     padding: 0;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid var(--wa-color-iconbtn-border);
     display: inline-flex;
     align-items: center;
     justify-content: center;

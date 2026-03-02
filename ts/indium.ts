@@ -4,7 +4,7 @@ import {
     getIndiumConfig,
     initIndiumConfig,
     routePath,
-    setIndiumConfig,
+    setIndiumConfig as setIndiumConfigInternal,
     type IndiumConfig
 } from './config';
 import { setIndiumLogger, type IndiumLogger } from './internal/logging';
@@ -43,6 +43,13 @@ import {
     type NavbarNavigateContext,
     type NavbarSelectors
 } from './components/navbar/navbar';
+import {
+    applyThemeMode,
+    getResolvedIndiumTheme as getResolvedIndiumThemeInternal,
+    setIndiumThemeModeValue,
+    type IndiumThemeMode,
+    type ResolvedIndiumTheme
+} from './theme';
 
 export interface BootIndiumOptions extends Partial<IndiumConfig> {
     sidebar?: false | Omit<CreateSidebarControllerOptions, 'appRoot'>;
@@ -55,6 +62,38 @@ export interface BootIndiumResult {
 }
 
 const observedPlayerbarRoots = new WeakSet<HTMLElement>();
+
+export function setIndiumConfig(partial?: Partial<IndiumConfig>): Readonly<IndiumConfig> {
+    const config = setIndiumConfigInternal(partial);
+
+    if (partial && partial.themeMode !== undefined) {
+        setIndiumThemeModeValue(config.themeMode);
+        if (typeof document !== 'undefined') {
+            applyThemeMode(config.themeMode);
+        }
+    }
+
+    return config;
+}
+
+export function setIndiumThemeMode(mode: IndiumThemeMode): Readonly<IndiumConfig> {
+    const config = setIndiumConfigInternal({ themeMode: mode });
+    setIndiumThemeModeValue(config.themeMode);
+
+    if (typeof document !== 'undefined') {
+        applyThemeMode(config.themeMode);
+    }
+
+    return config;
+}
+
+export function getIndiumThemeMode(): IndiumThemeMode {
+    return getIndiumConfig().themeMode;
+}
+
+export function getResolvedIndiumTheme(): ResolvedIndiumTheme {
+    return getResolvedIndiumThemeInternal();
+}
 
 function applyBranding(appRoot: HTMLElement, config: Readonly<IndiumConfig>) {
     const logoSrc = (config.brandLogoSrc || '').trim();
@@ -133,6 +172,7 @@ function ensurePlayerbarOffsetObserver(appRoot: HTMLElement) {
 export function bootIndium(options: BootIndiumOptions = {}): BootIndiumResult {
     const { sidebar, ...configOptions } = options;
     const config = initIndiumConfig(configOptions);
+    setIndiumThemeModeValue(config.themeMode);
 
     configureLegacyWindowDialogs(config.exposeLegacyWindowDialogs);
 
@@ -143,6 +183,8 @@ export function bootIndium(options: BootIndiumOptions = {}): BootIndiumResult {
             sidebarController: null
         };
     }
+
+    applyThemeMode(config.themeMode);
 
     const appRoot = document.querySelector<HTMLElement>(config.appRootSelector);
     if (appRoot) {
@@ -173,7 +215,6 @@ export {
     getIndiumConfig,
     routePath,
     setGradNoiseCanvasFrameCap,
-    setIndiumConfig,
     setIndiumLogger,
     showAlert,
     showConfirm,
@@ -194,6 +235,8 @@ export type {
     NavbarItem,
     NavbarNavigateContext,
     NavbarSelectors,
+    IndiumThemeMode,
+    ResolvedIndiumTheme,
     PromptOptions,
     SidebarController
 };

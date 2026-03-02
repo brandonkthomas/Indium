@@ -57,7 +57,7 @@
         transform: translateX(-102%);
         transition: transform 0.18s ease;
         /* On mobile the sidebar overlays content; make it much harder to read through. */
-        background: rgba(0, 0, 0, 0.78);
+        background: var(--wa-color-surface-sidebar-mobile);
         height: auto;
         max-height: none;
     }
@@ -70,7 +70,7 @@
         position: fixed;
         inset: 0;
         z-index: 10000;
-        background: rgba(0, 0, 0, 0.55);
+        background: var(--wa-color-bg-overlay);
         display: block;
         opacity: 0;
         pointer-events: none;
@@ -127,7 +127,7 @@
         height: 40px;
         padding: 0;
         border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        border: 1px solid var(--wa-color-iconbtn-border);
         display: inline-flex;
         align-items: center;
         justify-content: center;

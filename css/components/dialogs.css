@@ -16,15 +16,15 @@ body.ui-dialog-open {
     align-items: center;
     justify-content: center;
     padding: 2rem 1.25rem;
-    background: radial-gradient(circle at top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.95));
+    background: radial-gradient(circle at top, var(--wa-dialog-overlay-start), var(--wa-dialog-overlay-end));
     opacity: 0;
     pointer-events: none;
     transform: scale(1.02);
     filter: blur(4px);
     transition:
-        opacity 0.2s ease-out,
-        transform 0.2s ease-out,
-        filter 0.2s ease-out;
+        opacity 0.12s ease-out,
+        transform 0.12s ease-out,
+        filter 0.12s ease-out;
 }
 
 .ui-dialog-overlay.is-visible {
@@ -32,7 +32,7 @@ body.ui-dialog-open {
     pointer-events: auto;
     transform: none;
     filter: none;
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(2px);
 }
 
 .ui-dialog {
@@ -49,7 +49,7 @@ body.ui-dialog-open {
     gap: 1.25rem;
     padding: 1.25rem 1.4rem 1.3rem 1.4rem;
     box-sizing: border-box;
-    color: rgba(255, 255, 255, 0.92);
+    color: var(--wa-color-text);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
 }
 
@@ -66,7 +66,7 @@ body.ui-dialog-open {
     font-weight: 600;
     margin: 0;
     letter-spacing: 0.01em;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 1px 8px var(--wa-color-shadow-soft);
     text-align: center;
     grid-column: 1 / -1;
     justify-self: center;
@@ -87,7 +87,7 @@ body.ui-dialog-open {
     font-size: 0.85rem;
     font-family: ui-monospace, SFMono-Regular, 'SF Mono', monospace;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.78);
+    color: var(--wa-color-text-dim);
 }
 
 .ui-dialog-input {
@@ -95,11 +95,11 @@ body.ui-dialog-open {
     margin-top: 0.35rem;
     padding: 0.55rem 0.7rem;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(0, 0, 0, 0.35);
-    color: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--wa-color-border-active);
+    background: var(--wa-dialog-input-bg);
+    color: var(--wa-color-text-strong);
     font: inherit;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 16px var(--wa-color-shadow-strong);
     outline: none;
     transition:
         border-color 0.16s ease,
@@ -108,7 +108,7 @@ body.ui-dialog-open {
 }
 
 .ui-dialog-input::placeholder {
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--wa-color-text-soft);
 }
 
 .ui-dialog-input:focus-visible {
@@ -131,7 +131,7 @@ body.ui-dialog-open {
 
 .ui-dialog-button {
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--wa-color-border);
     padding: 0.75rem 0.9rem;
     font-family: ui-monospace, SFMono-Regular, 'SF Mono', monospace;
     font-size: 0.8rem;
@@ -142,10 +142,10 @@ body.ui-dialog-open {
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.45);
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+    color: var(--wa-color-btn-text);
+    background: var(--wa-dialog-btn-bg);
+    text-shadow: 0 1px 8px var(--wa-color-shadow-soft);
+    box-shadow: 0 4px 18px var(--wa-color-shadow-strong);
     transition:
         background 0.16s ease,
         color 0.16s ease,
@@ -155,13 +155,13 @@ body.ui-dialog-open {
 }
 
 .ui-dialog-button--secondary {
-    background: rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.75);
+    background: var(--wa-dialog-btn-secondary-bg);
+    color: var(--wa-color-text-dim);
 }
 
 .ui-dialog-button--primary {
     background: linear-gradient(145deg, rgba(120, 212, 255, 0.9), rgba(88, 159, 255, 0.95));
-    color: #050710;
+    color: var(--wa-color-text-inverse);
     border-color: rgba(197, 238, 255, 0.2);
 }
 
@@ -183,17 +183,17 @@ body.ui-dialog-open {
 
 .ui-dialog-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 7px 24px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 7px 24px var(--wa-color-shadow-heavy);
 }
 
 .ui-dialog-button:active {
     transform: translateY(0) scale(0.985);
     filter: brightness(0.96);
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 3px 12px var(--wa-color-shadow-strong);
 }
 
 .ui-dialog-button:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline: 2px solid var(--wa-color-focus-ring);
     outline-offset: 2px;
 }
 

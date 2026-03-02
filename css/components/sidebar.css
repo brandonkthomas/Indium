@@ -5,9 +5,9 @@
 
 .wa-sidebar {
     border-radius: var(--wa-radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(0, 0, 0, 0.28);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--wa-color-border-soft);
+    background: var(--wa-color-surface-sidebar);
+    box-shadow: var(--wa-shadow-soft);
     overflow: hidden;
     position: relative;
     height: auto;
@@ -46,14 +46,14 @@
     padding: 0.6rem 0.7rem;
     border-radius: 12px;
     border: 1px solid transparent;
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--wa-color-text-dim);
 }
 
 .wa-sidenav__icon {
     width: 18px;
     height: 18px;
     flex: 0 0 auto;
-    filter: invert(1);
+    filter: var(--wa-icon-filter);
     opacity: 0.86;
 }
 
@@ -63,13 +63,13 @@
 }
 
 .wa-sidenav__link:hover {
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: var(--wa-color-border-hover);
 }
 
 .wa-sidenav__link[data-wa-active="true"] {
-    border-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.96);
-    background-color: rgba(255, 255, 255, 0.075);
+    border-color: var(--wa-color-border-subtle);
+    color: var(--wa-color-text-strong);
+    background-color: var(--wa-color-surface-elevated);
 }
 
 .wa-sidenav__link[data-wa-active="true"] .wa-sidenav__icon {
@@ -84,7 +84,7 @@
 .wa-sidebar__version {
     margin-top: 0.55rem;
     font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--wa-color-text-subtle);
     text-align: right;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
@@ -95,7 +95,7 @@
 
 .wa-sidebar__status {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.68);
+    color: var(--wa-color-text-muted);
 }
 
 .wa-sidebar-overlay {
@@ -113,7 +113,7 @@
         border-radius: 0;
         transform: translateX(-102%);
         transition: transform 0.18s ease;
-        background: rgba(0, 0, 0, 0.78);
+        background: var(--wa-color-surface-sidebar-mobile);
         height: auto;
         max-height: none;
     }
@@ -126,7 +126,7 @@
         position: fixed;
         inset: 0;
         z-index: 10000;
-        background: rgba(0, 0, 0, 0.55);
+        background: var(--wa-color-bg-overlay);
         display: block;
         opacity: 0;
         pointer-events: none;

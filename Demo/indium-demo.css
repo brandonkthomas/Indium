@@ -32,8 +32,8 @@
 
 .wa-components-glass-host {
     min-height: 120px;
-    background: linear-gradient(45deg, black, transparent);
-    border: 1px dashed rgba(255, 255, 255, 0.2);
+    background: linear-gradient(45deg, var(--wa-color-surface-input), transparent);
+    border: 1px dashed var(--wa-color-border-active);
     border-radius: 12px;
     padding: 0.55rem;
     display: grid;

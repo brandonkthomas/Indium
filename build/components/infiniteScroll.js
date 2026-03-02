@@ -21,7 +21,8 @@ var defaults = {
   brandLogoSrc: "",
   brandLogoAlt: "Brand logo",
   version: "dev".trim().length ? "dev".trim() : "dev",
-  exposeLegacyWindowDialogs: false
+  exposeLegacyWindowDialogs: false,
+  themeMode: "system"
 };
 var GLOBAL_CONFIG_KEY = "__indium_config_state_v1__";
 function getConfigState() {

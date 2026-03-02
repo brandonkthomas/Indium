@@ -40,7 +40,8 @@ var defaults = {
   brandLogoSrc: "",
   brandLogoAlt: "Brand logo",
   version: "dev".trim().length ? "dev".trim() : "dev",
-  exposeLegacyWindowDialogs: false
+  exposeLegacyWindowDialogs: false,
+  themeMode: "system"
 };
 var GLOBAL_CONFIG_KEY = "__indium_config_state_v1__";
 function getConfigState() {
@@ -89,8 +90,15 @@ function applyNormalization(next) {
     brandLogoSrc: (next.brandLogoSrc || "").trim(),
     brandLogoAlt: normalizedBrandLogoAlt || defaults.brandLogoAlt,
     version: next.version || defaults.version,
-    exposeLegacyWindowDialogs: !!next.exposeLegacyWindowDialogs
+    exposeLegacyWindowDialogs: !!next.exposeLegacyWindowDialogs,
+    themeMode: normalizeThemeMode(next.themeMode)
   };
+}
+function normalizeThemeMode(value) {
+  if (value === "light" || value === "dark" || value === "system") {
+    return value;
+  }
+  return defaults.themeMode;
 }
 function getIndiumConfig() {
   return readConfig();
@@ -1768,8 +1776,148 @@ function createNavbarController(options = {}) {
   return new NavbarControllerImpl(options);
 }
 
+// ts/theme.ts
+var SYSTEM_THEME_QUERY = "(prefers-color-scheme: dark)";
+var THEME_ATTR = "data-wa-theme";
+var THEME_OWNER_ATTR = "data-wa-theme-owner";
+var THEME_MODE_ATTR = "data-wa-theme-mode";
+var THEME_RESOLVED_ATTR = "data-wa-theme-resolved";
+var INDIUM_OWNER = "indium";
+var activeThemeMode = "system";
+var mediaQueryList = null;
+var detachMediaListener = null;
+function isThemeValue(value) {
+  return value === "light" || value === "dark";
+}
+function getManualClassTheme(root) {
+  if (root.classList.contains("wa-theme-light")) return "light";
+  if (root.classList.contains("wa-theme-dark")) return "dark";
+  return null;
+}
+function getManualAttributeTheme(root) {
+  const value = root.getAttribute(THEME_ATTR);
+  if (!isThemeValue(value)) return null;
+  const owner = root.getAttribute(THEME_OWNER_ATTR);
+  if (owner === INDIUM_OWNER) return null;
+  return value;
+}
+function getExternalForcedTheme(root) {
+  return getManualClassTheme(root) || getManualAttributeTheme(root);
+}
+function teardownMediaListener() {
+  if (detachMediaListener) {
+    detachMediaListener();
+    detachMediaListener = null;
+  }
+  mediaQueryList = null;
+}
+function applyResolvedThemeMarker(root) {
+  const resolved = getResolvedIndiumTheme(root);
+  root.setAttribute(THEME_RESOLVED_ATTR, resolved);
+}
+function ensureMediaListener() {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return;
+  if (detachMediaListener) return;
+  mediaQueryList = window.matchMedia(SYSTEM_THEME_QUERY);
+  const handleChange = () => {
+    if (activeThemeMode !== "system") return;
+    if (typeof document === "undefined") return;
+    applyResolvedThemeMarker(document.documentElement);
+  };
+  if (typeof mediaQueryList.addEventListener === "function") {
+    mediaQueryList.addEventListener("change", handleChange);
+    detachMediaListener = () => {
+      mediaQueryList?.removeEventListener("change", handleChange);
+    };
+    return;
+  }
+  mediaQueryList.addListener(handleChange);
+  detachMediaListener = () => {
+    mediaQueryList?.removeListener(handleChange);
+  };
+}
+function setIndiumThemeModeValue(mode) {
+  activeThemeMode = mode;
+  return activeThemeMode;
+}
+function resolveSystemTheme() {
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
+    return "dark";
+  }
+  try {
+    return window.matchMedia(SYSTEM_THEME_QUERY).matches ? "dark" : "light";
+  } catch {
+    return "dark";
+  }
+}
+function getResolvedIndiumTheme(root) {
+  const targetRoot = root || (typeof document !== "undefined" ? document.documentElement : null);
+  if (!targetRoot) {
+    return activeThemeMode === "light" || activeThemeMode === "dark" ? activeThemeMode : "dark";
+  }
+  const forcedTheme = getExternalForcedTheme(targetRoot);
+  if (forcedTheme) return forcedTheme;
+  if (activeThemeMode === "light" || activeThemeMode === "dark") {
+    return activeThemeMode;
+  }
+  return resolveSystemTheme();
+}
+function applyThemeMode(mode) {
+  activeThemeMode = mode;
+  if (typeof document === "undefined") {
+    return getResolvedIndiumTheme();
+  }
+  const root = document.documentElement;
+  root.setAttribute(THEME_MODE_ATTR, mode);
+  if (mode === "light" || mode === "dark") {
+    const externalForcedTheme = getExternalForcedTheme(root);
+    if (externalForcedTheme) {
+      if (root.getAttribute(THEME_OWNER_ATTR) === INDIUM_OWNER) {
+        root.removeAttribute(THEME_ATTR);
+        root.removeAttribute(THEME_OWNER_ATTR);
+      }
+    } else {
+      root.setAttribute(THEME_ATTR, mode);
+      root.setAttribute(THEME_OWNER_ATTR, INDIUM_OWNER);
+    }
+  } else {
+    if (root.getAttribute(THEME_OWNER_ATTR) === INDIUM_OWNER) {
+      root.removeAttribute(THEME_ATTR);
+      root.removeAttribute(THEME_OWNER_ATTR);
+    }
+  }
+  if (mode === "system") ensureMediaListener();
+  else teardownMediaListener();
+  applyResolvedThemeMarker(root);
+  return getResolvedIndiumTheme(root);
+}
+
 // ts/indium.ts
 var observedPlayerbarRoots = /* @__PURE__ */ new WeakSet();
+function setIndiumConfig2(partial) {
+  const config = setIndiumConfig(partial);
+  if (partial && partial.themeMode !== void 0) {
+    setIndiumThemeModeValue(config.themeMode);
+    if (typeof document !== "undefined") {
+      applyThemeMode(config.themeMode);
+    }
+  }
+  return config;
+}
+function setIndiumThemeMode(mode) {
+  const config = setIndiumConfig({ themeMode: mode });
+  setIndiumThemeModeValue(config.themeMode);
+  if (typeof document !== "undefined") {
+    applyThemeMode(config.themeMode);
+  }
+  return config;
+}
+function getIndiumThemeMode() {
+  return getIndiumConfig().themeMode;
+}
+function getResolvedIndiumTheme2() {
+  return getResolvedIndiumTheme();
+}
 function applyBranding(appRoot, config) {
   const logoSrc = (config.brandLogoSrc || "").trim();
   const logoAlt = (config.brandLogoAlt || "Brand logo").trim();
@@ -1824,6 +1972,7 @@ function ensurePlayerbarOffsetObserver(appRoot) {
 function bootIndium(options = {}) {
   const { sidebar, ...configOptions } = options;
   const config = initIndiumConfig(configOptions);
+  setIndiumThemeModeValue(config.themeMode);
   configureLegacyWindowDialogs(config.exposeLegacyWindowDialogs);
   if (typeof document === "undefined") {
     return {
@@ -1832,6 +1981,7 @@ function bootIndium(options = {}) {
       sidebarController: null
     };
   }
+  applyThemeMode(config.themeMode);
   const appRoot = document.querySelector(config.appRootSelector);
   if (appRoot) {
     applyBranding(appRoot, config);
@@ -1854,10 +2004,13 @@ export {
   createNavbarController,
   createSidebarController,
   getIndiumConfig,
+  getIndiumThemeMode,
+  getResolvedIndiumTheme2 as getResolvedIndiumTheme,
   routePath,
   setGradNoiseCanvasFrameCap,
-  setIndiumConfig,
+  setIndiumConfig2 as setIndiumConfig,
   setIndiumLogger,
+  setIndiumThemeMode,
   showAlert,
   showConfirm,
   showPrompt

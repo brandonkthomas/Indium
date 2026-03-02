@@ -1,0 +1,8 @@
+/*
+    indium.theme.css
+    Theme aggregation entry for all bundle outputs.
+*/
+
+@import url('./indium.theme.tokens.css');
+@import url('./indium.theme.light.css');
+@import url('./indium.theme.dark.css');
