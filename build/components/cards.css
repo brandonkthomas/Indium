@@ -633,6 +633,7 @@ body[data-initial-state=ready] .loading-overlay {
   background: transparent;
   padding: 0.7rem 0.85rem;
   cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 .wa-listitem:hover {
   border-color: var(--wa-color-border-hover);
@@ -689,7 +690,10 @@ body[data-initial-state=ready] .loading-overlay {
 }
 @media (hover: hover) and (pointer: fine) {
   .wa-listitem {
-    transition: transform 0.12s ease, border-color 0.12s ease;
+    transition:
+      transform 0.12s ease,
+      background-color 0.12s ease,
+      border-color 0.12s ease;
   }
   .wa-listitem:hover {
     transform: translateY(-1px);

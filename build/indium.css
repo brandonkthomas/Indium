@@ -1381,6 +1381,10 @@ body[data-initial-state=ready] .loading-overlay {
   border-radius: 12px;
   border: 1px solid transparent;
   color: var(--wa-color-text-dim);
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
 }
 .wa-sidenav__icon {
   width: 18px;
@@ -1388,6 +1392,7 @@ body[data-initial-state=ready] .loading-overlay {
   flex: 0 0 auto;
   filter: var(--wa-icon-filter);
   opacity: 0.86;
+  transition: opacity 0.16s ease;
 }
 .wa-sidenav__label {
   min-width: 0;
@@ -1781,7 +1786,10 @@ body[data-initial-state=ready] .loading-overlay {
 }
 @media (hover: hover) and (pointer: fine) {
   .wa-listitem {
-    transition: transform 0.12s ease, border-color 0.12s ease;
+    transition:
+      transform 0.12s ease,
+      background-color 0.12s ease,
+      border-color 0.12s ease;
   }
   .wa-listitem:hover {
     transform: translateY(-1px);
@@ -1910,6 +1918,7 @@ body[data-initial-state=ready] .loading-overlay {
   background: transparent;
   padding: 0.7rem 0.85rem;
   cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
 }
 .wa-listitem:hover {
   border-color: var(--wa-color-border-hover);
