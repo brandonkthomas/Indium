@@ -46,55 +46,6 @@
         display: none !important;
     }
 
-    .wa-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: min(84vw, 320px);
-        z-index: 10001;
-        border-radius: 0;
-        transform: translateX(-102%);
-        transition: transform 0.18s ease;
-        /* On mobile the sidebar overlays content; make it much harder to read through. */
-        background: var(--wa-color-surface-sidebar-mobile);
-        height: auto;
-        max-height: none;
-    }
-
-    .wa-sidebar__close {
-        display: inline-flex;
-    }
-
-    .wa-sidebar-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 10000;
-        background: var(--wa-color-bg-overlay);
-        display: block;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.18s ease;
-    }
-
-    [data-wa-sidebar-open="true"] .wa-sidebar {
-        transform: translateX(0);
-    }
-
-    [data-wa-sidebar-open="true"] .wa-sidebar-overlay {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    @supports (
-        (backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))
-    ) {
-        .wa-sidebar {
-            backdrop-filter: blur(20px) saturate(1.2) brightness(0.82);
-            -webkit-backdrop-filter: blur(20px) saturate(1.2) brightness(0.82);
-        }
-    }
-
     .wa-grid--2 {
         /* Avoid grid column expanding past viewport when children have large min-content width. */
         grid-template-columns: minmax(0, 1fr);

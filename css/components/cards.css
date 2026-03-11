@@ -40,7 +40,7 @@
 }
 
 .wa-btn--icon {
-    padding: 0.2rem 0.55rem;
+    /* padding: 0.2rem 0.55rem; */ /* use padding from .wa-btn */
     line-height: 1;
     font-size: 0.85rem;
     overflow: hidden;

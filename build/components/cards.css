@@ -536,7 +536,6 @@ body[data-initial-state=ready] .loading-overlay {
   outline-offset: 2px;
 }
 .wa-btn--icon {
-  padding: 0.2rem 0.55rem;
   line-height: 1;
   font-size: 0.85rem;
   overflow: hidden;

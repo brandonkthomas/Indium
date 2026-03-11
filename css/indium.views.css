@@ -47,11 +47,7 @@
     transition-duration: 0.18s;
 }
 
-.wa-sidebar-overlay {
-    display: none;
-}
-
-/* Typography + cards (UI kit scaffolding) */
+/* Typography (UI kit scaffolding) */
 .wa-h1 {
     margin: 0 0 0.4rem 0;
     font-size: clamp(1.4rem, 3vw, 2rem);
@@ -144,32 +140,6 @@
     gap: 0.35rem;
 }
 
-.wa-btn--icon {
-    padding: 0.2rem 0.55rem;
-    line-height: 1;
-    font-size: 0.85rem;
-    overflow: hidden;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-}
-
-.wa-btn--icon > * {
-    display: inline-flex;
-    align-items: center;
-}
-
-.wa-btn--icon img {
-    width: 1em;
-    height: 1em;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
-    filter: var(--wa-icon-filter);
-}
-
 .wa-view__actions {
     position: absolute;
     top: -2px;
@@ -177,35 +147,6 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
-}
-
-.wa-grid {
-    display: grid;
-    gap: 0.9rem;
-    margin: 0.65rem 0;
-}
-
-.wa-grid--2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.wa-grid--3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.wa-grid--quick {
-    margin: 0.65rem 0 0.25rem 0;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: stretch;
-}
-
-.wa-grid--quick > .wa-card {
-    height: 100%;
-}
-
-.wa-grid--quick > .wa-card.wa-card--link {
-    display: flex;
-    flex-direction: column;
 }
 
 .wa-homequick__title {
@@ -222,69 +163,6 @@
     object-fit: contain;
     filter: var(--wa-icon-filter);
     opacity: 0.9;
-}
-
-.wa-card {
-    border-radius: var(--wa-radius-md);
-    border: 1px solid var(--wa-color-iconbtn-border);
-    padding: 0.95rem 1rem;
-    margin: 0.65rem 0;
-    height: fit-content;
-    box-shadow: var(--wa-shadow-card);
-}
-
-/* Cards with lists use compact bottom padding by default. */
-.wa-card:has(.wa-list) {
-    padding: 0.5rem 1rem 1rem 1rem;
-}
-
-/* Only expand bottom padding while the infinite-scroll throbber is visible. */
-.wa-card:has(.wa-list + .wa-infinite-sentinel .wa-throbber) {
-    padding: 0.5rem 1rem 2rem 1rem;
-}
-
-.wa-grid .wa-card {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.wa-card--glass {
-    background: transparent;
-}
-
-/* Content-card blur disabled for perf; background handled by shell/body. */
-/* @supports ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-    .wa-card--glass {
-        backdrop-filter: blur(12px) saturate(1.2);
-        -webkit-backdrop-filter: blur(12px) saturate(1.2);
-    }
-} */
-
-.wa-card--link {
-    display: block;
-    transition:
-        transform 0.12s ease,
-        border-color 0.12s ease;
-}
-
-.wa-card--link:hover {
-    transform: translateY(-1px);
-    border-color: var(--wa-color-border-hover);
-}
-
-/* List items share the same subtle hover lift as cards on pointer devices */
-@media (hover: hover) and (pointer: fine) {
-    .wa-listitem {
-        transition:
-            transform 0.12s ease,
-            background-color 0.12s ease,
-            border-color 0.12s ease;
-    }
-
-    .wa-listitem:hover {
-        transform: translateY(-1px);
-        border-color: var(--wa-color-border-hover);
-    }
 }
 
 /* Search bar (page-width with overlaid submit) */
@@ -365,100 +243,9 @@
     margin-top: 0.85rem;
 }
 
-.wa-btn {
-    border-radius: 999px;
-    border: 1px solid var(--wa-color-border-active);
-    background: var(--wa-color-btn-bg);
-    padding: 0.55rem 0.9rem;
-    cursor: pointer;
-    color: var(--wa-color-btn-text);
-    transition: background-color 0.16s ease, border-color 0.16s ease;
-}
-
-.wa-btn:disabled {
-    cursor: not-allowed;
-    opacity: 0.55;
-    background: var(--wa-color-btn-bg-disabled)
-}
-
-.wa-btn--primary {
-    border-color: var(--wa-color-border-strong);
-    background: var(--wa-color-btn-primary-bg);
-}
-
-@media (hover: hover) {
-    .wa-btn:not(:disabled):hover {
-        background: var(--wa-color-btn-bg-hover);
-    }
-
-    .wa-btn--primary:not(:disabled):hover {
-        background: var(--wa-color-btn-primary-bg-hover);
-    }
-}
-
-.wa-btn:focus-visible {
-    outline: 2px solid var(--wa-color-focus-ring);
-    outline-offset: 2px;
-}
-
 .wa-note {
     margin-top: 0.85rem;
     font-size: 0.9rem;
     color: var(--wa-color-text-dim);
 }
 
-.wa-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.55rem;
-}
-
-.wa-listitem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    width: 100%;
-    max-width: 100%;
-    /* .wa-list is a flex column; allow long unbroken text (e.g. playlist owner IDs) to shrink instead of overflowing. */
-    min-width: 0;
-    text-align: left;
-    border-radius: 12px;
-    border: 1px solid var(--wa-color-iconbtn-border);
-    background: transparent;
-    padding: 0.7rem 0.85rem;
-    cursor: pointer;
-    transition:
-        background-color 0.16s ease,
-        border-color 0.16s ease;
-}
-
-.wa-listitem:hover {
-    border-color: var(--wa-color-border-hover);
-    background: var(--wa-color-surface-elevated-soft);
-}
-
-.wa-listitem__title {
-    font-weight: 600;
-    color: var(--wa-color-text);
-}
-
-.wa-listitem__meta {
-    color: var(--wa-color-text-muted);
-    font-size: 0.9rem;
-}
-
-/* Used for righthand badges (recent card on Home view denoting media type) */
-.wa-listitem__pill {
-    flex: 0 0 auto;
-    margin-left: auto;
-    padding: 0.1rem 0.55rem;
-    border-radius: 999px;
-    border: 1px solid var(--wa-color-border-active);
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--wa-color-text-dim);
-    background: var(--wa-color-surface-elevated);
-}
