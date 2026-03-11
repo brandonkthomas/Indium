@@ -496,9 +496,6 @@ html[data-wa-theme=dark],
   flex-shrink: 0;
   opacity: 0.7;
   transition: opacity 0.2s ease;
-}
-.wa-navbar__link img,
-.url-link img {
   filter: var(--wa-icon-filter-strong);
 }
 .wa-navbar__link-external-sup,

@@ -62,10 +62,7 @@
         background 160ms ease-in-out,
         background-color 160ms ease-in-out,
         box-shadow 160ms ease-in-out;
-}
-
-/* Ensure any icon inside the thumb cannot exceed the thumb bounds */
-.comp-toggle-thumb {
+    /* Ensure any icon inside the thumb cannot exceed the thumb bounds */
     overflow: hidden;
     display: flex;
     align-items: center;

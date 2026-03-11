@@ -57,7 +57,6 @@
 .wa-h2 {
     margin: 0.4rem 0 0.75rem 0;
     font-size: 1.05rem;
-    /* text-transform: uppercase; */
     letter-spacing: 0.04em;
     color: var(--wa-color-text);
 }
@@ -74,14 +73,13 @@
 .wa-h3 {
     margin: 0 0 0.35rem 0;
     font-size: 0.95rem;
-    /* text-transform: uppercase; */
     letter-spacing: 0.04em;
     color: var(--wa-color-text-dim);
 }
 
 .wa-lede {
     margin: 0;
-    color: var(--wa-text-dim);
+    color: var(--wa-color-text-dim);
     line-height: 1.6;
     max-width: 70ch;
 }

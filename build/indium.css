@@ -683,8 +683,6 @@ body.ui-dialog-open {
     background 160ms ease-in-out,
     background-color 160ms ease-in-out,
     box-shadow 160ms ease-in-out;
-}
-.comp-toggle-thumb {
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -879,9 +877,6 @@ body.ui-dialog-open {
   flex-shrink: 0;
   opacity: 0.7;
   transition: opacity 0.2s ease;
-}
-.wa-navbar__link img,
-.url-link img {
   filter: var(--wa-icon-filter-strong);
 }
 .wa-navbar__link-external-sup,
@@ -1878,7 +1873,7 @@ body[data-initial-state=ready] .loading-overlay {
 }
 .wa-lede {
   margin: 0;
-  color: var(--wa-text-dim);
+  color: var(--wa-color-text-dim);
   line-height: 1.6;
   max-width: 70ch;
 }

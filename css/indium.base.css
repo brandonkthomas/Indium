@@ -1,6 +1,6 @@
 /*
-    webamp.css
-    WebAmp app page styling
+    indium.base.css
+    Indium base styles (reset, body, loading overlay, skeleton loaders)
 */
 
 /* ============================================================================== */
@@ -31,7 +31,7 @@ body {
 }
 
 /* ============================================================================== */
-/* Animated album-art color wash background
+/* Animated color wash background
 /* ============================================================================== */
 @property --wa-accent-r {
     syntax: "<number>";
