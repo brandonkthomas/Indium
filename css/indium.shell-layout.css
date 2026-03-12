@@ -399,11 +399,9 @@
 
     /* Desktop: position the fixed top bar over the content column only */
     .wa-topbar {
-        left: calc(
-            0.8rem + 260px + 0.9rem
-        ); /* page padding + sidebar width + gap */
+        left: calc(0.5rem + 260px + 0.9rem); /* page padding + sidebar width + gap */
         padding: 0.65rem 0rem;
-        right: 0.8rem;
+        right: 0.5rem;
     }
 
     .wa-topbar__inner {
