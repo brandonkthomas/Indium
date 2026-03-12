@@ -44,7 +44,7 @@ html[data-wa-theme='light'],
     --wa-color-border-hover: rgba(17, 24, 39, 0.3);
     --wa-color-border-input-focus: rgba(17, 24, 39, 0.32);
 
-    --wa-color-focus-ring: rgba(20, 96, 210, 0.75);
+    --wa-color-focus-ring: rgba(15, 73, 160, 0.75);
 
     --wa-color-btn-text: rgba(17, 24, 39, 0.9);
     --wa-color-btn-bg: rgba(17, 24, 39, 0.07);
@@ -134,7 +134,7 @@ html[data-wa-theme='light'],
         --wa-color-border-hover: rgba(17, 24, 39, 0.3);
         --wa-color-border-input-focus: rgba(17, 24, 39, 0.32);
 
-        --wa-color-focus-ring: rgba(20, 96, 210, 0.75);
+        --wa-color-focus-ring: rgba(15, 73, 160, 0.75);
 
         --wa-color-btn-text: rgba(17, 24, 39, 0.9);
         --wa-color-btn-bg: rgba(17, 24, 39, 0.07);
