@@ -217,6 +217,36 @@
     }
 }
 
+@media (max-width: 820px) {
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .wa-topbar::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: calc(env(safe-area-inset-top) + 3rem);
+            pointer-events: none;
+            z-index: -1;
+            background: linear-gradient(to top, transparent, var(--wa-color-bg-canvas));
+        }
+    }
+
+    @supports (bottom: env(safe-area-inset-bottom)) {
+        .wa-playerbar::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: calc(env(safe-area-inset-bottom) + 3rem);
+            pointer-events: none;
+            z-index: -1;
+            background: linear-gradient(to bottom, transparent, var(--wa-color-bg-canvas));
+        }
+    }
+}
+
 .wa-topbar__inner {
     display: flex;
     align-items: center;
