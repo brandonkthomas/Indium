@@ -52,8 +52,8 @@ body {
 body {
     /* Base color */
     background-color: var(--wa-color-bg-canvas);
-    /* Accent wash */
-    background-image: var(--wa-body-bg-image);
+    /* Theme-owned background + optional app-owned overlay layer */
+    background-image: var(--wa-body-bg-image-app), var(--wa-body-bg-image);
     background-attachment: fixed;
     transition:
         --wa-accent-r 900ms ease,
@@ -146,6 +146,8 @@ a {
 :root {
     --wa-radius-lg: 16px;
     --wa-radius-md: 14px;
+    /* Optional consumer-owned body layer that sits above theme background */
+    --wa-body-bg-image-app: none;
     --wa-playerbar-offset: env(safe-area-inset-bottom, 0px);
     /* Keep this in sync with `.wa-content { margin-top: ... }` per breakpoint. */
     --wa-content-pad-top: 1.25rem;
