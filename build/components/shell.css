@@ -657,6 +657,11 @@ body[data-initial-state=ready] .loading-overlay {
   z-index: 9000;
   padding: 0.6rem 0.7rem;
 }
+@supports (padding-top: max(0px)) and (padding-top: env(safe-area-inset-top)) {
+  .wa-topbar {
+    padding-top: max(0.6rem, calc(env(safe-area-inset-top) + 0.25rem));
+  }
+}
 .wa-topbar__inner {
   display: flex;
   align-items: center;
