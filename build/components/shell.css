@@ -815,9 +815,9 @@ body[data-initial-state=ready] .loading-overlay {
     padding-bottom: 5.25rem;
   }
   .wa-topbar {
-    left: calc(0.8rem + 260px + 0.9rem);
+    left: calc(0.5rem + 260px + 0.9rem);
     padding: 0.65rem 0rem;
-    right: 0.8rem;
+    right: 0.5rem;
   }
   .wa-topbar__inner {
     margin-left: 0;
