@@ -1239,7 +1239,7 @@ body {
 @property --wa-accent-b { syntax: "<number>"; inherits: true; initial-value: 18; }
 body {
   background-color: var(--wa-color-bg-canvas);
-  background-image: var(--wa-body-bg-image);
+  background-image: var(--wa-body-bg-image-app), var(--wa-body-bg-image);
   background-attachment: fixed;
   transition:
     --wa-accent-r 900ms ease,
@@ -1318,6 +1318,7 @@ a {
 :root {
   --wa-radius-lg: 16px;
   --wa-radius-md: 14px;
+  --wa-body-bg-image-app: none;
   --wa-playerbar-offset: env(safe-area-inset-bottom, 0px);
   --wa-content-pad-top: 1.25rem;
 }
