@@ -392,9 +392,9 @@
         overscroll-behavior: contain;
     }
 
-    /* We already reserved space for bottom chrome via .wa-layout height. */
+    /* reserve space for playerbar */
     .wa-main {
-        padding-bottom: 1rem;
+        padding-bottom: 5.25rem;
     }
 
     /* Desktop: position the fixed top bar over the content column only */

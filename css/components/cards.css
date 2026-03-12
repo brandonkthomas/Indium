@@ -107,9 +107,9 @@
     padding: 0.5rem 1rem 1rem 1rem;
 }
 
-.wa-card:has(.wa-list + .wa-infinite-sentinel .wa-throbber) {
+/* .wa-card:has(.wa-list + .wa-infinite-sentinel .wa-throbber) {
     padding: 0.5rem 1rem 2rem 1rem;
-}
+} */
 
 .wa-grid .wa-card {
     margin-top: 0;
