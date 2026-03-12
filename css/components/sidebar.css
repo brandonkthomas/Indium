@@ -10,7 +10,7 @@
     box-shadow: var(--wa-shadow-soft);
     overflow: hidden;
     position: relative;
-    height: auto;
+    /* height: auto; */ /* commented out in favor of responsive rules */
 }
 
 .wa-sidebar__inner {
