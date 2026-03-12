@@ -123,6 +123,18 @@
         max-height: none;
     }
 
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .wa-sidebar__inner {
+            padding-top: calc(0.9rem + env(safe-area-inset-top));
+        }
+    }
+
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        .wa-sidebar__inner {
+            padding-bottom: calc(0.9rem + env(safe-area-inset-bottom));
+        }
+    }
+
     .wa-sidebar__close {
         display: inline-flex;
     }

@@ -95,6 +95,20 @@
     gap: 1rem;
 }
 
+@media (max-width: 820px) {
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        .wa-shell__content {
+            padding-bottom: calc(1.1rem + env(safe-area-inset-bottom));
+        }
+    }
+
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .wa-shell__content {
+            padding-top: env(safe-area-inset-top);
+        }
+    }
+}
+
 /* ============================================================================== */
 /* Layout: desktop has a pinned sidebar; mobile uses a slide-over sidebar
 /* ============================================================================== */
