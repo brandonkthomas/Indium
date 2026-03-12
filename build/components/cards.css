@@ -591,9 +591,6 @@ body[data-initial-state=ready] .loading-overlay {
 .wa-card:has(.wa-list) {
   padding: 0.5rem 1rem 1rem 1rem;
 }
-.wa-card:has(.wa-list + .wa-infinite-sentinel .wa-throbber) {
-  padding: 0.5rem 1rem 2rem 1rem;
-}
 .wa-grid .wa-card {
   margin-top: 0;
   margin-bottom: 0;

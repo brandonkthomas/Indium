@@ -517,7 +517,7 @@ body[data-initial-state=ready] .loading-overlay {
   display: block;
   width: 100%;
   height: 100%;
-  padding: 0 1.1rem;
+  padding: 0 0.7rem;
   border-radius: inherit;
   position: relative;
 }
@@ -812,16 +812,16 @@ body[data-initial-state=ready] .loading-overlay {
     overscroll-behavior: contain;
   }
   .wa-main {
-    padding-bottom: 1rem;
+    padding-bottom: 5.25rem;
   }
   .wa-topbar {
-    left: calc(1.1rem + 260px + 0.9rem);
+    left: calc(0.8rem + 260px + 0.9rem);
     padding: 0.65rem 0rem;
-    right: 1.1rem;
+    right: 0.8rem;
   }
   .wa-topbar__inner {
     margin-left: 0;
-    padding: 0.65rem 1rem;
+    padding: 0.65rem 0.8rem;
   }
   .wa-topbar__burger,
   .wa-topbar__back {
@@ -839,7 +839,7 @@ body[data-initial-state=ready] .loading-overlay {
     display: none;
   }
   .wa-sidebar {
-    height: 99%;
+    height: 98%;
     max-height: 100%;
     margin-top: 0.7rem;
     overflow: hidden;
@@ -859,7 +859,6 @@ body[data-initial-state=ready] .loading-overlay {
   box-shadow: var(--wa-shadow-soft);
   overflow: hidden;
   position: relative;
-  height: auto;
 }
 .wa-sidebar__inner {
   padding: 0.9rem;

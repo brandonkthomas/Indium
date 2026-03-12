@@ -486,7 +486,6 @@ body[data-initial-state=ready] .loading-overlay {
   box-shadow: var(--wa-shadow-soft);
   overflow: hidden;
   position: relative;
-  height: auto;
 }
 .wa-sidebar__inner {
   padding: 0.9rem;
