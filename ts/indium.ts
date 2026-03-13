@@ -22,6 +22,13 @@ import {
     type ConfirmOptions,
     type PromptOptions
 } from './components/dialogs';
+import { openPopupMenu } from './components/popupMenu';
+import type {
+    PopupMenuHandle,
+    PopupMenuItem,
+    PopupMenuOptions,
+    PopupMenuPlacement
+} from './components/popupMenu';
 import {
     createGlassSurface,
     type GlassSurfaceInstance,
@@ -212,6 +219,7 @@ export {
     createGlassSurface,
     createGradNoiseCanvas,
     createNavbarController,
+    openPopupMenu,
     createSidebarController,
     getIndiumConfig,
     routePath,
@@ -237,6 +245,10 @@ export type {
     NavbarNavigateContext,
     NavbarSelectors,
     IndiumThemeMode,
+    PopupMenuHandle,
+    PopupMenuItem,
+    PopupMenuOptions,
+    PopupMenuPlacement,
     ResolvedIndiumTheme,
     PromptOptions,
     SidebarController

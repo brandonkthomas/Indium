@@ -8,6 +8,7 @@ const jsEntries = {
     'build/components/dialogs.js': 'ts/entries/components/dialogs.ts',
     'build/components/glassSurface.js': 'ts/entries/components/glassSurface.ts',
     'build/components/infiniteScroll.js': 'ts/entries/components/infiniteScroll.ts',
+    'build/components/popupMenu.js': 'ts/entries/components/popupMenu.ts',
     'build/components/sidebar.js': 'ts/entries/components/sidebar.ts',
     'build/components/gradNoiseCanvas.js': 'ts/entries/components/gradNoiseCanvas.ts',
     'build/components/navbar.js': 'ts/entries/components/navbar.ts'
@@ -18,6 +19,7 @@ const cssEntries = {
     'build/components/dialogs.css': 'css/entries/components/dialogs.css',
     'build/components/glassSurface.css': 'css/entries/components/glassSurface.css',
     'build/components/infiniteScroll.css': 'css/entries/components/infiniteScroll.css',
+    'build/components/popupMenu.css': 'css/entries/components/popupMenu.css',
     'build/components/sidebar.css': 'css/entries/components/sidebar.css',
     'build/components/cards.css': 'css/entries/components/cards.css',
     'build/components/navbar.css': 'css/entries/components/navbar.css',

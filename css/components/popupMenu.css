@@ -1,0 +1,110 @@
+html.ui-popupmenu-open,
+body.ui-popupmenu-open {
+    overflow: hidden !important;
+}
+
+.ui-popupmenu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 11000;
+}
+
+.ui-popupmenu-overlay--desktop {
+    background: transparent;
+}
+
+.ui-popupmenu-overlay--mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: radial-gradient(circle at top, var(--wa-dialog-overlay-start), var(--wa-dialog-overlay-end));
+    opacity: 0;
+    transition: opacity 0.18s ease;
+}
+
+.ui-popupmenu-overlay--mobile.is-visible {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+}
+
+.ui-popupmenu {
+    color: var(--wa-color-text);
+    border: 1px solid var(--wa-color-border-soft);
+    background: var(--wa-color-surface-topbar-blur);
+    box-shadow: var(--wa-shadow-soft);
+}
+
+.ui-popupmenu--floating {
+    position: fixed;
+    min-width: 220px;
+    max-width: min(280px, calc(100vw - 24px));
+    border-radius: 16px;
+    padding: 0.45rem;
+    backdrop-filter: blur(22px) saturate(1.1);
+    -webkit-backdrop-filter: blur(22px) saturate(1.1);
+}
+
+.ui-popupmenu--dialog {
+    width: min(360px, calc(100vw - 2rem));
+    border-radius: 20px;
+    padding: 1rem;
+    backdrop-filter: blur(26px) saturate(1.12);
+    -webkit-backdrop-filter: blur(26px) saturate(1.12);
+}
+
+.ui-popupmenu-title {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ui-popupmenu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.ui-popupmenu-item {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 0.8rem 0.9rem;
+    background: transparent;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.ui-popupmenu-item:hover:not(:disabled) {
+    background: var(--wa-color-surface-elevated);
+}
+
+.ui-popupmenu-item:focus-visible {
+    outline: 2px solid var(--wa-color-focus-ring);
+    outline-offset: 2px;
+}
+
+.ui-popupmenu-item:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.ui-popupmenu-item__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    display: block;
+    filter: var(--wa-icon-filter);
+}
+
+.ui-popupmenu-item__label {
+    min-width: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+

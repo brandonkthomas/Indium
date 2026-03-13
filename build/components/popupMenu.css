@@ -1,0 +1,407 @@
+/* css/indium.theme.tokens.css */
+:root {
+  color-scheme: dark;
+  --wa-color-text: rgba(255, 255, 255, 0.92);
+  --wa-color-text-strong: rgba(255, 255, 255, 0.96);
+  --wa-color-text-dim: rgba(255, 255, 255, 0.74);
+  --wa-color-text-muted: rgba(255, 255, 255, 0.66);
+  --wa-color-text-subtle: rgba(255, 255, 255, 0.55);
+  --wa-color-text-soft: rgba(255, 255, 255, 0.45);
+  --wa-color-bg-canvas: #1c1c1c;
+  --wa-color-bg-canvas-soft: #242424;
+  --wa-color-bg-gradient-end: rgba(28, 28, 28, 0.98);
+  --wa-body-bg-image:
+    linear-gradient(
+      
+      145deg,
+      rgba(var(--wa-accent-r), var(--wa-accent-g), var(--wa-accent-b), 0.52) 0%,
+      var(--wa-color-bg-gradient-end) 70% );
+  --wa-color-bg-loading: #1c1c1c;
+  --wa-color-bg-overlay: rgba(0, 0, 0, 0.55);
+  --wa-color-surface-shell: transparent;
+  --wa-color-surface-shell-glow: rgba(255, 255, 255, 0.04);
+  --wa-color-surface-sidebar: rgba(0, 0, 0, 0.28);
+  --wa-color-surface-sidebar-mobile: rgba(0, 0, 0, 0.78);
+  --wa-color-surface-topbar: rgba(10, 10, 14, 0.88);
+  --wa-color-surface-topbar-blur: rgba(33, 33, 33, 0.75);
+  --wa-color-surface-input: rgba(0, 0, 0, 0.22);
+  --wa-color-surface-input-focus: rgba(0, 0, 0, 0.3);
+  --wa-color-surface-elevated: rgba(255, 255, 255, 0.06);
+  --wa-color-surface-elevated-strong: rgba(255, 255, 255, 0.1);
+  --wa-color-surface-elevated-soft: rgba(255, 255, 255, 0.025);
+  --wa-glass-fallback-bg: rgba(255, 255, 255, 0.1);
+  --wa-glass-fallback-bg-no-backdrop: rgba(0, 0, 0, 0.4);
+  --wa-color-border: rgba(255, 255, 255, 0.16);
+  --wa-color-border-strong: rgba(255, 255, 255, 0.26);
+  --wa-color-border-soft: rgba(255, 255, 255, 0.12);
+  --wa-color-border-subtle: rgba(255, 255, 255, 0.1);
+  --wa-color-border-active: rgba(255, 255, 255, 0.18);
+  --wa-color-border-hover: rgba(255, 255, 255, 0.22);
+  --wa-color-border-input-focus: rgba(255, 255, 255, 0.34);
+  --wa-color-focus-ring: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-text: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-bg: rgba(255, 255, 255, 0.07);
+  --wa-color-btn-bg-hover: rgba(255, 255, 255, 0.14);
+  --wa-color-btn-bg-disabled: rgba(255, 255, 255, 0.04);
+  --wa-color-btn-primary-bg: rgba(255, 255, 255, 0.16);
+  --wa-color-btn-primary-bg-hover: rgba(255, 255, 255, 0.2);
+  --wa-color-iconbtn-border: rgba(255, 255, 255, 0.14);
+  --wa-color-iconbtn-bg: rgba(255, 255, 255, 0.1);
+  --wa-color-iconbtn-bg-hover: rgba(255, 255, 255, 0.15);
+  --wa-color-listitem-disabled-overlay: rgba(6, 8, 10, 0.35);
+  --wa-color-text-inverse: #050710;
+  --wa-color-navbar-burger-line: rgb(179, 179, 179);
+  --wa-dialog-overlay-start: rgba(0, 0, 0, 0.7);
+  --wa-dialog-overlay-end: rgba(0, 0, 0, 0.95);
+  --wa-dialog-input-bg: rgba(0, 0, 0, 0.35);
+  --wa-dialog-btn-bg: rgba(0, 0, 0, 0.45);
+  --wa-dialog-btn-secondary-bg: rgba(0, 0, 0, 0.3);
+  --wa-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  --wa-shadow-card: 0 10px 10px rgba(0, 0, 0, 0.15);
+  --wa-shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --wa-shadow-topbar: 0 0 35px rgb(0 0 0 / 50%);
+  --wa-color-shadow-soft: rgba(0, 0, 0, 0.35);
+  --wa-color-shadow-strong: rgba(0, 0, 0, 0.5);
+  --wa-color-shadow-heavy: rgba(0, 0, 0, 0.6);
+  --wa-noise-opacity: 0.34;
+  --wa-icon-filter: invert(1);
+  --wa-icon-filter-strong: brightness(0) invert(1);
+  --wa-loading-filter: invert(1);
+  --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+  --wa-brand-outline-ring: rgba(255, 255, 255, 0.9);
+  --wa-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.45);
+  --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.5);
+  --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  --wa-border: var(--wa-color-border);
+  --wa-border-strong: var(--wa-color-border-strong);
+  --wa-text-dim: var(--wa-color-text-dim);
+}
+
+/* css/indium.theme.light.css */
+html.wa-theme-light,
+html[data-wa-theme=light],
+[data-wa-theme=light] {
+  color-scheme: light;
+  --wa-color-text: rgba(20, 23, 29, 0.92);
+  --wa-color-text-strong: rgba(12, 16, 22, 0.96);
+  --wa-color-text-dim: rgba(31, 36, 45, 0.72);
+  --wa-color-text-muted: rgba(41, 47, 58, 0.66);
+  --wa-color-text-subtle: rgba(52, 59, 72, 0.6);
+  --wa-color-text-soft: rgba(61, 70, 86, 0.56);
+  --wa-color-bg-canvas: #f4f6fa;
+  --wa-color-bg-canvas-soft: #eef2f8;
+  --wa-color-bg-gradient-end: rgba(244, 246, 250, 0.98);
+  --wa-body-bg-image: none;
+  --wa-color-bg-loading: #f1f4f9;
+  --wa-color-bg-overlay: rgba(14, 20, 30, 0.28);
+  --wa-color-surface-shell: transparent;
+  --wa-color-surface-shell-glow: rgba(10, 16, 28, 0.07);
+  --wa-color-surface-sidebar: rgba(255, 255, 255, 0.68);
+  --wa-color-surface-sidebar-mobile: rgba(245, 248, 253, 0.9);
+  --wa-color-surface-topbar: rgba(245, 248, 253, 0.92);
+  --wa-color-surface-topbar-blur: rgba(247, 250, 255, 0.86);
+  --wa-color-surface-input: rgba(255, 255, 255, 0.72);
+  --wa-color-surface-input-focus: rgba(255, 255, 255, 0.94);
+  --wa-color-surface-elevated: rgba(17, 24, 39, 0.06);
+  --wa-color-surface-elevated-strong: rgba(17, 24, 39, 0.1);
+  --wa-color-surface-elevated-soft: rgba(17, 24, 39, 0.025);
+  --wa-glass-fallback-bg: rgba(255, 255, 255, 0.8);
+  --wa-glass-fallback-bg-no-backdrop: rgba(255, 255, 255, 0.8);
+  --wa-color-border: rgba(17, 24, 39, 0.18);
+  --wa-color-border-strong: rgba(17, 24, 39, 0.26);
+  --wa-color-border-soft: rgba(17, 24, 39, 0.14);
+  --wa-color-border-subtle: rgba(17, 24, 39, 0.1);
+  --wa-color-border-active: rgba(17, 24, 39, 0.2);
+  --wa-color-border-hover: rgba(17, 24, 39, 0.3);
+  --wa-color-border-input-focus: rgba(17, 24, 39, 0.32);
+  --wa-color-focus-ring: rgba(15, 73, 160, 0.75);
+  --wa-color-btn-text: rgba(17, 24, 39, 0.9);
+  --wa-color-btn-bg: rgba(17, 24, 39, 0.07);
+  --wa-color-btn-bg-hover: rgba(17, 24, 39, 0.12);
+  --wa-color-btn-bg-disabled: rgba(17, 24, 39, 0.045);
+  --wa-color-btn-primary-bg: rgba(17, 24, 39, 0.14);
+  --wa-color-btn-primary-bg-hover: rgba(17, 24, 39, 0.2);
+  --wa-color-iconbtn-border: rgba(17, 24, 39, 0.14);
+  --wa-color-iconbtn-bg: rgba(17, 24, 39, 0.08);
+  --wa-color-iconbtn-bg-hover: rgba(17, 24, 39, 0.14);
+  --wa-color-listitem-disabled-overlay: rgba(255, 255, 255, 0.45);
+  --wa-color-text-inverse: #f8fbff;
+  --wa-color-navbar-burger-line: rgba(17, 24, 39, 0.75);
+  --wa-dialog-overlay-start: rgba(8, 16, 28, 0.22);
+  --wa-dialog-overlay-end: rgba(8, 16, 28, 0.42);
+  --wa-dialog-input-bg: rgba(255, 255, 255, 0.82);
+  --wa-dialog-btn-bg: rgba(17, 24, 39, 0.12);
+  --wa-dialog-btn-secondary-bg: rgba(17, 24, 39, 0.08);
+  --wa-shadow: 0 18px 60px rgba(17, 24, 39, 0.14);
+  --wa-shadow-card: 0 10px 10px rgba(17, 24, 39, 0.08);
+  --wa-shadow-soft: 0 10px 40px rgba(17, 24, 39, 0.14);
+  --wa-shadow-topbar: 0 0 35px rgb(15 23 42 / 12%);
+  --wa-color-shadow-soft: rgba(17, 24, 39, 0.18);
+  --wa-color-shadow-strong: rgba(17, 24, 39, 0.24);
+  --wa-color-shadow-heavy: rgba(17, 24, 39, 0.32);
+  --wa-noise-opacity: 0.14;
+  --wa-icon-filter: none;
+  --wa-icon-filter-strong: none;
+  --wa-loading-filter: none;
+  --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23111827' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+  --wa-brand-outline-ring: rgba(20, 96, 210, 0.72);
+  --wa-toggle-thumb-shadow: 0 1px 3px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.2);
+  --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(15, 23, 42, 0.24);
+  --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(15, 23, 42, 0.18);
+}
+@media (prefers-color-scheme: light) {
+  html:not(.wa-theme-dark):not([data-wa-theme=dark]) {
+    color-scheme: light;
+    --wa-color-text: rgba(20, 23, 29, 0.92);
+    --wa-color-text-strong: rgba(12, 16, 22, 0.96);
+    --wa-color-text-dim: rgba(31, 36, 45, 0.72);
+    --wa-color-text-muted: rgba(41, 47, 58, 0.66);
+    --wa-color-text-subtle: rgba(52, 59, 72, 0.6);
+    --wa-color-text-soft: rgba(61, 70, 86, 0.56);
+    --wa-color-bg-canvas: #f4f6fa;
+    --wa-color-bg-canvas-soft: #eef2f8;
+    --wa-color-bg-gradient-end: rgba(244, 246, 250, 0.98);
+    --wa-body-bg-image: none;
+    --wa-color-bg-loading: #f1f4f9;
+    --wa-color-bg-overlay: rgba(14, 20, 30, 0.28);
+    --wa-color-surface-shell: transparent;
+    --wa-color-surface-shell-glow: rgba(10, 16, 28, 0.07);
+    --wa-color-surface-sidebar: rgba(255, 255, 255, 0.68);
+    --wa-color-surface-sidebar-mobile: rgba(245, 248, 253, 0.9);
+    --wa-color-surface-topbar: rgba(245, 248, 253, 0.92);
+    --wa-color-surface-topbar-blur: rgba(247, 250, 255, 0.86);
+    --wa-color-surface-input: rgba(255, 255, 255, 0.72);
+    --wa-color-surface-input-focus: rgba(255, 255, 255, 0.94);
+    --wa-color-surface-elevated: rgba(17, 24, 39, 0.06);
+    --wa-color-surface-elevated-strong: rgba(17, 24, 39, 0.1);
+    --wa-color-surface-elevated-soft: rgba(17, 24, 39, 0.025);
+    --wa-glass-fallback-bg: rgba(255, 255, 255, 0.8);
+    --wa-glass-fallback-bg-no-backdrop: rgba(255, 255, 255, 0.8);
+    --wa-color-border: rgba(17, 24, 39, 0.18);
+    --wa-color-border-strong: rgba(17, 24, 39, 0.26);
+    --wa-color-border-soft: rgba(17, 24, 39, 0.14);
+    --wa-color-border-subtle: rgba(17, 24, 39, 0.1);
+    --wa-color-border-active: rgba(17, 24, 39, 0.2);
+    --wa-color-border-hover: rgba(17, 24, 39, 0.3);
+    --wa-color-border-input-focus: rgba(17, 24, 39, 0.32);
+    --wa-color-focus-ring: rgba(15, 73, 160, 0.75);
+    --wa-color-btn-text: rgba(17, 24, 39, 0.9);
+    --wa-color-btn-bg: rgba(17, 24, 39, 0.07);
+    --wa-color-btn-bg-hover: rgba(17, 24, 39, 0.12);
+    --wa-color-btn-bg-disabled: rgba(17, 24, 39, 0.045);
+    --wa-color-btn-primary-bg: rgba(17, 24, 39, 0.14);
+    --wa-color-btn-primary-bg-hover: rgba(17, 24, 39, 0.2);
+    --wa-color-iconbtn-border: rgba(17, 24, 39, 0.14);
+    --wa-color-iconbtn-bg: rgba(17, 24, 39, 0.08);
+    --wa-color-iconbtn-bg-hover: rgba(17, 24, 39, 0.14);
+    --wa-color-listitem-disabled-overlay: rgba(255, 255, 255, 0.45);
+    --wa-color-text-inverse: #f8fbff;
+    --wa-color-navbar-burger-line: rgba(17, 24, 39, 0.75);
+    --wa-dialog-overlay-start: rgba(8, 16, 28, 0.22);
+    --wa-dialog-overlay-end: rgba(8, 16, 28, 0.42);
+    --wa-dialog-input-bg: rgba(255, 255, 255, 0.82);
+    --wa-dialog-btn-bg: rgba(17, 24, 39, 0.12);
+    --wa-dialog-btn-secondary-bg: rgba(17, 24, 39, 0.08);
+    --wa-shadow: 0 18px 60px rgba(17, 24, 39, 0.14);
+    --wa-shadow-card: 0 10px 10px rgba(17, 24, 39, 0.08);
+    --wa-shadow-soft: 0 10px 40px rgba(17, 24, 39, 0.14);
+    --wa-shadow-topbar: 0 0 35px rgb(15 23 42 / 12%);
+    --wa-color-shadow-soft: rgba(17, 24, 39, 0.18);
+    --wa-color-shadow-strong: rgba(17, 24, 39, 0.24);
+    --wa-color-shadow-heavy: rgba(17, 24, 39, 0.32);
+    --wa-noise-opacity: 0.14;
+    --wa-icon-filter: none;
+    --wa-icon-filter-strong: none;
+    --wa-loading-filter: none;
+    --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23111827' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+    --wa-brand-outline-ring: rgba(20, 96, 210, 0.72);
+    --wa-toggle-thumb-shadow: 0 1px 3px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.2);
+    --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(15, 23, 42, 0.3), 0 0 0 1px rgba(15, 23, 42, 0.24);
+    --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(15, 23, 42, 0.18);
+  }
+}
+
+/* css/indium.theme.dark.css */
+html.wa-theme-dark,
+html[data-wa-theme=dark],
+[data-wa-theme=dark] {
+  color-scheme: dark;
+  --wa-color-text: rgba(255, 255, 255, 0.92);
+  --wa-color-text-strong: rgba(255, 255, 255, 0.96);
+  --wa-color-text-dim: rgba(255, 255, 255, 0.74);
+  --wa-color-text-muted: rgba(255, 255, 255, 0.66);
+  --wa-color-text-subtle: rgba(255, 255, 255, 0.55);
+  --wa-color-text-soft: rgba(255, 255, 255, 0.45);
+  --wa-color-bg-canvas: #1c1c1c;
+  --wa-color-bg-canvas-soft: #242424;
+  --wa-color-bg-gradient-end: rgba(28, 28, 28, 0.98);
+  --wa-body-bg-image:
+    linear-gradient(
+      
+      145deg,
+      rgba(var(--wa-accent-r), var(--wa-accent-g), var(--wa-accent-b), 0.52) 0%,
+      var(--wa-color-bg-gradient-end) 70% );
+  --wa-color-bg-loading: #1c1c1c;
+  --wa-color-bg-overlay: rgba(0, 0, 0, 0.55);
+  --wa-color-surface-shell: transparent;
+  --wa-color-surface-shell-glow: rgba(255, 255, 255, 0.04);
+  --wa-color-surface-sidebar: rgba(0, 0, 0, 0.28);
+  --wa-color-surface-sidebar-mobile: rgba(0, 0, 0, 0.78);
+  --wa-color-surface-topbar: rgba(10, 10, 14, 0.88);
+  --wa-color-surface-topbar-blur: rgba(33, 33, 33, 0.75);
+  --wa-color-surface-input: rgba(0, 0, 0, 0.22);
+  --wa-color-surface-input-focus: rgba(0, 0, 0, 0.3);
+  --wa-color-surface-elevated: rgba(255, 255, 255, 0.06);
+  --wa-color-surface-elevated-strong: rgba(255, 255, 255, 0.1);
+  --wa-color-surface-elevated-soft: rgba(255, 255, 255, 0.025);
+  --wa-glass-fallback-bg: rgba(255, 255, 255, 0.1);
+  --wa-glass-fallback-bg-no-backdrop: rgba(0, 0, 0, 0.4);
+  --wa-color-border: rgba(255, 255, 255, 0.16);
+  --wa-color-border-strong: rgba(255, 255, 255, 0.26);
+  --wa-color-border-soft: rgba(255, 255, 255, 0.12);
+  --wa-color-border-subtle: rgba(255, 255, 255, 0.1);
+  --wa-color-border-active: rgba(255, 255, 255, 0.18);
+  --wa-color-border-hover: rgba(255, 255, 255, 0.22);
+  --wa-color-border-input-focus: rgba(255, 255, 255, 0.34);
+  --wa-color-focus-ring: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-text: rgba(255, 255, 255, 0.9);
+  --wa-color-btn-bg: rgba(255, 255, 255, 0.07);
+  --wa-color-btn-bg-hover: rgba(255, 255, 255, 0.14);
+  --wa-color-btn-bg-disabled: rgba(255, 255, 255, 0.04);
+  --wa-color-btn-primary-bg: rgba(255, 255, 255, 0.16);
+  --wa-color-btn-primary-bg-hover: rgba(255, 255, 255, 0.2);
+  --wa-color-iconbtn-border: rgba(255, 255, 255, 0.14);
+  --wa-color-iconbtn-bg: rgba(255, 255, 255, 0.1);
+  --wa-color-iconbtn-bg-hover: rgba(255, 255, 255, 0.15);
+  --wa-color-listitem-disabled-overlay: rgba(6, 8, 10, 0.35);
+  --wa-color-text-inverse: #050710;
+  --wa-color-navbar-burger-line: rgb(179, 179, 179);
+  --wa-dialog-overlay-start: rgba(0, 0, 0, 0.7);
+  --wa-dialog-overlay-end: rgba(0, 0, 0, 0.95);
+  --wa-dialog-input-bg: rgba(0, 0, 0, 0.35);
+  --wa-dialog-btn-bg: rgba(0, 0, 0, 0.45);
+  --wa-dialog-btn-secondary-bg: rgba(0, 0, 0, 0.3);
+  --wa-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  --wa-shadow-card: 0 10px 10px rgba(0, 0, 0, 0.15);
+  --wa-shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.35);
+  --wa-shadow-topbar: 0 0 35px rgb(0 0 0 / 50%);
+  --wa-color-shadow-soft: rgba(0, 0, 0, 0.35);
+  --wa-color-shadow-strong: rgba(0, 0, 0, 0.5);
+  --wa-color-shadow-heavy: rgba(0, 0, 0, 0.6);
+  --wa-noise-opacity: 0.34;
+  --wa-icon-filter: invert(1);
+  --wa-icon-filter-strong: brightness(0) invert(1);
+  --wa-loading-filter: invert(1);
+  --wa-search-cancel-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' d='M6 6 L18 18 M18 6 L6 18'/%3E%3C/svg%3E");
+  --wa-brand-outline-ring: rgba(255, 255, 255, 0.9);
+  --wa-toggle-thumb-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.45);
+  --wa-toggle-thumb-shadow-checked: 0 2px 6px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.5);
+  --wa-toggle-thumb-shadow-disabled: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  --wa-border: var(--wa-color-border);
+  --wa-border-strong: var(--wa-color-border-strong);
+  --wa-text-dim: var(--wa-color-text-dim);
+}
+
+/* css/indium.theme.css */
+
+/* css/components/popupMenu.css */
+html.ui-popupmenu-open,
+body.ui-popupmenu-open {
+  overflow: hidden !important;
+}
+.ui-popupmenu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 11000;
+}
+.ui-popupmenu-overlay--desktop {
+  background: transparent;
+}
+.ui-popupmenu-overlay--mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background:
+    radial-gradient(
+      circle at top,
+      var(--wa-dialog-overlay-start),
+      var(--wa-dialog-overlay-end));
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.ui-popupmenu-overlay--mobile.is-visible {
+  opacity: 1;
+  backdrop-filter: blur(2px);
+}
+.ui-popupmenu {
+  color: var(--wa-color-text);
+  border: 1px solid var(--wa-color-border-soft);
+  background: var(--wa-color-surface-topbar-blur);
+  box-shadow: var(--wa-shadow-soft);
+}
+.ui-popupmenu--floating {
+  position: fixed;
+  min-width: 220px;
+  max-width: min(280px, calc(100vw - 24px));
+  border-radius: 16px;
+  padding: 0.45rem;
+  backdrop-filter: blur(22px) saturate(1.1);
+  -webkit-backdrop-filter: blur(22px) saturate(1.1);
+}
+.ui-popupmenu--dialog {
+  width: min(360px, calc(100vw - 2rem));
+  border-radius: 20px;
+  padding: 1rem;
+  backdrop-filter: blur(26px) saturate(1.12);
+  -webkit-backdrop-filter: blur(26px) saturate(1.12);
+}
+.ui-popupmenu-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+.ui-popupmenu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.ui-popupmenu-item {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+  background: transparent;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: left;
+  cursor: pointer;
+}
+.ui-popupmenu-item:hover:not(:disabled) {
+  background: var(--wa-color-surface-elevated);
+}
+.ui-popupmenu-item:focus-visible {
+  outline: 2px solid var(--wa-color-focus-ring);
+  outline-offset: 2px;
+}
+.ui-popupmenu-item:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.ui-popupmenu-item__icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: block;
+  filter: var(--wa-icon-filter);
+}
+.ui-popupmenu-item__label {
+  min-width: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* css/entries/components/popupMenu.css */
