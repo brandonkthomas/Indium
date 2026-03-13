@@ -5,7 +5,9 @@
 
 .wa-sidebar {
     border-radius: var(--wa-radius-lg);
-    border: 1px solid var(--wa-color-border-soft);
+    border-top: 1px solid var(--wa-color-border-soft);
+    border-bottom: 1px solid var(--wa-color-border-soft);
+    border-right: 1px solid var(--wa-color-border-soft); /* dont append border-left */
     background: var(--wa-color-surface-sidebar);
     box-shadow: var(--wa-shadow-soft);
     overflow: hidden;
